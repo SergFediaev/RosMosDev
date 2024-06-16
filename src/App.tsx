@@ -1,3 +1,5 @@
 import './App.css'
 
-export const App = () => <>RosMosDev</>
+export const App = () => {
+    return <>RosMosDev</>
+}
