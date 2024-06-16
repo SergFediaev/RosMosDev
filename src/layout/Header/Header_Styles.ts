@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { theme } from 'src/styles/Theme.ts'
+import { theme } from 'src/app/Theme.ts'
 
-const Header = styled.div`
+const Header = styled.header`
     background-color: ${theme.colors.background};
-    padding: ${theme.dimensions.space};
+    padding: ${theme.dimensions.regularSpace};
 `
 
 export const S = {
