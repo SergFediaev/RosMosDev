@@ -1,4 +1,4 @@
-import { S } from 'src/layout/Header/Header_Styles.ts'
+import { S } from 'src/widgets/header/header.styles.ts'
 
 export const Header = () => {
     return (

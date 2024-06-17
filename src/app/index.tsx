@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
-import { App } from 'src/app/App.tsx'
-import { GlobalStyled } from 'src/app/Global.styled.ts'
+import 'src/app/styles/index.css'
+import { App } from 'src/app/app.tsx'
+import { GlobalStyles } from 'src/app/styles/global.styles.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <GlobalStyled />
+        <GlobalStyles />
         <App />
     </React.StrictMode>,
 )

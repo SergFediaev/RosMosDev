@@ -1,9 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
-import interRegular from 'src/assets/fonts/inter/Inter-Regular.ttf'
-import interBold from 'src/assets/fonts/inter/Inter-Bold.ttf'
-import interBlack from 'src/assets/fonts/inter/Inter-Black.ttf'
+import interRegular from 'src/shared/assets/fonts/inter/Inter-Regular.ttf'
+import interBold from 'src/shared/assets/fonts/inter/Inter-Bold.ttf'
+import interBlack from 'src/shared/assets/fonts/inter/Inter-Black.ttf'
 
-export const GlobalStyled = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
     @font-face {
         font-family: Inter;
         src: local('Inter'),
