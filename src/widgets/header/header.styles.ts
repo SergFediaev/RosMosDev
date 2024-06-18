@@ -5,9 +5,10 @@ const Header = styled.header`
     position: sticky;
     top: 0;
     background-color: ${theme.colors.backgroundAccent};
-    padding: ${theme.dimensions.regularSpace};
+    padding: ${theme.sizes.regularSpace} ${theme.sizes.largeSpace};
     display: flex;
-    gap: ${theme.dimensions.regularSpace};
+    align-items: center;
+    gap: ${theme.sizes.largeSpace};
     flex-wrap: wrap;
     backdrop-filter: blur(${theme.blurs.regularBlur});
 `

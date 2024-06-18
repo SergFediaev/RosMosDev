@@ -38,7 +38,7 @@ export const GlobalStyles = createGlobalStyle`
         font-display: swap;
     }
 
-    *, *::before, *::after, *::placeholder {
+    *, *::before, *::after, *::placeholder, *:focus-visible {
         margin: 0;
         padding: 0;
         font-family: Inter, Arial, Helvetica, sans-serif;
@@ -49,5 +49,7 @@ export const GlobalStyles = createGlobalStyle`
         line-height: 1.2;
         word-wrap: anywhere;
         list-style: none;
+        text-decoration: unset;
+        outline: unset;
     }
 `

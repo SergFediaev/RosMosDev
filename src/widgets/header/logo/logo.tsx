@@ -8,5 +8,9 @@ type Props = {
 export const Logo = ({ isCardsLoading }: Props) => {
     const lang = 'en'
 
-    return isCardsLoading ? <S.Loading>{TEXTS[lang].LOADING}</S.Loading> : <S.Logo>{TEXTS[lang].APP_NAME}</S.Logo>
+    return isCardsLoading ? (
+        <S.Loading>{TEXTS[lang].LOADING}</S.Loading>
+    ) : (
+        <S.Logo title={TEXTS[lang].APP_NAME}>{TEXTS[lang].APP_ACRONYM}</S.Logo>
+    )
 }

@@ -1,13 +1,17 @@
 import styled from 'styled-components'
+import { theme } from 'src/app/styles/theme.ts'
 
-const Logo = styled.h1`
+const Logo = styled.abbr`
+    font-size: ${theme.sizes.largeFont};
+    font-weight: bold;
+
     &:hover {
         cursor: help;
     }
 `
 
 const Loading = styled.span`
-    font-size: 2rem;
+    font-size: ${theme.sizes.largeFont};
     font-weight: bold;
 `
 

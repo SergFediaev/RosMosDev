@@ -5,13 +5,16 @@ export const theme = {
         font: '#fff',
         shadow: 'rgba(0, 0, 0, 0.7)',
     },
-    dimensions: {
+    sizes: {
         smallSpace: '10px',
+        mediumSpace: '15px',
         regularSpace: '20px',
         largeSpace: '40px',
         thinBorder: '1px',
         mediumBorder: '2px',
         bigBorder: '4px',
+        defaultFont: '1rem',
+        largeFont: '2rem',
     },
     roundings: {
         card: '10px',

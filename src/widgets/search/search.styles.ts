@@ -2,23 +2,23 @@ import styled from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 
 const Search = styled.div`
-    min-width: 0;
-    max-width: 400px;
-    border: ${theme.dimensions.mediumBorder} ${theme.colors.font} solid;
+    max-width: 300px;
+    border: ${theme.sizes.mediumBorder} ${theme.colors.font} solid;
     border-radius: ${theme.roundings.search};
-    padding: ${theme.dimensions.smallSpace} ${theme.dimensions.regularSpace};
+    padding: ${theme.sizes.mediumSpace} ${theme.sizes.regularSpace};
     display: flex;
     align-items: center;
     flex-grow: 1;
-    gap: ${theme.dimensions.smallSpace};
+    gap: ${theme.sizes.smallSpace};
 
     & input {
         text-overflow: ellipsis;
         font-size: 1rem;
-        min-width: 0;
+        width: 100%;
 
         &::placeholder {
             opacity: ${theme.transparencies.half};
+            text-overflow: ellipsis;
         }
     }
 `
