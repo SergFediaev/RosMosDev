@@ -5,12 +5,16 @@ import { App } from 'src/app/app.tsx'
 import { GlobalStyles } from 'src/app/styles/global.styles.ts'
 import { Provider } from 'react-redux'
 import { store } from 'src/app/store.ts'
+import { StyleSheetManager } from 'styled-components'
+import isPropValid from '@emotion/is-prop-valid'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <GlobalStyles />
         <Provider store={store}>
-            <App />
+            <StyleSheetManager shouldForwardProp={isPropValid}>
+                <GlobalStyles />
+                <App />
+            </StyleSheetManager>
         </Provider>
     </React.StrictMode>,
 )

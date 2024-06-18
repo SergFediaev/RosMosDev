@@ -1,7 +1,9 @@
 export const theme = {
     colors: {
-        background: 'rgba(60,140,0,0.5)',
-        font: 'antiquewhite',
+        accent: '#008305',
+        backgroundAccent: 'rgba(83,83,83,0.9)',
+        font: '#fff',
+        shadow: 'rgba(0, 0, 0, 0.7)',
     },
     dimensions: {
         smallSpace: '10px',
@@ -17,5 +19,15 @@ export const theme = {
     },
     transparencies: {
         half: 0.5,
+    },
+    blurs: {
+        regularBlur: '10px',
+    },
+    spreads: {
+        shadow: '1px',
+    },
+    directions: {
+        leftShadow: '-10px',
+        bottomShadow: '10px',
     },
 }

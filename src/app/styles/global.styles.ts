@@ -42,11 +42,12 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family: Inter, Arial, Helvetica, sans-serif;
-        background: transparent;
-        border: none;
+        background: unset;
+        border: unset;
         color: ${theme.colors.font};
         box-sizing: border-box;
         line-height: 1.2;
         word-wrap: anywhere;
+        list-style: none;
     }
 `
