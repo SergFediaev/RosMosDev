@@ -1,14 +1,16 @@
 import { S } from 'src/widgets/header/header.styles.ts'
 import { Search } from 'src/widgets/search/search.tsx'
-import { TEXTS } from 'src/shared/const'
+import { Logo } from 'src/widgets/header/logo/logo.tsx'
+import { useSelector } from 'react-redux'
+import { selectIsCardsLoading } from 'src/entities/card/model/card.selectors.ts'
 
 export const Header = () => {
-    const lang = 'en'
+    const isCardsLoading = useSelector(selectIsCardsLoading)
 
     return (
         <S.Header>
-            <h1>{TEXTS[lang].APP_NAME}</h1>
-            <Search />
+            <Logo isCardsLoading={isCardsLoading} />
+            {!isCardsLoading && <Search />}
         </S.Header>
     )
 }

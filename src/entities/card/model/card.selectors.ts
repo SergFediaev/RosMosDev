@@ -15,3 +15,5 @@ export const selectCards = (state: AppState) => {
 }
 
 export const selectSearchCards = (state: AppState) => state.cards.search
+
+export const selectIsCardsLoading = (state: AppState) => state.cards.isLoading
