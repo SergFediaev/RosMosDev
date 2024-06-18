@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import interRegular from 'src/shared/assets/fonts/inter/Inter-Regular.ttf'
 import interBold from 'src/shared/assets/fonts/inter/Inter-Bold.ttf'
 import interBlack from 'src/shared/assets/fonts/inter/Inter-Black.ttf'
+import { theme } from 'src/app/styles/theme.ts'
 
 export const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -37,8 +38,15 @@ export const GlobalStyles = createGlobalStyle`
         font-display: swap;
     }
 
-    *, *::before, *::after {
+    *, *::before, *::after, *::placeholder {
         margin: 0;
+        padding: 0;
         font-family: Inter, Arial, Helvetica, sans-serif;
+        background: transparent;
+        border: none;
+        color: ${theme.colors.font};
+        box-sizing: border-box;
+        line-height: 1.2;
+        word-wrap: anywhere;
     }
 `

@@ -1,19 +1,21 @@
-import { asyncThunkCreator, buildCreateSlice } from '@reduxjs/toolkit'
+import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
 import { cardsApi } from 'src/entities/card'
 import { getCardsFromSpreadsheet } from 'src/entities/card/lib/getCardsFromSpreadsheet.ts'
 import { CardType } from 'src/entities/card/model/types/card.types.ts'
 import { Nullable } from 'src/shared/types/nullable.ts'
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
-import { text } from 'src/shared/const/const.ts'
+import { TEXTS, VALUES } from 'src/shared/const'
 
 type InitialState = {
     cards: CardType[]
+    search: string
     isLoading: boolean
     error: Nullable<string>
 }
 
 const initialState: InitialState = {
     cards: [],
+    search: VALUES.EMPTY_STRING,
     isLoading: false,
     error: null,
 }
@@ -43,13 +45,17 @@ const cardsSlice = createSlice({
                     state.cards = action.payload
                 },
                 rejected: (state, action) => {
-                    state.error = action.error.message ?? text['en'].SOMETHING_WENT_WRONG
+                    const lang = 'en'
+                    state.error = action.error.message ?? TEXTS[lang].SOMETHING_WENT_WRONG
                 },
                 settled: state => {
                     state.isLoading = false
                 },
             },
         ),
+        searchCards: create.reducer((state, action: PayloadAction<{ search: string }>) => {
+            state.search = action.payload.search
+        }),
     }),
 })
 
@@ -57,4 +63,4 @@ export const cardsName = cardsSlice.name
 
 export const cardsReducer = cardsSlice.reducer
 
-export const { fetchCards } = cardsSlice.actions
+export const { fetchCards, searchCards } = cardsSlice.actions

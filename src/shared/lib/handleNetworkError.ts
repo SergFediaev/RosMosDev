@@ -1,8 +1,9 @@
 import { isAxiosError } from 'axios'
-import { text } from 'src/shared/const/const.ts'
+import { TEXTS } from 'src/shared/const'
 
 export const handleNetworkError = (e: unknown): string => {
-    let error: string = text['en'].SOMETHING_WENT_WRONG
+    const lang = 'en'
+    let error: string = TEXTS[lang].SOMETHING_WENT_WRONG
 
     if (isAxiosError(e)) {
         error = e.response?.data.message || e.message || error
