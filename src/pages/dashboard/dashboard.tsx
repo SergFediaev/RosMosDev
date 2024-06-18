@@ -1,15 +1,18 @@
 import { S } from 'src/pages/dashboard/dashboard.styles.ts'
-import { useEffect, useState } from 'react'
 import { Cards } from 'src/pages/dashboard/cards/cards.tsx'
-import { CardType } from 'src/entities/card/model/types/card.types.ts'
-import { cardsApi } from 'src/entities/card'
+import { useAppDispatch } from 'src/app/store.ts'
+import { fetchCards } from 'src/entities/card/model/cardSlice.ts'
+import { useSelector } from 'react-redux'
+import { selectCards } from 'src/entities/card/model/card.selectors.ts'
+import { useEffect } from 'react'
 
 export const Dashboard = () => {
-    const [cards, setCards] = useState<CardType[]>(Array<CardType>)
+    const cards = useSelector(selectCards)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        cardsApi.getCards().then(cards => setCards(cards))
-    }, [])
+        dispatch(fetchCards())
+    }, [dispatch])
 
     return (
         <S.Dashboard>
