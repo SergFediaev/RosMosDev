@@ -5,10 +5,12 @@ import { CardType } from 'src/entities/card/model/types/card.types.ts'
 import { Nullable } from 'src/shared/types/nullable.ts'
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 import { TEXTS, VALUES } from 'src/shared/const'
+import { defaultSort, Sort } from 'src/features/sortCards'
 
 type InitialState = {
     cards: CardType[]
     search: string
+    sort: Sort
     isLoading: boolean
     error: Nullable<string>
 }
@@ -16,6 +18,7 @@ type InitialState = {
 const initialState: InitialState = {
     cards: [],
     search: VALUES.EMPTY_STRING,
+    sort: defaultSort,
     isLoading: false,
     error: null,
 }
@@ -56,6 +59,9 @@ const cardsSlice = createSlice({
         searchCards: create.reducer((state, action: PayloadAction<{ search: string }>) => {
             state.search = action.payload.search
         }),
+        sortCards: create.reducer((state, action: PayloadAction<{ sort: Sort }>) => {
+            state.sort = action.payload.sort
+        }),
     }),
 })
 
@@ -63,4 +69,4 @@ export const cardsName = cardsSlice.name
 
 export const cardsReducer = cardsSlice.reducer
 
-export const { fetchCards, searchCards } = cardsSlice.actions
+export const { fetchCards, searchCards, sortCards } = cardsSlice.actions

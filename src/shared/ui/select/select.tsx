@@ -4,10 +4,17 @@ import { KEYS, SYMBOLS } from 'src/shared/const'
 import { Icon } from 'src/shared/ui/icon/icon.tsx'
 
 type Props<T> = {
-    options: T[]
-    selectedOption: T
-    onSelect: (option: T) => void
+    options: Options<T>
+    selectedOption: string
+    onSelect: (option: Option<T>) => void
     isSelectionEndless?: boolean
+}
+
+export type Options<T> = Option<T>[]
+
+export type Option<T> = {
+    label: string
+    value: T
 }
 
 export const Select = <T,>({ options, isSelectionEndless = true, ...props }: Props<T>) => {
@@ -29,7 +36,7 @@ export const Select = <T,>({ options, isSelectionEndless = true, ...props }: Pro
         closeSelect()
     }
 
-    const onClickOption = (option: T) => {
+    const onClickOption = (option: Option<T>) => {
         props.onSelect(option)
         closeSelect()
     }
@@ -37,21 +44,23 @@ export const Select = <T,>({ options, isSelectionEndless = true, ...props }: Pro
     const onKeyDownSelect = (event: KeyboardEvent) => {
         event.preventDefault()
 
+        if (event.key === KEYS.ESCAPE) {
+            closeSelect()
+            return
+        }
+
+        const selectedOptionIndex = options.findIndex(option => option.label === selectedOption)
+
         if (event.key === KEYS.ENTER) {
             if (isSelectOpened) {
-                if (props.selectedOption !== selectedOption) props.onSelect(selectedOption)
+                if (props.selectedOption !== selectedOption) props.onSelect(options[selectedOptionIndex])
                 closeSelect()
             } else openSelect()
 
             return
         }
 
-        if (event.key === KEYS.ESCAPE) {
-            closeSelect()
-            return
-        }
-
-        let stepIndex = options.indexOf(selectedOption)
+        let stepIndex = selectedOptionIndex
 
         if (event.key === KEYS.ARROW_UP) {
             stepIndex -= 1
@@ -72,8 +81,8 @@ export const Select = <T,>({ options, isSelectionEndless = true, ...props }: Pro
         }
 
         for (let i = 0; i < options.length; i++) {
-            if (selectedOption === options[i]) {
-                setSelectedOption(options[stepIndex])
+            if (selectedOption === options[i].label) {
+                setSelectedOption(options[stepIndex].label)
                 props.onSelect(options[stepIndex])
                 return
             }
@@ -83,7 +92,7 @@ export const Select = <T,>({ options, isSelectionEndless = true, ...props }: Pro
     return (
         <S.Select onMouseEnter={onMouseEnterSelect} onKeyDown={onKeyDownSelect} tabIndex={0} onBlur={closeSelect}>
             <S.Selected onClick={toggleIsSelectOpen}>
-                <span>{props.selectedOption as string}</span>
+                <span>{props.selectedOption}</span>
                 <Icon icon={iconSelect} />
             </S.Selected>
             {isSelectOpened && (
@@ -92,9 +101,9 @@ export const Select = <T,>({ options, isSelectionEndless = true, ...props }: Pro
                         <S.Option
                             key={index}
                             onClick={() => onClickOption(option)}
-                            isHovered={selectedOption === option}
-                            onMouseEnter={() => setSelectedOption(option)}>
-                            {option as string}
+                            isHovered={selectedOption === option.label}
+                            onMouseEnter={() => setSelectedOption(option.label)}>
+                            {option.label}
                         </S.Option>
                     ))}
                 </S.Options>

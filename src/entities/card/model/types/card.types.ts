@@ -1,5 +1,7 @@
+import { VALUES } from 'src/shared/const'
+
 export type CardType = {
-    title: string
+    [VALUES.CARD_TITLE]: string
     content: string
     tags?: string
 }
