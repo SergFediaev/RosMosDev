@@ -10,6 +10,8 @@ export const TEXTS = {
         LOADING: 'Loading...',
         SORT_ALPHABET_ASCENDING: `${SYMBOLS.ASCENDING} Alphabet`,
         SORT_ALPHABET_DESCENDING: `${SYMBOLS.DESCENDING} Alphabet`,
+        ALL: 'All',
+        UNCATEGORIZED: 'Uncategorized',
     },
     [VALUES.RU]: {
         APP_NAME: 'РосМосДев',
@@ -19,5 +21,7 @@ export const TEXTS = {
         LOADING: 'Загрузка...',
         SORT_ALPHABET_ASCENDING: `${SYMBOLS.ASCENDING} Алфавит`,
         SORT_ALPHABET_DESCENDING: `${SYMBOLS.DESCENDING} Алфавит`,
+        ALL: 'Все',
+        UNCATEGORIZED: 'Без категории',
     },
 } as const

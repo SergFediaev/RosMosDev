@@ -1,9 +1,18 @@
 import { Spreadsheet } from 'src/entities/card/api/cardsApi.types.ts'
 import { CardType } from 'src/entities/card/model/types/card.types.ts'
+import { cardFilters } from 'src/features/filterCards/model/cardFilters.ts'
+import { FILTERS } from 'src/features/filterCards'
 import { VALUES } from 'src/shared/const'
 
-export const getCardsFromSpreadsheet = (spreadsheet: Spreadsheet): CardType[] =>
-    spreadsheet.sheets[0].data[0].rowData.slice(1).map(row => {
+export const getCardsFromSpreadsheet = (spreadsheet: Spreadsheet): CardType[] => {
+    const cards: CardType[] = spreadsheet.sheets[0].data[0].rowData.slice(1).map(row => {
         const [title, content, tags] = row.values.map(value => value.formattedValue)
+
+        tags && tags.split(VALUES.COMMA).forEach(tag => cardFilters.addFilter(tag))
+
         return { title, content, tags: tags && tags.split(VALUES.COMMA).join(VALUES.COMMA_SPACE) }
     })
+
+    cardFilters.addFilter(FILTERS.UNCATEGORIZED)
+    return cards
+}
