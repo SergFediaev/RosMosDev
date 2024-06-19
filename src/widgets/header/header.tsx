@@ -22,7 +22,7 @@ export const Header = () => {
     const selectedSort = findCardsSortLabel(cardsSorts, useSelector(selectCardsSort))
 
     const onSelectFilter = (option: Option<string>) => dispatch(filterCards({ filter: option.value }))
-    const cardsFilters = getFilterOptions(cardFilters.getFilters(), lang)
+    const cardsFilters = getFilterOptions(cardFilters().filters, lang)
     const selectedFilter = findCardsFilterLabel(cardsFilters, useSelector(selectCardsFilter))
 
     return (
