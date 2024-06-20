@@ -1,5 +1,6 @@
 import { VALUES } from 'src/shared/const/values.ts'
 import { SYMBOLS } from 'src/shared/const/symbols.ts'
+import { EMOJIS } from 'src/shared/const/emojis.ts'
 
 export const TEXTS = {
     [VALUES.EN]: {
@@ -12,6 +13,7 @@ export const TEXTS = {
         SORT_ALPHABET_DESCENDING: `${SYMBOLS.DESCENDING} Alphabet`,
         ALL: 'All',
         UNCATEGORIZED: 'Uncategorized',
+        CARDS_NOT_FOUND: `Cards not found ${EMOJIS.NOT_FOUND}`,
     },
     [VALUES.RU]: {
         APP_NAME: 'РосМосДев',
@@ -23,5 +25,6 @@ export const TEXTS = {
         SORT_ALPHABET_DESCENDING: `${SYMBOLS.DESCENDING} Алфавит`,
         ALL: 'Все',
         UNCATEGORIZED: 'Без категории',
+        CARDS_NOT_FOUND: `Карточки не найдены ${EMOJIS.NOT_FOUND}`,
     },
 } as const
