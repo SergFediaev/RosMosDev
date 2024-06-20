@@ -1,14 +1,22 @@
-import { FILTERS } from 'src/features/filterCards'
+import { Filter, FILTERS } from 'src/features/filterCards'
+import { TEXTS } from 'src/shared/const'
+import { Lang } from 'src/shared/types/lang.ts'
 
-class CardFilters {
+export class CardFilters {
     #filters: Set<string>
 
     constructor() {
         this.#filters = new Set<string>([FILTERS.ALL])
     }
 
-    get filters() {
-        return Array.from([...this.#filters])
+    getFilters(lang: Lang): Filter[] {
+        return [...this.#filters].map(filter => {
+            let label = filter
+            if (filter === FILTERS.ALL) label = TEXTS[lang].ALL
+            if (filter === FILTERS.UNCATEGORIZED) label = TEXTS[lang].UNCATEGORIZED
+
+            return { label, value: filter.toLowerCase() }
+        })
     }
 
     set addFilter(filter: string) {

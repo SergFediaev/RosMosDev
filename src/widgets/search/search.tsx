@@ -1,11 +1,10 @@
 import { S } from './search.styles.ts'
-import { useAppDispatch } from 'src/app/store.ts'
 import { useSelector } from 'react-redux'
-import { ChangeEvent, useRef } from 'react'
-import { searchCards } from 'src/entities/card/model/cardSlice.ts'
+import { useAppDispatch } from 'src/app/store.ts'
+import { selectCardsSearch, setCardsSearch } from 'src/entities/card'
 import { EMOJIS, TEXTS, TITLES, TYPES, VALUES } from 'src/shared/const'
+import { ChangeEvent, useRef } from 'react'
 import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
-import { selectCardsSearch } from 'src/entities/card/model/card.selectors.ts'
 
 export const Search = () => {
     const lang = 'en'
@@ -16,11 +15,11 @@ export const Search = () => {
     const input = useRef<HTMLInputElement>(null)
 
     const onSearch = (event: ChangeEvent<HTMLInputElement>) =>
-        dispatch(searchCards({ search: event.currentTarget.value }))
+        dispatch(setCardsSearch({ search: event.currentTarget.value }))
 
     const onFocusSearch = () => input.current?.focus()
 
-    const onClearSearch = () => dispatch(searchCards({ search: VALUES.EMPTY_STRING }))
+    const onClearSearch = () => dispatch(setCardsSearch({ search: VALUES.EMPTY_STRING }))
 
     const onClick = search ? onClearSearch : onFocusSearch
 

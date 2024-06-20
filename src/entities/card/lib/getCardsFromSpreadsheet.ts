@@ -1,20 +1,23 @@
-import { Spreadsheet } from 'src/entities/card/api/cardsApi.types.ts'
-import { CardType } from 'src/entities/card/model/types/card.types.ts'
+import { CardFilters, FILTERS } from 'src/features/filterCards'
+import { CardsWithFilters, CardType, Spreadsheet } from 'src/entities/card'
+import { Lang } from 'src/shared/types/lang.ts'
 import { VALUES } from 'src/shared/const'
-import { cardFilters, FILTERS } from 'src/features/filterCards'
 
-export const getCardsFromSpreadsheet = (spreadsheet: Spreadsheet): CardType[] => {
-    const filters = cardFilters()
-    filters.reset()
+export const getCardsFromSpreadsheet = (
+    spreadsheet: Spreadsheet,
+    cardFilter: CardFilters,
+    lang: Lang,
+): CardsWithFilters => {
+    cardFilter.reset()
 
     const cards: CardType[] = spreadsheet.sheets[0].data[0].rowData.slice(1).map(row => {
         const [title, content, tags] = row.values.map(value => value.formattedValue)
 
-        tags && tags.split(VALUES.COMMA).forEach(tag => (filters.addFilter = tag))
+        tags && tags.split(VALUES.COMMA).forEach(tag => (cardFilter.addFilter = tag))
 
         return { title, content, tags: tags && tags.split(VALUES.COMMA).join(VALUES.COMMA_SPACE) }
     })
 
-    filters.addFilter = FILTERS.UNCATEGORIZED
-    return cards
+    cardFilter.addFilter = FILTERS.UNCATEGORIZED
+    return { cards, filters: cardFilter.getFilters(lang) }
 }

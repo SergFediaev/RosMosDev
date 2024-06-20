@@ -1,6 +1,5 @@
-import { Card } from 'src/entities/card/ui/card.tsx'
 import { S } from 'src/pages/dashboard/cards/cards.styles.ts'
-import { CardType } from 'src/entities/card/model/types/card.types.ts'
+import { Card, CardType } from 'src/entities/card'
 
 type Props = {
     cards: CardType[]

@@ -4,15 +4,13 @@ import { KEYS, SYMBOLS } from 'src/shared/const'
 import { Icon } from 'src/shared/ui/icon/icon.tsx'
 
 type Props<T> = {
-    options: Options<T>
+    options: Option<T>[]
     selectedOption: string
     onSelect: (option: Option<T>) => void
     isSelectionEndless?: boolean
 }
 
-export type Options<T> = Option<T>[]
-
-export type Option<T> = {
+type Option<T> = {
     label: string
     value: T
 }

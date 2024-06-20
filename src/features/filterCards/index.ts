@@ -1,7 +1,7 @@
 export { FILTERS } from './const/filters.ts'
 
-export { findCardsFilterLabel } from './lib/findCardsFilterLabel.ts'
+export * from './model/cardFilters.ts'
 
-export { getFilterOptions } from './lib/getFilterOptions.ts'
+export type { Filter } from './model/cardFilters.types.ts'
 
-export { cardFilters } from './model/cardFilters.ts'
+export { defaultFilters } from 'src/features/filterCards/model/defaultFilters.ts'

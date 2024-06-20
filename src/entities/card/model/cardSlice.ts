@@ -1,27 +1,29 @@
-import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
-import { cardsApi } from 'src/entities/card'
-import { getCardsFromSpreadsheet } from 'src/entities/card/lib/getCardsFromSpreadsheet.ts'
-import { CardType } from 'src/entities/card/model/types/card.types.ts'
+import { cardsApi, CardsWithFilters, CardType, getCardsFromSpreadsheet } from 'src/entities/card'
+import { defaultSorts, Sort } from 'src/features/sortCards'
+import { cardFilters, defaultFilters, Filter } from 'src/features/filterCards'
 import { Nullable } from 'src/shared/types/nullable.ts'
-import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 import { TEXTS, VALUES } from 'src/shared/const'
-import { defaultSort, Sort } from 'src/features/sortCards'
-import { FILTERS } from 'src/features/filterCards'
+import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
+import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 
 type InitialState = {
-    cards: CardType[]
+    items: CardType[]
     search: string
     sort: Sort
-    filter: string
+    sorts: Sort[]
+    filter: Filter
+    filters: Filter[]
     isLoading: boolean
     error: Nullable<string>
 }
 
 const initialState: InitialState = {
-    cards: [],
+    items: [],
     search: VALUES.EMPTY_STRING,
-    sort: defaultSort,
-    filter: FILTERS.ALL,
+    sort: defaultSorts[0],
+    sorts: defaultSorts,
+    filter: defaultFilters[0],
+    filters: defaultFilters,
     isLoading: false,
     error: null,
 }
@@ -34,11 +36,11 @@ const cardsSlice = createSlice({
     name: 'cards',
     initialState,
     reducers: create => ({
-        fetchCards: create.asyncThunk<CardType[], void>(
+        fetchCards: create.asyncThunk<CardsWithFilters, void>(
             async (_, { rejectWithValue }) => {
                 try {
                     const response = await cardsApi.getCards()
-                    return getCardsFromSpreadsheet(response.data)
+                    return getCardsFromSpreadsheet(response.data, cardFilters(), VALUES.EN)
                 } catch (e) {
                     return rejectWithValue({ error: handleNetworkError(e) })
                 }
@@ -48,7 +50,8 @@ const cardsSlice = createSlice({
                     state.isLoading = true
                 },
                 fulfilled: (state, action) => {
-                    state.cards = action.payload
+                    state.items = action.payload.cards
+                    state.filters = action.payload.filters
                 },
                 rejected: (state, action) => {
                     const lang = 'en'
@@ -59,13 +62,13 @@ const cardsSlice = createSlice({
                 },
             },
         ),
-        searchCards: create.reducer((state, action: PayloadAction<{ search: string }>) => {
+        setCardsSearch: create.reducer((state, action: PayloadAction<{ search: string }>) => {
             state.search = action.payload.search
         }),
-        sortCards: create.reducer((state, action: PayloadAction<{ sort: Sort }>) => {
+        setCardsSort: create.reducer((state, action: PayloadAction<{ sort: Sort }>) => {
             state.sort = action.payload.sort
         }),
-        filterCards: create.reducer((state, action: PayloadAction<{ filter: string }>) => {
+        setCardsFilter: create.reducer((state, action: PayloadAction<{ filter: Filter }>) => {
             state.filter = action.payload.filter
         }),
     }),
@@ -75,4 +78,4 @@ export const cardsName = cardsSlice.name
 
 export const cardsReducer = cardsSlice.reducer
 
-export const { fetchCards, searchCards, sortCards, filterCards } = cardsSlice.actions
+export const { fetchCards, setCardsSearch, setCardsSort, setCardsFilter } = cardsSlice.actions

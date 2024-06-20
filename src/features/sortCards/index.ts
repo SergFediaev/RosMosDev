@@ -1,10 +1,6 @@
 export { SORTS } from './const/sorts.ts'
 
-export { findCardsSortLabel } from './lib/findCardsSortLabel.ts'
-
-export { getSortOptions } from './lib/getSortOptions.ts'
-
-export { defaultSort } from './model/defaultSort.ts'
+export { defaultSorts } from 'src/features/sortCards/model/defaultSorts.ts'
 
 export { selectSortedCards } from './model/sortCards.selectors.ts'
 

@@ -1,10 +1,10 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { selectCardsSort, selectSearchedCards } from 'src/entities/card/model/card.selectors.ts'
+import { selectCardsSort, selectSearchedCards } from 'src/entities/card'
 
 export const selectSortedCards = createSelector(
     selectSearchedCards,
     selectCardsSort,
-    (cards, { sortBy, sortDirection }) =>
+    (cards, { value: { sortBy, sortDirection } }) =>
         cards
             .slice()
             .sort((cardA, cardB) =>
