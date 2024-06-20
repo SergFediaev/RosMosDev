@@ -8,6 +8,7 @@ type Props<T> = {
     selectedOption: string
     onSelect: (option: Option<T>) => void
     isSelectionEndless?: boolean
+    title?: string
 }
 
 type Option<T> = {
@@ -15,7 +16,7 @@ type Option<T> = {
     value: T
 }
 
-export const Select = <T,>({ options, isSelectionEndless = true, ...props }: Props<T>) => {
+export const Select = <T,>({ options, isSelectionEndless = true, title, ...props }: Props<T>) => {
     const [isSelectOpened, setIsSelectOpened] = useState(false)
     const [selectedOption, setSelectedOption] = useState(props.selectedOption)
     const iconSelect = isSelectOpened ? SYMBOLS.UP : SYMBOLS.DOWN
@@ -89,7 +90,7 @@ export const Select = <T,>({ options, isSelectionEndless = true, ...props }: Pro
 
     return (
         <S.Select onMouseEnter={onMouseEnterSelect} onKeyDown={onKeyDownSelect} tabIndex={0} onBlur={closeSelect}>
-            <S.Selected onClick={toggleIsSelectOpen}>
+            <S.Selected onClick={toggleIsSelectOpen} title={title}>
                 <span>{props.selectedOption}</span>
                 <Icon icon={iconSelect} />
             </S.Selected>

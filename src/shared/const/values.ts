@@ -5,4 +5,6 @@ export const VALUES = {
     EN: 'en',
     RU: 'ru',
     CARD_TITLE: 'title',
+    MEDIUM_SIZE: '2rem',
+    LARGE_SIZE: '3rem',
 } as const

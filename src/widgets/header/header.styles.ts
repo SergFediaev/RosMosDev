@@ -7,12 +7,24 @@ const Header = styled.header`
     background-color: ${theme.colors.backgroundAccent};
     padding: ${theme.sizes.regularSpace} ${theme.sizes.largeSpace};
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: ${theme.sizes.largeSpace};
     flex-wrap: wrap;
     backdrop-filter: blur(${theme.blurs.regularBlur});
 `
 
+const Tools = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: ${theme.sizes.largeSpace};
+`
+
+const Actions = styled.div``
+
 export const S = {
     Header,
+    Tools,
+    Actions,
 }
