@@ -13,5 +13,6 @@ export const handleNetworkError = (e: unknown): string => {
         error = JSON.stringify(e)
     }
 
+    console.error(error)
     return error
 }

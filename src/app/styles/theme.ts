@@ -1,15 +1,17 @@
 export const theme = {
     colors: {
         accent: '#008305',
-        backgroundAccent: 'rgba(83,83,83,0.9)',
+        backgroundAccent: 'rgba(83, 83, 83, .9)',
         font: '#fff',
-        shadow: 'rgba(0, 0, 0, 0.7)',
+        shadow: 'rgba(0, 0, 0, .7)',
+        errorBackground: '#1030b7',
     },
     sizes: {
         smallSpace: '10px',
         mediumSpace: '15px',
         regularSpace: '20px',
         largeSpace: '40px',
+        hugeSpace: '100px',
         thinBorder: '1px',
         mediumBorder: '2px',
         bigBorder: '4px',

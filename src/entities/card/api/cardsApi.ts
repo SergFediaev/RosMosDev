@@ -3,7 +3,7 @@ import { key, sheetId } from 'src/shared/config'
 import { apiInstance } from 'src/shared/api/base.ts'
 
 export const cardsApi = {
-    getCards: async () =>
+    getCards: () =>
         apiInstance.get<Spreadsheet>(sheetId, {
             params: { key, includeGridData: true },
         }),

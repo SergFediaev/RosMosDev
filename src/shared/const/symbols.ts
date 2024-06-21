@@ -3,4 +3,5 @@ export const SYMBOLS = {
     DOWN: '▼',
     ASCENDING: '↑',
     DESCENDING: '↓',
+    MULTIPLY: '×',
 } as const
