@@ -21,6 +21,7 @@ export const Header = () => {
                     onClick={() => {}}
                     title={TITLES[VALUES.EN].OPEN_SETTINGS}
                     size={VALUES.MEDIUM_SIZE}
+                    isSpinning
                 />
             </S.Actions>
         </S.Header>

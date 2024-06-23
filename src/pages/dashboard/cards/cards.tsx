@@ -5,12 +5,10 @@ type Props = {
     cards: CardType[]
 }
 
-export const Cards = ({ cards }: Props) => {
-    return (
-        <S.Cards>
-            {cards.map((card, index) => (
-                <Card key={index} card={card} />
-            ))}
-        </S.Cards>
-    )
-}
+export const Cards = ({ cards }: Props) => (
+    <S.Cards>
+        {cards.map((card, index) => (
+            <Card key={index} card={card} />
+        ))}
+    </S.Cards>
+)

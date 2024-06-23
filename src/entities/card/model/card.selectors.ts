@@ -12,6 +12,8 @@ export const selectCardsSort = (state: AppState) => state.cards.sort
 
 export const selectCardsFilter = (state: AppState) => state.cards.filter
 
+export const selectHasCardFilters = (state: AppState) => state.cards.filters.length > 1
+
 export const selectIsCardsLoading = (state: AppState) => state.cards.isLoading
 
 export const selectFilteredCards = createSelector(selectCardItems, selectCardsFilter, (cards, { value }) => {

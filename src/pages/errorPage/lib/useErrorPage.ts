@@ -21,8 +21,9 @@ export const useErrorPage = () => {
     const error = handleRouteError(routeError, lang)
     const [address, setAddress] = useState<string>()
     const [seconds, setSeconds] = useState<number>(TIMINGS.RESTART_SECONDS)
+    const [isWaiting, setIsWaiting] = useState(false)
 
-    const onRestart = useCallback(() => navigate(PATHS.BACK), [navigate])
+    const onRestart = useCallback(() => navigate(PATHS.ROOT), [navigate])
 
     useEffect(() => {
         if (!address) addressApi.getAddress().then(resolve => setAddress(resolve))
@@ -32,20 +33,27 @@ export const useErrorPage = () => {
             else onRestart()
         }, TIMINGS.SECOND)
 
-        const onPressEnter = ({ key }: KeyboardEvent) => {
-            if (key === KEYS.ENTER) onRestart()
+        const onWaiting = () => {
+            clearInterval(countdownId)
+            setIsWaiting(true)
         }
 
-        addEventListener(EVENTS.KEY_DOWN, onPressEnter)
+        const onKeyDown = ({ key }: KeyboardEvent) => {
+            if (key === KEYS.ENTER) onRestart()
+            if (key === KEYS.ESCAPE) onWaiting()
+        }
+
+        addEventListener(EVENTS.KEY_DOWN, onKeyDown)
 
         return () => {
             clearInterval(countdownId)
-            removeEventListener(EVENTS.KEY_DOWN, onPressEnter)
+            removeEventListener(EVENTS.KEY_DOWN, onKeyDown)
         }
     }, [address, onRestart, seconds])
 
     return {
         onRestart,
+        isWaiting,
         messages: [
             `${TEXTS[lang].APP_NAME} ${VALUES.VERSION} ${VALUES.BUILD}`,
             date,
@@ -54,7 +62,7 @@ export const useErrorPage = () => {
             address,
             error,
             TEXTS[lang].RESTART_APP,
-            `${TEXTS[lang].AUTO_RESTART} ${seconds}`,
+            !isWaiting && `${TEXTS[lang].AUTO_RESTART} ${seconds}`,
         ],
     }
 }

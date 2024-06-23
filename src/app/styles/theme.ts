@@ -17,6 +17,7 @@ export const theme = {
         bigBorder: '4px',
         defaultFont: '1rem',
         largeFont: '2rem',
+        cardWidth: '400px',
     },
     roundings: {
         card: '10px',
@@ -34,5 +35,10 @@ export const theme = {
     directions: {
         leftShadow: '-10px',
         bottomShadow: '10px',
+    },
+    media: {
+        mobile: 'screen and (max-width: 576px)', // 0-576
+        tablet: 'screen and (max-width: 768px)', // 0-768
+        desktop: 'screen and (min-width: 1140px)', // 1140-∞
     },
 }

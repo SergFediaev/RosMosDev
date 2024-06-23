@@ -9,6 +9,14 @@ export class CardFilters {
         this.#filters = new Set<string>([FILTERS.ALL])
     }
 
+    get count() {
+        return this.#filters.size
+    }
+
+    set addFilter(filter: string) {
+        this.#filters.add(filter)
+    }
+
     getFilters(lang: Lang): Filter[] {
         return [...this.#filters].map(filter => {
             let label = filter
@@ -17,10 +25,6 @@ export class CardFilters {
 
             return { label, value: filter.toLowerCase() }
         })
-    }
-
-    set addFilter(filter: string) {
-        this.#filters.add(filter)
     }
 
     reset() {

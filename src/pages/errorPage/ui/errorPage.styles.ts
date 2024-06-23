@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 import { TIMINGS } from 'src/shared/const'
 import { theme } from 'src/app/styles/theme.ts'
+import error from 'src/shared/assets/gifs/error.gif'
 
 const appear = keyframes`
     to {
@@ -16,7 +17,7 @@ const Message = styled.p<{ index: number }>`
 `
 
 const ErrorPage = styled.div`
-    background-color: ${theme.colors.errorBackground};
+    background: ${theme.colors.errorBackground};
     padding: ${theme.sizes.hugeSpace};
     min-height: 100vh;
     display: flex;
@@ -32,7 +33,26 @@ const ErrorPage = styled.div`
     }
 `
 
+const rise = keyframes`
+    to {
+        bottom: -1%;
+    }
+`
+
+const Waiting = styled.div`
+    background: url(${error}) no-repeat bottom center / contain;
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+    position: fixed;
+    bottom: -50%;
+    right: 10%;
+    animation: linear ${TIMINGS.RISE_ANIMATION}s ${rise} forwards;
+`
+
 export const S = {
     ErrorPage,
     Message,
+    Waiting,
 }

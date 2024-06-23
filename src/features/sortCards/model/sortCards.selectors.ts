@@ -15,3 +15,5 @@ export const selectSortedCards = createSelector(
                       : 0,
             ),
 )
+
+export const selectHasSortedCards = createSelector(selectSortedCards, ({ length }) => length > 1)

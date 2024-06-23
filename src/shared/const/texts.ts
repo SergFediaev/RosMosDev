@@ -15,7 +15,7 @@ export const TEXTS = {
         UNCATEGORIZED: 'Uncategorized',
         CARDS_NOT_FOUND: `Cards not found ${EMOJIS.NOT_FOUND}`,
         UNKNOWN_ERROR: 'Unknown error',
-        RESTART_APP: 'Restart app? (enter/click/tap)',
+        RESTART_APP: 'Restart app? (Enter/Escape)',
         AUTO_RESTART: `Auto-restart in`,
     },
     [VALUES.RU]: {
@@ -30,7 +30,7 @@ export const TEXTS = {
         UNCATEGORIZED: 'Без категории',
         CARDS_NOT_FOUND: `Карточки не найдены ${EMOJIS.NOT_FOUND}`,
         UNKNOWN_ERROR: 'Неизвестная ошибка',
-        RESTART_APP: 'Перезапустить приложение? (ввод/клик/тап)',
+        RESTART_APP: 'Перезапустить приложение? (Enter/Escape)',
         AUTO_RESTART: `Авто-перезапуск через`,
     },
 } as const
