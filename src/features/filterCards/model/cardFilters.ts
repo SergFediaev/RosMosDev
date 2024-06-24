@@ -1,6 +1,6 @@
 import { Filter, FILTERS } from 'src/features/filterCards'
 import { TEXTS } from 'src/shared/const'
-import { Lang } from 'src/shared/types/lang.ts'
+import { Lang } from 'src/shared/types/language.ts'
 
 export class CardFilters {
     #filters: Set<string>

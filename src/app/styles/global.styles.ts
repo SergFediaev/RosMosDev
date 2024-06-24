@@ -38,7 +38,7 @@ export const GlobalStyles = createGlobalStyle`
         font-display: swap;
     }
 
-    *, *::before, *::after, *::placeholder, *:focus-visible {
+    *, *:before, *:after, *::placeholder, *:focus-visible {
         margin: 0;
         padding: 0;
         font-family: Inter, Arial, Helvetica, sans-serif;
@@ -51,5 +51,14 @@ export const GlobalStyles = createGlobalStyle`
         list-style: none;
         text-decoration: unset;
         outline: unset;
+    }
+
+    q:before, q:after {
+        color: ${theme.colors.accent};
+    }
+
+    a {
+        text-decoration: underline ${theme.colors.accent} ${theme.sizes.regularBorder};
+        text-underline-offset: ${theme.sizes.regularBorder};
     }
 `

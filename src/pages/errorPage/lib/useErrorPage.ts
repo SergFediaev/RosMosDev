@@ -3,6 +3,8 @@ import { useNavigate, useRouteError } from 'react-router-dom'
 import { handleRouteError } from 'src/shared/lib/handleRouteError.ts'
 import { useCallback, useEffect, useState } from 'react'
 import { addressApi } from 'src/pages/errorPage/api/addressApi.ts'
+import { useSelector } from 'react-redux'
+import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 
 const date = Date()
 
@@ -15,7 +17,7 @@ const {
 const { characterSet, contentType, compatMode } = document
 
 export const useErrorPage = () => {
-    const lang = VALUES.EN
+    const lang = useSelector(selectLang)
     const navigate = useNavigate()
     const routeError = useRouteError()
     const error = handleRouteError(routeError, lang)
@@ -26,10 +28,10 @@ export const useErrorPage = () => {
     const onRestart = useCallback(() => navigate(PATHS.ROOT), [navigate])
 
     useEffect(() => {
-        if (!address) addressApi.getAddress().then(resolve => setAddress(resolve))
+        if (!address) addressApi.getAddress(lang).then(resolve => setAddress(resolve))
 
         const countdownId = setInterval(() => {
-            if (seconds > 0) setSeconds(seconds - 1)
+            if (seconds > 1) setSeconds(seconds - 1)
             else onRestart()
         }, TIMINGS.SECOND)
 
@@ -49,7 +51,7 @@ export const useErrorPage = () => {
             clearInterval(countdownId)
             removeEventListener(EVENTS.KEY_DOWN, onKeyDown)
         }
-    }, [address, onRestart, seconds])
+    }, [address, lang, onRestart, seconds])
 
     return {
         onRestart,
@@ -61,8 +63,8 @@ export const useErrorPage = () => {
             `${width}${SYMBOLS.MULTIPLY}${height}, ${characterSet}, ${contentType}, ${compatMode}, ${languages.join(VALUES.COMMA_SPACE)}`,
             address,
             error,
-            TEXTS[lang].RESTART_APP,
-            !isWaiting && `${TEXTS[lang].AUTO_RESTART} ${seconds}`,
+            TEXTS[lang].RESTART_APP, // ToDo: change inputs if waiting.
+            isWaiting ? TEXTS[lang].AUTO_RESTART_CANCELED : `${TEXTS[lang].AUTO_RESTART} ${seconds}`,
         ],
     }
 }

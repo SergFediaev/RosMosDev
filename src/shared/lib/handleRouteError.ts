@@ -1,4 +1,4 @@
-import { Lang } from 'src/shared/types/lang.ts'
+import { Lang } from 'src/shared/types/language.ts'
 import { isRouteErrorResponse } from 'react-router-dom'
 import { TEXTS } from 'src/shared/const'
 

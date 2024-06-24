@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 
-const Header = styled.header`
+const DashboardHeader = styled.header`
     position: sticky;
     top: 0;
     background-color: ${theme.colors.backgroundAccent};
@@ -24,7 +24,7 @@ const Tools = styled.div`
 const Actions = styled.div``
 
 export const S = {
-    Header,
+    DashboardHeader,
     Tools,
     Actions,
 }

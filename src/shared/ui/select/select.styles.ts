@@ -6,7 +6,7 @@ const Select = styled.div``
 const Selected = styled.span`
     display: flex;
     gap: ${theme.sizes.largeSpace};
-    background-color: ${theme.colors.accent};
+    background-color: ${theme.colors.primary};
     padding: ${theme.sizes.regularSpace};
     border-radius: ${theme.roundings.card};
 
@@ -27,7 +27,7 @@ const Options = styled.ul`
 
 const Option = styled.li<{ isHovered: boolean }>`
     padding: ${theme.sizes.regularSpace};
-    background-color: ${({ isHovered }) => (isHovered ? theme.colors.accent : 'inherit')};
+    background-color: ${({ isHovered }) => (isHovered ? theme.colors.primary : 'inherit')};
 
     &:hover {
         cursor: pointer;

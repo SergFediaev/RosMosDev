@@ -1,7 +1,7 @@
 import { CardFilters, FILTERS } from 'src/features/filterCards'
 import { CardsWithFilters, CardType, Spreadsheet } from 'src/entities/card'
-import { Lang } from 'src/shared/types/lang.ts'
 import { VALUES } from 'src/shared/const'
+import { Lang } from 'src/shared/types/language.ts'
 
 export const getCardsFromSpreadsheet = (
     spreadsheet: Spreadsheet,

@@ -9,4 +9,5 @@ export const VALUES = {
     LARGE_SIZE: '3rem',
     VERSION: '0.1.2',
     BUILD: '220624',
+    BEATS: 'beats',
 } as const

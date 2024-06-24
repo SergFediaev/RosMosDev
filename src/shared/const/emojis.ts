@@ -3,4 +3,9 @@ export const EMOJIS = {
     CANCEL: '❌',
     NOT_FOUND: '🙈',
     SETTINGS: '⚙️',
+    HEART: '🧡',
+    FIRE: '🔥',
+    LOVE: '🥰',
+    SOUL: '😇',
+    HOME: '🏠',
 } as const

@@ -5,23 +5,28 @@ import { fetchCards } from 'src/entities/card/model/cardSlice.ts'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { selectSortedCards } from 'src/features/sortCards'
-import { TEXTS, VALUES } from 'src/shared/const'
+import { TEXTS } from 'src/shared/const'
 import { selectIsCardsLoading } from 'src/entities/card/model/card.selectors.ts'
+import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
+import { DashboardHeader } from 'src/pages/dashboard/dashboardHeader/dashboardHeader.tsx'
 
 export const Dashboard = () => {
+    const lang = useSelector(selectLang)
     const cards = useSelector(selectSortedCards)
     const dispatch = useAppDispatch()
-    const lang = VALUES.RU
     const hasCards = cards.length
     const isCardsLoading = useSelector(selectIsCardsLoading)
 
     useEffect(() => {
-        dispatch(fetchCards())
-    }, [dispatch])
+        dispatch(fetchCards(lang))
+    }, [dispatch, lang])
 
     return (
-        <S.Dashboard>
-            {hasCards ? <Cards cards={cards} /> : !isCardsLoading && <>{TEXTS[lang].CARDS_NOT_FOUND}</>}
-        </S.Dashboard>
+        <>
+            <DashboardHeader />
+            <S.Dashboard>
+                {hasCards ? <Cards cards={cards} /> : !isCardsLoading && <>{TEXTS[lang].CARDS_NOT_FOUND}</>}
+            </S.Dashboard>
+        </>
     )
 }

@@ -1,10 +1,13 @@
 export const theme = {
     colors: {
-        accent: '#008305',
+        primary: '#008305',
+        accent: '#0f0',
         backgroundAccent: 'rgba(83, 83, 83, .9)',
         font: '#fff',
         shadow: 'rgba(0, 0, 0, .7)',
+        error: '#c50000',
         errorBackground: '#1030b7',
+        debug: '#f00',
     },
     sizes: {
         smallSpace: '10px',
@@ -14,10 +17,13 @@ export const theme = {
         hugeSpace: '100px',
         thinBorder: '1px',
         mediumBorder: '2px',
+        regularBorder: '3px',
         bigBorder: '4px',
         defaultFont: '1rem',
+        bigFont: '1.5rem',
         largeFont: '2rem',
         cardWidth: '400px',
+        checkbox: '50px',
     },
     roundings: {
         card: '10px',

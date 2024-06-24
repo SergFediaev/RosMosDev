@@ -3,7 +3,7 @@ import { theme } from 'src/app/styles/theme.ts'
 
 const Card = styled.article`
     padding: ${theme.sizes.regularSpace};
-    background-color: ${theme.colors.accent};
+    background-color: ${theme.colors.primary};
     border-radius: ${theme.roundings.card};
     display: flex;
     flex-direction: column;

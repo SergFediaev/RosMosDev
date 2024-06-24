@@ -1,6 +1,7 @@
 export { EMOJIS } from './emojis.ts'
 export { EVENTS } from './events.ts'
 export { KEYS } from './keys.ts'
+export { LINKS } from './links.ts'
 export { PATHS } from './paths.ts'
 export { SYMBOLS } from './symbols.ts'
 export { TEXTS } from './texts.ts'
