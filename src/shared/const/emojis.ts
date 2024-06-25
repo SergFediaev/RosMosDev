@@ -12,4 +12,5 @@ export const EMOJIS = {
     SOUND: '🔊',
     EN: '🇬🇧',
     RU: '🇷🇺',
+    MENU: '🧭',
 } as const

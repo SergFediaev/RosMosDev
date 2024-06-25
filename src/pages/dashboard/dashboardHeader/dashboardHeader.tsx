@@ -8,14 +8,18 @@ import { EMOJIS, PATHS, TITLES, VALUES } from 'src/shared/const'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { useNavigate } from 'react-router-dom'
 
-export const DashboardHeader = () => {
+type Props = {
+    isMenuOpen: boolean
+}
+
+export const DashboardHeader = ({ isMenuOpen }: Props) => {
     const lang = useSelector(selectLang)
     const isCardsLoading = useSelector(selectIsCardsLoading)
     const navigate = useNavigate()
     const openSettings = () => navigate(PATHS.SETTINGS)
 
     return (
-        <S.DashboardHeader>
+        <S.DashboardHeader isMenuOpen={isMenuOpen}>
             <S.Tools>
                 <Logo isCardsLoading={isCardsLoading} />
                 {!isCardsLoading && <Toolbar />}

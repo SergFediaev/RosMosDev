@@ -52,6 +52,9 @@ export const theme = {
         tablet: 'screen and (max-width: 768px)', // 0-768
         desktop: 'screen and (min-width: 1140px)', // 1140-∞
     },
+    breakpoints: {
+        tablet: 768,
+    },
     emojis: {
         segoe: `Inter, Arial, Helvetica, sans-serif, 'Segoe UI Emoji', Noto`,
         noto: `Inter, Arial, Helvetica, sans-serif, Noto, 'Segoe UI Emoji'`,
