@@ -13,7 +13,7 @@ export const SettingsHeader = () => {
     const openDashboard = () => navigate(PATHS.ROOT)
 
     return (
-        <S.DashboardHeader>
+        <S.DashboardHeader isMenuOpen>
             <h1>
                 {TEXTS[lang].APP_NAME} {SYMBOLS.SLASH} {TEXTS[lang].SETTINGS}
             </h1>
