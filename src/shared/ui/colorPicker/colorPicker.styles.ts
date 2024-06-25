@@ -8,7 +8,7 @@ const ColorPicker = styled.input.attrs({ type: TYPES.COLOR })`
 
     &::-webkit-color-swatch {
         border: ${theme.sizes.regularBorder} ${theme.colors.font} solid;
-        border-radius: ${theme.roundings.round};
+        border-radius: ${theme.roundings.circle};
     }
 `
 

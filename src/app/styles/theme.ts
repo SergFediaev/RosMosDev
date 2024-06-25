@@ -14,6 +14,7 @@ export const theme = {
         smallSpace: '10px',
         mediumSpace: '15px',
         regularSpace: '20px',
+        bigSpace: '30px',
         largeSpace: '40px',
         hugeSpace: '100px',
         thinBorder: '1px',
@@ -30,7 +31,8 @@ export const theme = {
     roundings: {
         card: '10px',
         search: '40px',
-        round: '50%',
+        circle: '50%',
+        sphere: '100%',
     },
     opacities: {
         translucent: 0.5,
