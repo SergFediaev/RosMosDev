@@ -27,6 +27,7 @@ const Options = styled.ul`
     overflow: hidden;
     box-shadow: ${theme.directions.leftShadow} ${theme.directions.bottomShadow} ${theme.blurs.regularBlur}
         ${theme.spreads.shadow} ${theme.colors.shadow};
+    z-index: 100;
 `
 
 const Option = styled.li<{ isHovered: boolean }>`

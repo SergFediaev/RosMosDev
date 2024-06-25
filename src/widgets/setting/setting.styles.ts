@@ -2,15 +2,26 @@ import styled from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 
 const Setting = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: ${theme.sizes.regularSpace};
     padding: ${theme.sizes.largeSpace};
-    background-color: ${theme.colors.backgroundAccent};
-    border-radius: ${theme.roundings.card};
     break-inside: avoid;
     margin-bottom: ${theme.sizes.largeSpace};
-    backdrop-filter: blur(${theme.blurs.regularBlur});
+
+    &:before {
+        background-color: ${theme.colors.backgroundAccent};
+        backdrop-filter: blur(${theme.blurs.regularBlur});
+        border-radius: ${theme.roundings.card};
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
 
     & p {
         font-size: ${theme.sizes.mediumFont};

@@ -12,6 +12,7 @@ const DashboardHeader = styled.header`
     gap: ${theme.sizes.largeSpace};
     flex-wrap: wrap;
     backdrop-filter: blur(${theme.blurs.regularBlur});
+    z-index: 200;
 `
 
 const Tools = styled.div`
