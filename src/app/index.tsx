@@ -8,6 +8,7 @@ import { StyleSheetManager } from 'styled-components'
 import { RouterProvider } from 'react-router-dom'
 import { router } from 'src/app/router.tsx'
 import isPropValid from '@emotion/is-prop-valid'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <StyleSheetManager shouldForwardProp={isPropValid}>
                 <GlobalStyles />
                 <RouterProvider router={router} />
+                <SpeedInsights />
             </StyleSheetManager>
         </Provider>
     </React.StrictMode>,
