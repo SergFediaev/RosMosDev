@@ -8,4 +8,8 @@ export const EMOJIS = {
     LOVE: '🥰',
     SOUL: '😇',
     HOME: '🏠',
+    MUTE: '🔇',
+    SOUND: '🔊',
+    EN: '🇬🇧',
+    RU: '🇷🇺',
 } as const

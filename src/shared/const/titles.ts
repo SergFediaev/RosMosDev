@@ -8,6 +8,8 @@ export const TITLES = {
         OPEN_DASHBOARD: 'Open dashboard',
         LOVE: 'Love',
         SOUL: 'Soul',
+        ENABLE_BACKGROUND_SOUND: 'Enable background sound',
+        MUTE_BACKGROUND_SOUND: 'Mute background sound',
     },
     ru: {
         SEARCH: 'Поиск карточек по заголовкам, тегам и контенту',
@@ -18,5 +20,7 @@ export const TITLES = {
         OPEN_DASHBOARD: 'Открыть дашборд',
         LOVE: 'Любовью',
         SOUL: 'Душой',
+        ENABLE_BACKGROUND_SOUND: 'Включить фоновый звук',
+        MUTE_BACKGROUND_SOUND: 'Заглушить фоновый звук',
     },
 } as const

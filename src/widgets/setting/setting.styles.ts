@@ -10,11 +10,15 @@ const Setting = styled.div`
     border-radius: ${theme.roundings.card};
     break-inside: avoid;
     margin-bottom: ${theme.sizes.largeSpace};
+    backdrop-filter: blur(${theme.blurs.regularBlur});
+
+    & p {
+        font-size: ${theme.sizes.mediumFont};
+    }
 `
 
-const Name = styled.h2`
-    font-size: ${theme.sizes.largeFont};
-`
+// ToDo: Add bottom margin.
+const Name = styled.h2``
 
 export const S = {
     Setting,

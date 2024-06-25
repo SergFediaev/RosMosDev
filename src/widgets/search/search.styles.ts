@@ -17,7 +17,7 @@ const Search = styled.div`
         width: 100%;
 
         &::placeholder {
-            opacity: ${theme.transparencies.half};
+            opacity: ${theme.opacities.translucent};
             text-overflow: ellipsis;
         }
     }

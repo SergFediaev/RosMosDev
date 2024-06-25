@@ -7,4 +7,5 @@ export const TIMINGS = {
     BEATS_ANIMATION: 0.25,
     TRANSITION_TRANSFORM: 0.5,
     CHECK_TRANSITION: 0.2,
+    ROTATE_ANIMATION: 10,
 } as const

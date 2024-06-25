@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from 'src/app/styles/theme.ts'
 
 const Option = styled.div`
     display: flex;
@@ -7,9 +6,8 @@ const Option = styled.div`
     align-items: center;
 `
 
-const Description = styled.p`
-    font-size: ${theme.sizes.bigFont};
-`
+// ToDo: remove empty styled.
+const Description = styled.p``
 
 export const S = {
     Option,

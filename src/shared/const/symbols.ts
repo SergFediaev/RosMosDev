@@ -7,4 +7,5 @@ export const SYMBOLS = {
     SPACE: ' ',
     CHECK: '✓',
     SLASH: '/',
+    DOUBLE_NOTE: '♪♪',
 } as const

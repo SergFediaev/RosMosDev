@@ -2,7 +2,8 @@ export const theme = {
     colors: {
         primary: '#008305',
         accent: '#0f0',
-        backgroundAccent: 'rgba(83, 83, 83, .9)',
+        background: '#0047af',
+        backgroundAccent: 'rgba(44,44,44,0.9)',
         font: '#fff',
         shadow: 'rgba(0, 0, 0, .7)',
         error: '#c50000',
@@ -20,6 +21,7 @@ export const theme = {
         regularBorder: '3px',
         bigBorder: '4px',
         defaultFont: '1rem',
+        mediumFont: '1.2rem',
         bigFont: '1.5rem',
         largeFont: '2rem',
         cardWidth: '400px',
@@ -28,9 +30,10 @@ export const theme = {
     roundings: {
         card: '10px',
         search: '40px',
+        round: '50%',
     },
-    transparencies: {
-        half: 0.5,
+    opacities: {
+        translucent: 0.5,
     },
     blurs: {
         regularBlur: '10px',
@@ -46,5 +49,9 @@ export const theme = {
         mobile: 'screen and (max-width: 576px)', // 0-576
         tablet: 'screen and (max-width: 768px)', // 0-768
         desktop: 'screen and (min-width: 1140px)', // 1140-∞
+    },
+    emojis: {
+        segoe: `Inter, Arial, Helvetica, sans-serif, 'Segoe UI Emoji', Noto`,
+        noto: `Inter, Arial, Helvetica, sans-serif, Noto, 'Segoe UI Emoji'`,
     },
 }

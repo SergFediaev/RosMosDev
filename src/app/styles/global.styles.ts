@@ -3,6 +3,7 @@ import interRegular from 'src/shared/assets/fonts/inter/Inter-Regular.ttf'
 import interBold from 'src/shared/assets/fonts/inter/Inter-Bold.ttf'
 import interBlack from 'src/shared/assets/fonts/inter/Inter-Black.ttf'
 import { theme } from 'src/app/styles/theme.ts'
+import noto from 'src/shared/assets/fonts/noto/NotoColorEmoji-Regular.ttf'
 
 export const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -38,10 +39,21 @@ export const GlobalStyles = createGlobalStyle`
         font-display: swap;
     }
 
-    *, *:before, *:after, *::placeholder, *:focus-visible {
+    @font-face {
+        font-family: Noto;
+        src: local('Noto'),
+        local('NotoColorEmoji Regular'),
+        local('NotoColorEmoji-Regular'),
+        url(${noto}) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    *, *:before, *:after, *::placeholder, *:focus-visible, ::-webkit-color-swatch, ::-webkit-color-swatch-wrapper {
         margin: 0;
         padding: 0;
-        font-family: Inter, Arial, Helvetica, sans-serif;
+        font-family: Inter, Arial, Helvetica, sans-serif, 'Segoe UI Emoji', Noto;
         background: unset;
         border: unset;
         color: ${theme.colors.font};

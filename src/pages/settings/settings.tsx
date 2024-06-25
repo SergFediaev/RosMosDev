@@ -2,7 +2,16 @@ import { S } from './settings.styles.ts'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectLang, selectSettings } from 'src/entities/setting/model/setting.selectors.ts'
 import { Language } from 'src/shared/types/language.ts'
-import { setIsDebugEnabled, setIsMarkupEnabled, setLanguage } from 'src/entities/setting/model/settingSlice.ts'
+import {
+    setBackgroundColor,
+    setBackgroundType,
+    setBackgroundVideo,
+    setBackgroundWallpaper,
+    setHasBackgroundOverlay,
+    setIsDebugEnabled,
+    setIsMarkupEnabled,
+    setLanguage,
+} from 'src/entities/setting/model/settingSlice.ts'
 import { LINKS, TEXTS, VALUES } from 'src/shared/const'
 import { nanoid } from '@reduxjs/toolkit'
 import { SettingsHeader } from 'src/pages/settings/settingsHeader/settingsHeader.tsx'
@@ -14,6 +23,11 @@ import { Signature } from 'src/pages/settings/signature/signature.tsx'
 import { Button } from 'src/shared/ui/button/button.tsx'
 import { SingleOption } from 'src/widgets/setting/singleOption/singleOption.tsx'
 import { useState } from 'react'
+import { BackgroundType } from 'src/widgets/background/types/backgroundType.types.ts'
+import { BACKGROUND_TYPES } from 'src/widgets/background/const/backgroundTypes.ts'
+import { BackgroundVideo } from 'src/widgets/backgroundVideo/types/backgroundVideo.types.ts'
+import { BackgroundWallpaper } from 'src/widgets/backgroundWallpaper/model/backgroundWallpaper.types.ts'
+import { ColorPicker } from 'src/shared/ui/colorPicker/colorPicker.tsx'
 
 export const Settings = () => {
     const dispatch = useDispatch()
@@ -21,9 +35,24 @@ export const Settings = () => {
     const lang = useSelector(selectLang)
     const [isDebugError, setIsDebugError] = useState(false)
 
+    const isBackgroundColor = settings.backgroundType.value === BACKGROUND_TYPES.COLOR
+    const isBackgroundWallpaper = settings.backgroundType.value === BACKGROUND_TYPES.WALLPAPER
+    const isBackgroundVideo = settings.backgroundType.value === BACKGROUND_TYPES.VIDEO
+    const hasBackgroundOverlay =
+        settings.backgroundType.value === BACKGROUND_TYPES.WALLPAPER ||
+        settings.backgroundType.value === BACKGROUND_TYPES.RANDOM_WALLPAPER ||
+        settings.backgroundType.value === BACKGROUND_TYPES.VIDEO
+
     const onSetLanguage = (language: Language) => dispatch(setLanguage({ language }))
     const onSetIsDebugEnabled = (isDebugEnabled: boolean) => dispatch(setIsDebugEnabled({ isDebugEnabled }))
     const onSetIsMarkupEnabled = (isMarkupEnabled: boolean) => dispatch(setIsMarkupEnabled({ isMarkupEnabled }))
+    const onSetBackgroundType = (backgroundType: BackgroundType) => dispatch(setBackgroundType({ backgroundType }))
+    const onSetBackgroundColor = (backgroundColor: string) => dispatch(setBackgroundColor({ backgroundColor }))
+    const onSetBackgroundWallpaper = (backgroundWallpaper: BackgroundWallpaper) =>
+        dispatch(setBackgroundWallpaper({ backgroundWallpaper }))
+    const onSetBackgroundVideo = (backgroundVideo: BackgroundVideo) => dispatch(setBackgroundVideo({ backgroundVideo }))
+    const onSetHasBackgroundOverlay = (hasBackgroundOverlay: boolean) =>
+        dispatch(setHasBackgroundOverlay({ hasBackgroundOverlay }))
     const onDebugError = () => setIsDebugError(true)
 
     if (isDebugError) throw Error(`${TEXTS[lang].DEBUG_ERROR} ${nanoid()}`)
@@ -43,6 +72,43 @@ export const Settings = () => {
                     <DescriptionOption description={TEXTS[lang].DEBUG_MODE}>
                         <Checkbox value={settings.isDebugEnabled} onChange={onSetIsDebugEnabled} />
                     </DescriptionOption>
+                </Setting>
+                <Setting name={TEXTS[lang].BACKGROUND}>
+                    <DescriptionOption description={TEXTS[lang].TYPE}>
+                        <Select
+                            options={settings.backgroundTypes}
+                            selectedOption={settings.backgroundType.label}
+                            onSelect={onSetBackgroundType}
+                        />
+                    </DescriptionOption>
+                    {isBackgroundColor && (
+                        <DescriptionOption description={TEXTS[lang].COLOR}>
+                            <ColorPicker value={settings.backgroundColor} onChange={onSetBackgroundColor} />
+                        </DescriptionOption>
+                    )}
+                    {isBackgroundWallpaper && (
+                        <DescriptionOption description={TEXTS[lang].WALLPAPERS}>
+                            <Select
+                                options={settings.backgroundWallpapers}
+                                selectedOption={settings.backgroundWallpaper.label}
+                                onSelect={onSetBackgroundWallpaper}
+                            />
+                        </DescriptionOption>
+                    )}
+                    {isBackgroundVideo && (
+                        <DescriptionOption description={TEXTS[lang].VIDEOS}>
+                            <Select
+                                options={settings.backgroundVideos}
+                                selectedOption={settings.backgroundVideo.label}
+                                onSelect={onSetBackgroundVideo}
+                            />
+                        </DescriptionOption>
+                    )}
+                    {hasBackgroundOverlay && (
+                        <DescriptionOption description={TEXTS[lang].OVERLAY}>
+                            <Checkbox value={settings.hasBackgroundOverlay} onChange={onSetHasBackgroundOverlay} />
+                        </DescriptionOption>
+                    )}
                 </Setting>
                 <Setting name={TEXTS[lang].INFO}>
                     <p>{TEXTS[lang].APP_DESCRIPTION}</p>

@@ -10,6 +10,10 @@ const Selected = styled.span`
     padding: ${theme.sizes.regularSpace};
     border-radius: ${theme.roundings.card};
 
+    & span {
+        font-family: ${theme.emojis.noto};
+    }
+
     &:hover {
         cursor: pointer;
     }
@@ -28,6 +32,7 @@ const Options = styled.ul`
 const Option = styled.li<{ isHovered: boolean }>`
     padding: ${theme.sizes.regularSpace};
     background-color: ${({ isHovered }) => (isHovered ? theme.colors.primary : 'inherit')};
+    font-family: ${theme.emojis.noto};
 
     &:hover {
         cursor: pointer;
