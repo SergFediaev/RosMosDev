@@ -9,6 +9,7 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from 'src/app/router.tsx'
 import isPropValid from '@emotion/is-prop-valid'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { Analytics } from '@vercel/analytics/react'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <GlobalStyles />
                 <RouterProvider router={router} />
                 <SpeedInsights />
+                <Analytics />
             </StyleSheetManager>
         </Provider>
     </React.StrictMode>,
