@@ -35,9 +35,9 @@ export const Dashboard = () => {
     return (
         <>
             <DashboardHeader isMenuOpen={isMenuOpen} />
-            <S.Dashboard>
-                {hasCards ? <Cards cards={cards} /> : !isCardsLoading && <>{TEXTS[lang].CARDS_NOT_FOUND}</>}
-            </S.Dashboard>
+            {!isCardsLoading && (
+                <S.Dashboard>{hasCards ? <Cards cards={cards} /> : TEXTS[lang].CARDS_NOT_FOUND}</S.Dashboard>
+            )}
             <MenuButton icon={EMOJIS.MENU} onClick={toggleIsMenuOpen} title={menuButtonTitle} />
         </>
     )

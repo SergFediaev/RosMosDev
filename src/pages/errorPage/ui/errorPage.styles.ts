@@ -2,12 +2,7 @@ import styled, { keyframes } from 'styled-components'
 import { TIMINGS } from 'src/shared/const'
 import { theme } from 'src/app/styles/theme.ts'
 import error from 'src/shared/assets/gifs/error.gif'
-
-const appear = keyframes`
-    to {
-        opacity: 1;
-    }
-`
+import { appear } from 'src/shared/ui/animations/appear.ts'
 
 const Message = styled.p<{ index: number }>`
     font-family: Consolas, 'Lucida Console', monospace;

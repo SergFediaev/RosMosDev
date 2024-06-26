@@ -28,17 +28,10 @@ const DashboardHeader = styled.header<{ isMenuOpen: boolean }>`
         `}
 `
 
-const Tools = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: ${theme.sizes.regularSpace};
-`
-
+// ToDo: Style actions.
 const Actions = styled.div``
 
 export const S = {
     DashboardHeader,
-    Tools,
     Actions,
 }

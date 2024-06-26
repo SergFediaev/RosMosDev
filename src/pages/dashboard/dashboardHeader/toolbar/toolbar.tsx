@@ -7,6 +7,8 @@ import { Select } from 'src/shared/ui/select/select.tsx'
 import { TITLES } from 'src/shared/const'
 import { selectCards, selectHasCardFilters, setCardsFilter, setCardsSort } from 'src/entities/card'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
+import { S } from './toolbar.styles.ts'
+import { LogoAcronym } from 'src/shared/ui/logoAcronym/logoAcronym.tsx'
 
 export const Toolbar = () => {
     const lang = useSelector(selectLang)
@@ -19,7 +21,8 @@ export const Toolbar = () => {
     const onSelectFilter = (filter: Filter) => dispatch(setCardsFilter({ filter }))
 
     return (
-        <>
+        <S.Toolbar>
+            <LogoAcronym />
             <Search />
             {hasSortedCards && (
                 <Select
@@ -37,6 +40,6 @@ export const Toolbar = () => {
                     title={TITLES[lang].CARD_CATEGORIES}
                 />
             )}
-        </>
+        </S.Toolbar>
     )
 }
