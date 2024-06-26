@@ -13,6 +13,7 @@ export const theme = {
     },
     sizes: {
         lineHeight: '1.2',
+        logoLineHeight: '0.7',
         smallSpace: '10px',
         mediumSpace: '15px',
         regularSpace: '20px',
