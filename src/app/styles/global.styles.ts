@@ -54,15 +54,27 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family: Inter, Arial, Helvetica, sans-serif, 'Segoe UI Emoji', Noto;
+        line-height: ${theme.sizes.lineHeight};
         background: unset;
+        color: unset;
         border: unset;
-        color: ${theme.colors.font};
         box-sizing: border-box;
-        line-height: 1.2;
-        word-wrap: anywhere;
         list-style: none;
         text-decoration: unset;
         outline: unset;
+    }
+
+    :root {
+        background-color: ${theme.colors.rootBackground};
+    }
+
+    html {
+        font-size: ${theme.sizes.rootFont};
+    }
+
+    body {
+        min-width: ${theme.breakpoints.mobile}px;
+        color: ${theme.colors.font};
     }
 
     q:before, q:after {
@@ -70,7 +82,8 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     a {
-        text-decoration: underline ${theme.colors.accent} ${theme.sizes.regularBorder};
+        text-decoration: ${theme.colors.accent} ${theme.sizes.regularBorder} underline;
         text-underline-offset: ${theme.sizes.regularBorder};
+        word-wrap: anywhere;
     }
 `

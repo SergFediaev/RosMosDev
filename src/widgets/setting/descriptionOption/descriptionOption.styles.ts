@@ -1,9 +1,12 @@
 import styled from 'styled-components'
+import { theme } from 'src/app/styles/theme.ts'
 
 const Option = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+    row-gap: ${theme.sizes.smallSpace};
+    column-gap: ${theme.sizes.regularSpace};
 `
 
 // ToDo: remove empty styled.

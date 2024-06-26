@@ -2,6 +2,7 @@ export const theme = {
     colors: {
         primary: '#008305',
         accent: '#0f0',
+        rootBackground: '#000',
         background: '#0047af',
         backgroundAccent: 'rgba(44,44,44,0.9)',
         font: '#fff',
@@ -11,6 +12,7 @@ export const theme = {
         debug: '#f00',
     },
     sizes: {
+        lineHeight: '1.2',
         smallSpace: '10px',
         mediumSpace: '15px',
         regularSpace: '20px',
@@ -21,6 +23,7 @@ export const theme = {
         mediumBorder: '2px',
         regularBorder: '3px',
         bigBorder: '4px',
+        rootFont: '20px',
         defaultFont: '1rem',
         mediumFont: '1.2rem',
         bigFont: '1.5rem',
@@ -53,6 +56,7 @@ export const theme = {
         desktop: 'screen and (min-width: 1140px)', // 1140-∞
     },
     breakpoints: {
+        mobile: 360,
         tablet: 768,
     },
     emojis: {

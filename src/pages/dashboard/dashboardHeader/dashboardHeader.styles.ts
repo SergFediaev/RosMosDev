@@ -12,7 +12,7 @@ const DashboardHeader = styled.header<{ isMenuOpen: boolean }>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: ${theme.sizes.largeSpace};
+    gap: ${theme.sizes.regularSpace};
     flex-wrap: wrap;
     backdrop-filter: blur(${theme.blurs.regularBlur});
     z-index: 200;
@@ -31,7 +31,8 @@ const Tools = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: ${theme.sizes.largeSpace};
+    row-gap: ${theme.sizes.regularSpace};
+    column-gap: ${theme.sizes.largeSpace};
 `
 
 const Actions = styled.div``

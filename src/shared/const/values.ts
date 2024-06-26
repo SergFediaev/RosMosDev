@@ -8,7 +8,7 @@ export const VALUES = {
     MEDIUM_SIZE: '2rem',
     LARGE_SIZE: '3rem',
     VERSION: '0.1.2',
-    BUILD: '250624',
+    BUILD: '260624',
     BEATS: 'beats',
     BACKGROUND_SOUND_VOLUME: 0.1,
 } as const
