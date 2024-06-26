@@ -3,7 +3,7 @@ import { theme } from 'src/app/styles/theme.ts'
 import { TYPES } from 'src/shared/const'
 
 const ColorPicker = styled.input.attrs({ type: TYPES.COLOR })`
-    min-width: ${theme.sizes.checkbox};
+    width: ${theme.sizes.checkbox};
     height: ${theme.sizes.checkbox};
 
     &::-webkit-color-swatch {

@@ -18,7 +18,7 @@ const Message = styled.p<{ index: number }>`
 
 const ErrorPage = styled.div`
     background: ${theme.colors.errorBackground};
-    padding: ${theme.sizes.hugeSpace};
+    padding: ${theme.sizes.largeSpace};
     min-height: 100vh;
     display: flex;
     flex-direction: column;

@@ -18,6 +18,7 @@ const DashboardHeader = styled.header<{ isMenuOpen: boolean }>`
     z-index: 200;
     transition: ${TIMINGS.TRANSITION_TRANSFORM}s ease-in-out;
     transform: translateY(-100%);
+    min-height: ${theme.sizes.headerHeight};
 
     ${({ isMenuOpen }) =>
         isMenuOpen &&
@@ -31,8 +32,7 @@ const Tools = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    row-gap: ${theme.sizes.regularSpace};
-    column-gap: ${theme.sizes.largeSpace};
+    gap: ${theme.sizes.regularSpace};
 `
 
 const Actions = styled.div``

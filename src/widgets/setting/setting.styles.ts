@@ -5,7 +5,7 @@ const Setting = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: ${theme.sizes.regularSpace};
+    gap: ${theme.sizes.bigSpace};
     padding: ${theme.sizes.largeSpace};
     break-inside: avoid;
     margin-bottom: ${theme.sizes.largeSpace};

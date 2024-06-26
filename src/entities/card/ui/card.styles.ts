@@ -1,5 +1,13 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
+import { TIMINGS } from 'src/shared/const'
+
+// ToDo: To common animations.
+const appear = keyframes`
+    to {
+        opacity: 1;
+    }
+`
 
 const Card = styled.article`
     padding: ${theme.sizes.regularSpace};
@@ -10,6 +18,8 @@ const Card = styled.article`
     gap: ${theme.sizes.regularSpace};
     margin-bottom: ${theme.sizes.largeSpace};
     break-inside: avoid;
+    opacity: 0;
+    animation: ${appear} ${TIMINGS.TRANSITION_TRANSFORM}s linear forwards;
 `
 
 export const S = {

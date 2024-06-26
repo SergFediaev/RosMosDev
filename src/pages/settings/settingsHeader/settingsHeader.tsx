@@ -14,6 +14,7 @@ export const SettingsHeader = () => {
 
     return (
         <S.DashboardHeader isMenuOpen>
+            {/* ToDo: Shared component for header h1 */}
             <h1>
                 {TEXTS[lang].APP_NAME} {SYMBOLS.SLASH} {TEXTS[lang].SETTINGS}
             </h1>

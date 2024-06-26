@@ -29,7 +29,8 @@ export const theme = {
         bigFont: '1.5rem',
         largeFont: '2rem',
         cardWidth: '400px',
-        checkbox: '50px',
+        checkbox: '40px',
+        headerHeight: '100px',
     },
     roundings: {
         card: '10px',

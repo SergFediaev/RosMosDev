@@ -7,7 +7,7 @@ const Selected = styled.span`
     display: flex;
     gap: ${theme.sizes.largeSpace};
     background-color: ${theme.colors.primary};
-    padding: ${theme.sizes.regularSpace};
+    padding: ${theme.sizes.mediumSpace};
     border-radius: ${theme.roundings.card};
 
     & span {
@@ -31,7 +31,7 @@ const Options = styled.ul`
 `
 
 const Option = styled.li<{ isHovered: boolean }>`
-    padding: ${theme.sizes.regularSpace};
+    padding: ${theme.sizes.mediumSpace};
     background-color: ${({ isHovered }) => (isHovered ? theme.colors.primary : 'inherit')};
     font-family: ${theme.emojis.noto};
 

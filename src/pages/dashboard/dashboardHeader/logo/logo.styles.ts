@@ -10,6 +10,7 @@ const Logo = styled.abbr`
     }
 `
 
+// ToDo: Shared component for headers.
 const Loading = styled.span`
     font-size: ${theme.sizes.largeFont};
     font-weight: bold;
