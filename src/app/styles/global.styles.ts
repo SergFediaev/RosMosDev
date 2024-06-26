@@ -62,6 +62,7 @@ export const GlobalStyles = createGlobalStyle`
         list-style: none;
         text-decoration: unset;
         outline: unset;
+        scrollbar-width: none
     }
 
     :root {
