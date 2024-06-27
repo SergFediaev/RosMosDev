@@ -1,10 +1,9 @@
 import { S } from 'src/widgets/backgroundGradient/ui/backgroundGradient.styles.ts'
-import { randomGradient } from 'src/widgets/backgroundGradient/lib/randomGradient.ts'
+import { useSelector } from 'react-redux'
+import { selectBackgroundRandomGradient } from 'src/widgets/backgroundGradient/model/backgroundGradient.selectors.ts'
 
 export const BackgroundGradient = () => {
-    const { angle, firstColor, secondColor, thirdColor } = randomGradient()
+    const randomGradient = useSelector(selectBackgroundRandomGradient)
 
-    return (
-        <S.BackgroundGradient angle={angle} firstColor={firstColor} secondColor={secondColor} thirdColor={thirdColor} />
-    )
+    return <S.BackgroundGradient randomGradient={randomGradient} />
 }

@@ -11,4 +11,6 @@ export const VALUES = {
     BUILD: '260624',
     BEATS: 'beats',
     BACKGROUND_SOUND_VOLUME: 0.1,
+    STRETCH: 'stretch',
+    END: 'end',
 } as const

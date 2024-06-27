@@ -2,10 +2,11 @@ import { cardsApi, CardsWithFilters, CardType, getCardsFromSpreadsheet } from 's
 import { defaultSorts, Sort } from 'src/features/sortCards'
 import { cardFilters, defaultFilters, Filter } from 'src/features/filterCards'
 import { Nullable } from 'src/shared/types/nullable.ts'
-import { TEXTS, VALUES } from 'src/shared/const'
+import { VALUES } from 'src/shared/const'
 import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 import { Lang } from 'src/shared/types/language.ts'
+import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
 
 type InitialState = {
     items: CardType[]
@@ -55,8 +56,7 @@ const cardsSlice = createSlice({
                     state.filters = action.payload.filters
                 },
                 rejected: (state, action) => {
-                    const lang = action.meta.arg
-                    state.error = action.error.message ?? TEXTS[lang].SOMETHING_WENT_WRONG
+                    state.error = (action.payload as RejectedWithError).error ?? action.error.message
                 },
                 settled: state => {
                     state.isLoading = false

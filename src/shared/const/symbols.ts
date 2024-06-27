@@ -8,4 +8,6 @@ export const SYMBOLS = {
     CHECK: '✓',
     SLASH: '/',
     DOUBLE_NOTE: '♪♪',
+    LOADING: '↻',
+    WARNING: '⚠',
 } as const

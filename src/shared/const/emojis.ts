@@ -13,4 +13,5 @@ export const EMOJIS = {
     EN: '🇬🇧',
     RU: '🇷🇺',
     MENU: '🧭',
+    LOGO: '🌀',
 } as const

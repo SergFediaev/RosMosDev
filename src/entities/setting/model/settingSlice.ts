@@ -1,5 +1,5 @@
 import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Language } from 'src/shared/types/language.ts'
+import { Lang, Language } from 'src/shared/types/language.ts'
 import { defaultLanguages } from 'src/entities/setting/model/defaultLanguages.ts'
 import { BackgroundVideo } from 'src/widgets/backgroundVideo/types/backgroundVideo.types.ts'
 import { defaultBackgroundVideos } from 'src/widgets/backgroundVideo/model/defaultBackgroundVideos.ts'
@@ -8,6 +8,11 @@ import { defaultBackgroundTypes } from 'src/widgets/background/model/defaultBack
 import { BackgroundWallpaper } from 'src/widgets/backgroundWallpaper/model/backgroundWallpaper.types.ts'
 import { defaultBackgroundWallpapers } from 'src/widgets/backgroundWallpaper/model/defaultBackgroundWallpapers.ts'
 import { theme } from 'src/app/styles/theme.ts'
+import { Nullable } from 'src/shared/types/nullable.ts'
+import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
+import { randomWallpaperApi } from 'src/widgets/backgroundRandomWallpaper/api/randomWallpaperApi.ts'
+import { randomGradient } from 'src/widgets/backgroundGradient/lib/randomGradient.ts'
+import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
 
 type InitialState = {
     language: Language
@@ -17,11 +22,15 @@ type InitialState = {
     backgroundType: BackgroundType
     backgroundTypes: BackgroundType[]
     backgroundColor: string
+    backgroundRandomGradient: string
     backgroundWallpaper: BackgroundWallpaper
     backgroundWallpapers: BackgroundWallpaper[]
+    backgroundRandomWallpaper: Nullable<string>
     backgroundVideo: BackgroundVideo
     backgroundVideos: BackgroundVideo[]
     hasBackgroundOverlay: boolean
+    isLoading: boolean
+    error: Nullable<string>
 }
 
 const initialState: InitialState = {
@@ -32,11 +41,15 @@ const initialState: InitialState = {
     backgroundType: defaultBackgroundTypes[4],
     backgroundTypes: defaultBackgroundTypes,
     backgroundColor: theme.colors.background,
+    backgroundRandomGradient: randomGradient(),
     backgroundWallpaper: defaultBackgroundWallpapers[0],
     backgroundWallpapers: defaultBackgroundWallpapers,
+    backgroundRandomWallpaper: null,
     backgroundVideo: defaultBackgroundVideos[0],
     backgroundVideos: defaultBackgroundVideos,
     hasBackgroundOverlay: false,
+    isLoading: false,
+    error: null,
 }
 
 const createSlice = buildCreateSlice({
@@ -70,6 +83,16 @@ const settingsSlice = createSlice({
         setBackgroundColor: create.reducer((state, action: PayloadAction<{ backgroundColor: string }>) => {
             state.backgroundColor = action.payload.backgroundColor
         }),
+        setBackgroundRandomGradient: create.reducer(
+            (
+                state,
+                action: PayloadAction<{
+                    backgroundRandomGradient: string
+                }>,
+            ) => {
+                state.backgroundRandomGradient = action.payload.backgroundRandomGradient
+            },
+        ),
         setBackgroundWallpaper: create.reducer(
             (
                 state,
@@ -80,12 +103,45 @@ const settingsSlice = createSlice({
                 state.backgroundWallpaper = action.payload.backgroundWallpaper
             },
         ),
+        setBackgroundRandomWallpaper: create.reducer(
+            (
+                state,
+                action: PayloadAction<{
+                    backgroundRandomWallpaper: string
+                }>,
+            ) => {
+                state.backgroundRandomWallpaper = action.payload.backgroundRandomWallpaper
+            },
+        ),
         setBackgroundVideo: create.reducer((state, action: PayloadAction<{ backgroundVideo: BackgroundVideo }>) => {
             state.backgroundVideo = action.payload.backgroundVideo
         }),
         setHasBackgroundOverlay: create.reducer((state, action: PayloadAction<{ hasBackgroundOverlay: boolean }>) => {
             state.hasBackgroundOverlay = action.payload.hasBackgroundOverlay
         }),
+        fetchRandomWallpaper: create.asyncThunk<string, Lang>(
+            async (lang, { rejectWithValue }) => {
+                try {
+                    return await randomWallpaperApi.getRandomWallpaper()
+                } catch (error) {
+                    return rejectWithValue({ error: handleNetworkError(error, lang) })
+                }
+            },
+            {
+                pending: state => {
+                    state.isLoading = true
+                },
+                fulfilled: (state, action) => {
+                    state.backgroundRandomWallpaper = action.payload
+                },
+                rejected: (state, action) => {
+                    state.error = (action.payload as RejectedWithError).error ?? action.error.message
+                },
+                settled: state => {
+                    state.isLoading = false
+                },
+            },
+        ),
     }),
 })
 
@@ -99,7 +155,9 @@ export const {
     setIsMarkupEnabled,
     setBackgroundType,
     setBackgroundColor,
+    setBackgroundRandomGradient,
     setBackgroundWallpaper,
     setBackgroundVideo,
     setHasBackgroundOverlay,
+    fetchRandomWallpaper,
 } = settingsSlice.actions

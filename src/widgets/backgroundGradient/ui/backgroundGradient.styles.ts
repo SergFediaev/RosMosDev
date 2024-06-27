@@ -10,22 +10,14 @@ const rotateHue = keyframes`
     }
 `
 
-type Props = {
-    angle: number
-    firstColor: string
-    secondColor: string
-    thirdColor: string
-}
-
-const BackgroundGradient = styled.div<Props>`
+const BackgroundGradient = styled.div<{ randomGradient: string }>`
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: -1;
-    background: ${({ angle, firstColor, secondColor, thirdColor }) =>
-        `linear-gradient(${angle}deg, ${firstColor}, ${secondColor}, ${thirdColor})`};
+    background: ${({ randomGradient }) => randomGradient};
     animation: ${rotateHue} ${TIMINGS.ROTATE_ANIMATION}s alternate linear infinite;
 `
 

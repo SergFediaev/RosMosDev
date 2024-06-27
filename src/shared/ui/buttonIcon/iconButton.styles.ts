@@ -1,16 +1,8 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 import { IconSizes } from 'src/shared/ui/buttonIcon/iconButton.types.ts'
 import { TIMINGS } from 'src/shared/const'
-
-const spin = keyframes`
-    from {
-        transform: rotate(0);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-`
+import { spin } from 'src/shared/ui/animations/spin.ts'
 
 type Props = {
     size?: IconSizes

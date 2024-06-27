@@ -5,10 +5,12 @@ export const theme = {
         rootBackground: '#000',
         background: '#0047af',
         backgroundAccent: 'rgba(44,44,44,0.9)',
+        backgroundPlaceholder: '#808080ff',
         font: '#fff',
         shadow: 'rgba(0, 0, 0, .7)',
         error: '#c50000',
-        errorBackground: '#1030b7',
+        errorPageBackground: '#1030b7',
+        errorMessageBackground: '#ff0',
         debug: '#f00',
     },
     sizes: {

@@ -1,9 +1,11 @@
 import { S } from './settings.styles.ts'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectLang, selectSettings } from 'src/entities/setting/model/setting.selectors.ts'
 import { Language } from 'src/shared/types/language.ts'
 import {
+    fetchRandomWallpaper,
     setBackgroundColor,
+    setBackgroundRandomGradient,
     setBackgroundType,
     setBackgroundVideo,
     setBackgroundWallpaper,
@@ -28,15 +30,20 @@ import { BACKGROUND_TYPES } from 'src/widgets/background/const/backgroundTypes.t
 import { BackgroundVideo } from 'src/widgets/backgroundVideo/types/backgroundVideo.types.ts'
 import { BackgroundWallpaper } from 'src/widgets/backgroundWallpaper/model/backgroundWallpaper.types.ts'
 import { ColorPicker } from 'src/shared/ui/colorPicker/colorPicker.tsx'
+import { useAppDispatch } from 'src/app/store.ts'
+import { randomGradient } from 'src/widgets/backgroundGradient/lib/randomGradient.ts'
+import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 
 export const Settings = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const settings = useSelector(selectSettings)
     const lang = useSelector(selectLang)
     const [isDebugError, setIsDebugError] = useState(false)
 
     const isBackgroundColor = settings.backgroundType.value === BACKGROUND_TYPES.COLOR
+    const isBackgroundRandomGradient = settings.backgroundType.value === BACKGROUND_TYPES.RANDOM_GRADIENT
     const isBackgroundWallpaper = settings.backgroundType.value === BACKGROUND_TYPES.WALLPAPER
+    const isBackgroundRandomWallpaper = settings.backgroundType.value === BACKGROUND_TYPES.RANDOM_WALLPAPER
     const isBackgroundVideo = settings.backgroundType.value === BACKGROUND_TYPES.VIDEO
     const hasBackgroundOverlay =
         settings.backgroundType.value === BACKGROUND_TYPES.WALLPAPER ||
@@ -48,8 +55,11 @@ export const Settings = () => {
     const onSetIsMarkupEnabled = (isMarkupEnabled: boolean) => dispatch(setIsMarkupEnabled({ isMarkupEnabled }))
     const onSetBackgroundType = (backgroundType: BackgroundType) => dispatch(setBackgroundType({ backgroundType }))
     const onSetBackgroundColor = (backgroundColor: string) => dispatch(setBackgroundColor({ backgroundColor }))
+    const onSetBackgroundRandomGradient = () =>
+        dispatch(setBackgroundRandomGradient({ backgroundRandomGradient: randomGradient() }))
     const onSetBackgroundWallpaper = (backgroundWallpaper: BackgroundWallpaper) =>
         dispatch(setBackgroundWallpaper({ backgroundWallpaper }))
+    const onFetchRandomWallpaper = () => dispatch(fetchRandomWallpaper(lang))
     const onSetBackgroundVideo = (backgroundVideo: BackgroundVideo) => dispatch(setBackgroundVideo({ backgroundVideo }))
     const onSetHasBackgroundOverlay = (hasBackgroundOverlay: boolean) =>
         dispatch(setHasBackgroundOverlay({ hasBackgroundOverlay }))
@@ -86,6 +96,13 @@ export const Settings = () => {
                             <ColorPicker value={settings.backgroundColor} onChange={onSetBackgroundColor} />
                         </DescriptionOption>
                     )}
+                    {isBackgroundRandomGradient && (
+                        <Button
+                            name={TEXTS[lang].NEW_RANDOM_GRADIENT}
+                            onClick={onSetBackgroundRandomGradient}
+                            align={VALUES.STRETCH}
+                        />
+                    )}
                     {isBackgroundWallpaper && (
                         <DescriptionOption description={TEXTS[lang].WALLPAPERS}>
                             <Select
@@ -94,6 +111,17 @@ export const Settings = () => {
                                 onSelect={onSetBackgroundWallpaper}
                             />
                         </DescriptionOption>
+                    )}
+                    {isBackgroundRandomWallpaper && (
+                        <>
+                            <Button
+                                name={TEXTS[lang].LOAD_RANDOM_WALLPAPER}
+                                onClick={onFetchRandomWallpaper}
+                                align={VALUES.STRETCH}
+                                isLoading={settings.isLoading}
+                            />
+                            {settings.error && <ErrorMessage>{settings.error}</ErrorMessage>}
+                        </>
                     )}
                     {isBackgroundVideo && (
                         <DescriptionOption description={TEXTS[lang].VIDEOS}>

@@ -10,9 +10,5 @@ const randomRgbaColor = () => {
     return `rgba(${red}, ${green}, ${blue}, ${alpha})`
 }
 
-export const randomGradient = () => ({
-    angle: randomAngle(),
-    firstColor: randomRgbaColor(),
-    secondColor: randomRgbaColor(),
-    thirdColor: randomRgbaColor(),
-})
+export const randomGradient = () =>
+    `linear-gradient(${randomAngle()}deg, ${randomRgbaColor()}, ${randomRgbaColor()}, ${randomRgbaColor()})`
