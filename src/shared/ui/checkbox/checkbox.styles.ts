@@ -9,9 +9,9 @@ const CheckboxStyles = styled.div<{ isChecked: boolean }>`
     height: ${theme.sizes.checkbox};
     border-radius: ${theme.roundings.card};
     transition: ${TIMINGS.CHECK_TRANSITION}s ease-in-out;
-    background-color: ${({ isChecked }) => (isChecked ? theme.colors.primary : 'transparent')};
-    color: ${({ isChecked }) => (isChecked ? theme.colors.font : 'transparent')};
-    border: ${({ isChecked }) => (isChecked ? theme.colors.primary : theme.colors.font)} solid
+    background-color: ${({ isChecked }) => (isChecked ? theme.colors.backgroundAccent : 'transparent')};
+    color: ${({ isChecked }) => (isChecked ? theme.colors.fontPrimary : 'transparent')};
+    border: ${({ isChecked }) => (isChecked ? theme.colors.backgroundAccent : theme.colors.fontPrimary)} solid
         ${theme.sizes.regularBorder};
 
     &:after {
@@ -24,7 +24,7 @@ const CheckboxStyles = styled.div<{ isChecked: boolean }>`
 
     &:hover {
         cursor: pointer;
-        border-color: ${({ isChecked }) => (isChecked ? theme.colors.font : theme.colors.accent)};
+        border-color: ${({ isChecked }) => (isChecked ? theme.colors.fontPrimary : theme.colors.fontAccent)};
     }
 `
 

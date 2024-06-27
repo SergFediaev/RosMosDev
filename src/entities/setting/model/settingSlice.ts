@@ -40,7 +40,7 @@ const initialState: InitialState = {
     isMarkupEnabled: false,
     backgroundType: defaultBackgroundTypes[4],
     backgroundTypes: defaultBackgroundTypes,
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.backgroundDefault,
     backgroundRandomGradient: randomGradient(),
     backgroundWallpaper: defaultBackgroundWallpapers[0],
     backgroundWallpapers: defaultBackgroundWallpapers,

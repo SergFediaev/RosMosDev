@@ -12,7 +12,8 @@ type Props = {
 }
 
 const Button = styled.div<Props>`
-    background-color: ${({ isWarning }) => (isWarning ? theme.colors.error : theme.colors.primary)};
+    background-color: ${({ isWarning }) =>
+        isWarning ? theme.colors.backgroundWarning : theme.colors.backgroundAccent};
     border-radius: ${theme.roundings.card};
     padding: ${theme.sizes.mediumSpace};
     align-self: start;
@@ -30,7 +31,6 @@ const Button = styled.div<Props>`
                 `
         }
     }}
-
     &:hover {
         cursor: ${({ isDisabled, isLoading }) => {
             if (isDisabled) return 'not-allowed'

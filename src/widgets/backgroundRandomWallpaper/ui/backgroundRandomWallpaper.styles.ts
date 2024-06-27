@@ -12,7 +12,7 @@ const BackgroundRandomWallpaper = styled.div<{ randomWallpaper: Nullable<string>
     left: 0;
     z-index: -1;
     background: no-repeat center / cover
-        ${({ randomWallpaper }) => (randomWallpaper ? `url(${randomWallpaper})` : theme.colors.backgroundPlaceholder)};
+        ${({ randomWallpaper }) => (randomWallpaper ? `url(${randomWallpaper})` : theme.colors.backgroundDefault)};
 `
 
 export const S = {

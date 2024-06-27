@@ -7,7 +7,7 @@ const DashboardHeader = styled.header<{ isMenuOpen: boolean }>`
     top: 0;
     right: 0;
     left: 0;
-    background-color: ${theme.colors.backgroundAccent};
+    background-color: ${theme.colors.backgroundHeader};
     padding: ${theme.sizes.regularSpace} ${theme.sizes.largeSpace};
     display: flex;
     justify-content: space-between;

@@ -7,7 +7,7 @@ const ColorPicker = styled.input.attrs({ type: TYPES.COLOR })`
     height: ${theme.sizes.checkbox};
 
     &::-webkit-color-swatch {
-        border: ${theme.sizes.regularBorder} ${theme.colors.font} solid;
+        border: ${theme.sizes.regularBorder} ${theme.colors.fontPrimary} solid;
         border-radius: ${theme.roundings.circle};
     }
 `

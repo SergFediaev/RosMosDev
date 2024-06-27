@@ -11,7 +11,7 @@ const Setting = styled.div`
     margin-bottom: ${theme.sizes.largeSpace};
 
     &:before {
-        background-color: ${theme.colors.backgroundAccent};
+        background-color: ${theme.colors.backgroundSetting};
         backdrop-filter: blur(${theme.blurs.regularBlur});
         border-radius: ${theme.roundings.card};
         content: '';

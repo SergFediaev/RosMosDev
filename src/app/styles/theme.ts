@@ -1,16 +1,20 @@
 export const theme = {
     colors: {
-        primary: '#008305',
-        accent: '#0f0',
-        rootBackground: '#000',
-        background: '#0047af',
-        backgroundAccent: 'rgba(44,44,44,0.9)',
-        backgroundPlaceholder: '#808080ff',
-        font: '#fff',
+        backgroundDefault: '#808080', // Gray
+        backgroundPrimary: 'rgba(44, 44, 44)',
+        backgroundSecondary: '#f5f5f5', // Whitesmoke
+        backgroundTertiary: 'rgba(0, 48, 98)',
+        backgroundAccent: '#2268d0',
+        backgroundHeader: 'rgba(44, 44, 44,.7)',
+        backgroundSetting: 'rgba(44, 44, 44, .98)',
+        backgroundWarning: '#c50000',
+        backgroundErrorPage: '#1030b7',
+        backgroundErrorMessage: '#ff0',
+        fontDefault: '#000',
+        fontPrimary: '#fffff0', // Ivory
+        fontSecondary: '#1f2626',
+        fontAccent: '#0ff',
         shadow: 'rgba(0, 0, 0, .7)',
-        error: '#c50000',
-        errorPageBackground: '#1030b7',
-        errorMessageBackground: '#ff0',
         debug: '#f00',
     },
     sizes: {

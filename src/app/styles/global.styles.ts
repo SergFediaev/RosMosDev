@@ -66,7 +66,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     :root {
-        background-color: ${theme.colors.rootBackground};
+        background-color: ${theme.colors.backgroundDefault};
     }
 
     html {
@@ -75,15 +75,15 @@ export const GlobalStyles = createGlobalStyle`
 
     body {
         min-width: ${theme.breakpoints.mobile}px;
-        color: ${theme.colors.font};
+        color: ${theme.colors.fontPrimary};
     }
 
     q:before, q:after {
-        color: ${theme.colors.accent};
+        color: ${theme.colors.fontAccent};
     }
 
     a {
-        text-decoration: ${theme.colors.accent} ${theme.sizes.regularBorder} underline;
+        text-decoration: ${theme.colors.fontAccent} ${theme.sizes.regularBorder} underline;
         text-underline-offset: ${theme.sizes.regularBorder};
         word-wrap: anywhere;
     }
