@@ -1,9 +1,10 @@
 import axios from 'axios'
-import { randomWallpaperApiKey } from 'src/credentials/credentials.ts'
 
 const baseURL = 'https://api.api-ninjas.com/v1/'
 
 const headerApiKey = 'X-Api-Key'
+
+const apiKey = '3ptc2jfAZqg+226sOF7Adw==Jt8ihXYJJlBhILPC'
 
 const headerAccept = 'Accept'
 
@@ -19,7 +20,7 @@ const params = { category }
 
 const instance = axios.create({
     baseURL,
-    headers: { [headerApiKey]: randomWallpaperApiKey, [headerAccept]: contentType },
+    headers: { [headerApiKey]: apiKey, [headerAccept]: contentType },
     responseType,
 })
 
