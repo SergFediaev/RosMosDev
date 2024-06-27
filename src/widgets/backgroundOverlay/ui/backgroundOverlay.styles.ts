@@ -8,7 +8,7 @@ const BackgroundOverlay = styled.div`
     bottom: 0;
     left: 0;
     z-index: -1;
-    background-color: rgba(0, 0, 0, ${theme.opacities.translucent});
+    background-color: ${theme.colors.backgroundOverlay};
 `
 
 export const S = {

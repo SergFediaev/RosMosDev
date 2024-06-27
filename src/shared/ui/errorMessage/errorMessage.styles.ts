@@ -8,6 +8,7 @@ const ErrorMessage = styled.p`
     align-self: start;
     font-weight: bold;
     padding: ${theme.sizes.smallSpace} ${theme.sizes.mediumSpace};
+    word-break: break-word;
 `
 
 export const S = {

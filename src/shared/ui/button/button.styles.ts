@@ -17,6 +17,7 @@ const Button = styled.div<Props>`
     border-radius: ${theme.roundings.card};
     padding: ${theme.sizes.mediumSpace};
     align-self: start;
+    flex-grow: 1;
 
     ${({ align }) => {
         switch (align) {

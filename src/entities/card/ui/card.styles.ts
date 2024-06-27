@@ -11,6 +11,7 @@ const Card = styled.article`
     gap: ${theme.sizes.regularSpace};
     margin-bottom: ${theme.sizes.largeSpace};
     break-inside: avoid;
+    box-shadow: ${theme.shadows.bottomLeft};
 `
 
 export const S = {

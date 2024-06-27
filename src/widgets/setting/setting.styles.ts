@@ -9,6 +9,8 @@ const Setting = styled.div`
     padding: ${theme.sizes.largeSpace};
     break-inside: avoid;
     margin-bottom: ${theme.sizes.largeSpace};
+    border-radius: ${theme.roundings.card};
+    box-shadow: ${theme.shadows.bottomLeft};
 
     &:before {
         background-color: ${theme.colors.backgroundSetting};

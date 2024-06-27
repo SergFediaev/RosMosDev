@@ -14,7 +14,7 @@ import {
     setIsMarkupEnabled,
     setLanguage,
 } from 'src/entities/setting/model/settingSlice.ts'
-import { LINKS, TEXTS, VALUES } from 'src/shared/const'
+import { LINKS, SYMBOLS, TEXTS, VALUES } from 'src/shared/const'
 import { nanoid } from '@reduxjs/toolkit'
 import { SettingsHeader } from 'src/pages/settings/settingsHeader/settingsHeader.tsx'
 import { Setting } from 'src/widgets/setting/setting.tsx'
@@ -23,7 +23,6 @@ import { Select } from 'src/shared/ui/select/select.tsx'
 import { Checkbox } from 'src/shared/ui/checkbox/checkbox.tsx'
 import { Signature } from 'src/pages/settings/signature/signature.tsx'
 import { Button } from 'src/shared/ui/button/button.tsx'
-import { SingleOption } from 'src/widgets/setting/singleOption/singleOption.tsx'
 import { useState } from 'react'
 import { BackgroundType } from 'src/widgets/background/types/backgroundType.types.ts'
 import { BACKGROUND_TYPES } from 'src/widgets/background/const/backgroundTypes.ts'
@@ -33,12 +32,15 @@ import { ColorPicker } from 'src/shared/ui/colorPicker/colorPicker.tsx'
 import { useAppDispatch } from 'src/app/store.ts'
 import { randomGradient } from 'src/widgets/backgroundGradient/lib/randomGradient.ts'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
+import { ButtonsContainer } from 'src/shared/ui/buttonsContainer/buttonsContainer.tsx'
 
 export const Settings = () => {
     const dispatch = useAppDispatch()
     const settings = useSelector(selectSettings)
     const lang = useSelector(selectLang)
     const [isDebugError, setIsDebugError] = useState(false)
+    const [isDebugWarning, setIsDebugWarning] = useState(false)
+    const debugWarningButtonName = isDebugWarning ? TEXTS[lang].HIDE_ERROR : TEXTS[lang].SHOW_ERROR
 
     const isBackgroundColor = settings.backgroundType.value === BACKGROUND_TYPES.COLOR
     const isBackgroundRandomGradient = settings.backgroundType.value === BACKGROUND_TYPES.RANDOM_GRADIENT
@@ -64,6 +66,7 @@ export const Settings = () => {
     const onSetHasBackgroundOverlay = (hasBackgroundOverlay: boolean) =>
         dispatch(setHasBackgroundOverlay({ hasBackgroundOverlay }))
     const onDebugError = () => setIsDebugError(true)
+    const toggleDebugWarning = () => setIsDebugWarning(!isDebugWarning)
 
     if (isDebugError) throw Error(`${TEXTS[lang].DEBUG_ERROR} ${nanoid()}`)
 
@@ -160,9 +163,22 @@ export const Settings = () => {
                         <DescriptionOption description={TEXTS[lang].DISPLAY_MARKUP}>
                             <Checkbox value={settings.isMarkupEnabled} onChange={onSetIsMarkupEnabled} />
                         </DescriptionOption>
-                        <SingleOption>
-                            <Button name={TEXTS[lang].THROW_ERROR} onClick={onDebugError} isWarning />
-                        </SingleOption>
+                        <ButtonsContainer>
+                            <Button align={VALUES.STRETCH} name={debugWarningButtonName} onClick={toggleDebugWarning} />
+                            <Button
+                                align={VALUES.STRETCH}
+                                name={TEXTS[lang].THROW_ERROR}
+                                onClick={onDebugError}
+                                isWarning
+                            />
+                            {isDebugWarning && (
+                                <ErrorMessage>
+                                    {TEXTS[lang].DEBUG_ERROR}
+                                    {SYMBOLS.SPACE}
+                                    {nanoid()}
+                                </ErrorMessage>
+                            )}
+                        </ButtonsContainer>
                     </Setting>
                 )}
             </S.Settings>

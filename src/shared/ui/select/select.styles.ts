@@ -25,8 +25,7 @@ const Options = styled.ul`
     background-color: ${theme.colors.backgroundTertiary};
     border-radius: ${theme.roundings.card};
     overflow: hidden;
-    box-shadow: ${theme.directions.leftShadow} ${theme.directions.bottomShadow} ${theme.blurs.regularBlur}
-        ${theme.spreads.shadow} ${theme.colors.shadow};
+    box-shadow: ${theme.shadows.bottomLeft};
     z-index: 100;
 `
 

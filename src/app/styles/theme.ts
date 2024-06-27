@@ -5,6 +5,7 @@ export const theme = {
         backgroundSecondary: '#f5f5f5', // Whitesmoke
         backgroundTertiary: 'rgba(0, 48, 98)',
         backgroundAccent: '#2268d0',
+        backgroundOverlay: 'rgba(0, 0, 0, .5)',
         backgroundHeader: 'rgba(44, 44, 44,.7)',
         backgroundSetting: 'rgba(44, 44, 44, .98)',
         backgroundWarning: '#c50000',
@@ -57,6 +58,10 @@ export const theme = {
     directions: {
         leftShadow: '-10px',
         bottomShadow: '10px',
+    },
+    shadows: {
+        bottom: '0 5px 5px 1px rgba(0, 0, 0, .5)',
+        bottomLeft: '-5px 5px 5px 1px rgba(0, 0, 0, .5)',
     },
     media: {
         mobile: 'screen and (max-width: 576px)', // 0-576

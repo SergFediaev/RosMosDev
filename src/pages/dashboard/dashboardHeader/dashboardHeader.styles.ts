@@ -19,6 +19,7 @@ const DashboardHeader = styled.header<{ isMenuOpen: boolean }>`
     transition: ${TIMINGS.TRANSITION_TRANSFORM}s ease-in-out;
     transform: translateY(-100%);
     min-height: ${theme.sizes.headerHeight};
+    box-shadow: ${theme.shadows.bottom};
 
     ${({ isMenuOpen }) =>
         isMenuOpen &&
