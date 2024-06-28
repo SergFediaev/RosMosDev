@@ -1,6 +1,6 @@
 export { SORTS } from './const/sorts.ts'
 
-export { defaultSorts } from 'src/features/sortCards/model/defaultSorts.ts'
+export { getSorts } from 'src/features/sortCards/lib/getSorts.ts'
 
 export * from './model/sortCards.selectors.ts'
 

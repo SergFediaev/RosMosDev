@@ -1,12 +1,12 @@
 import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Lang, Language } from 'src/shared/types/language.ts'
-import { defaultLanguages } from 'src/entities/setting/model/defaultLanguages.ts'
+import { getLanguages } from 'src/entities/setting/lib/getLanguages.ts'
 import { BackgroundVideo } from 'src/widgets/backgroundVideo/types/backgroundVideo.types.ts'
-import { defaultBackgroundVideos } from 'src/widgets/backgroundVideo/model/defaultBackgroundVideos.ts'
+import { getBackgroundVideos } from 'src/widgets/backgroundVideo/lib/getBackgroundVideos.ts'
 import { BackgroundType } from 'src/widgets/background/types/backgroundType.types.ts'
-import { defaultBackgroundTypes } from 'src/widgets/background/model/defaultBackgroundTypes.ts'
+import { getBackgroundTypes } from 'src/widgets/background/lib/getBackgroundTypes.ts'
 import { BackgroundWallpaper } from 'src/widgets/backgroundWallpaper/model/backgroundWallpaper.types.ts'
-import { defaultBackgroundWallpapers } from 'src/widgets/backgroundWallpaper/model/defaultBackgroundWallpapers.ts'
+import { getBackgroundWallpapers } from 'src/widgets/backgroundWallpaper/lib/getBackgroundWallpapers.ts'
 import { theme } from 'src/app/styles/theme.ts'
 import { Nullable } from 'src/shared/types/nullable.ts'
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
@@ -34,19 +34,19 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-    language: defaultLanguages[0],
-    languages: defaultLanguages,
+    language: getLanguages()[0],
+    languages: getLanguages(),
     isDebugEnabled: false,
     isMarkupEnabled: false,
-    backgroundType: defaultBackgroundTypes[4],
-    backgroundTypes: defaultBackgroundTypes,
+    backgroundType: getBackgroundTypes()[4],
+    backgroundTypes: getBackgroundTypes(),
     backgroundColor: theme.colors.backgroundDefault,
     backgroundRandomGradient: randomGradient(),
-    backgroundWallpaper: defaultBackgroundWallpapers[0],
-    backgroundWallpapers: defaultBackgroundWallpapers,
+    backgroundWallpaper: getBackgroundWallpapers()[0],
+    backgroundWallpapers: getBackgroundWallpapers(),
     backgroundRandomWallpaper: null,
-    backgroundVideo: defaultBackgroundVideos[0],
-    backgroundVideos: defaultBackgroundVideos,
+    backgroundVideo: getBackgroundVideos()[0],
+    backgroundVideos: getBackgroundVideos(),
     hasBackgroundOverlay: false,
     isLoading: false,
     error: null,
@@ -62,6 +62,12 @@ const settingsSlice = createSlice({
     reducers: create => ({
         setLanguage: create.reducer((state, action: PayloadAction<{ language: Language }>) => {
             state.language = action.payload.language
+
+            const { value } = action.payload.language
+            state.languages = getLanguages(value)
+            state.backgroundTypes = getBackgroundTypes(value)
+            state.backgroundWallpapers = getBackgroundWallpapers(value)
+            state.backgroundVideos = getBackgroundVideos(value)
         }),
         setIsDebugEnabled: create.reducer(
             (

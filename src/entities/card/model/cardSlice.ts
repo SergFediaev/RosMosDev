@@ -1,6 +1,6 @@
 import { cardsApi, CardsWithFilters, CardType, getCardsFromSpreadsheet } from 'src/entities/card'
-import { defaultSorts, Sort } from 'src/features/sortCards'
-import { cardFilters, defaultFilters, Filter } from 'src/features/filterCards'
+import { getSorts, Sort } from 'src/features/sortCards'
+import { cardFilters, Filter, getFilters } from 'src/features/filterCards'
 import { Nullable } from 'src/shared/types/nullable.ts'
 import { VALUES } from 'src/shared/const'
 import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
@@ -22,10 +22,10 @@ type InitialState = {
 const initialState: InitialState = {
     items: [],
     search: VALUES.EMPTY_STRING,
-    sort: defaultSorts[0],
-    sorts: defaultSorts,
-    filter: defaultFilters[0],
-    filters: defaultFilters,
+    sort: getSorts()[0],
+    sorts: getSorts(),
+    filter: getFilters()[0],
+    filters: getFilters(),
     isLoading: false,
     error: null,
 }
