@@ -134,6 +134,7 @@ const settingsSlice = createSlice({
                 },
                 fulfilled: (state, action) => {
                     state.backgroundRandomWallpaper = action.payload
+                    if (state.error) state.error = null
                 },
                 rejected: (state, action) => {
                     state.error = (action.payload as RejectedWithError).error ?? action.error.message

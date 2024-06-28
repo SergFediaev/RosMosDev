@@ -54,6 +54,7 @@ const cardsSlice = createSlice({
                 fulfilled: (state, action) => {
                     state.items = action.payload.cards
                     state.filters = action.payload.filters
+                    if (state.error) state.error = null
                 },
                 rejected: (state, action) => {
                     state.error = (action.payload as RejectedWithError).error ?? action.error.message
