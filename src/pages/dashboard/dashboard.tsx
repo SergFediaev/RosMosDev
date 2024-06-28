@@ -6,11 +6,12 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { selectSortedCards } from 'src/features/sortCards'
 import { EMOJIS, EVENTS, TEXTS, TITLES } from 'src/shared/const'
-import { selectIsCardsLoading } from 'src/entities/card/model/card.selectors.ts'
+import { selectCardsError, selectIsCardsLoading } from 'src/entities/card/model/card.selectors.ts'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { DashboardHeader } from 'src/pages/dashboard/dashboardHeader/dashboardHeader.tsx'
 import { MenuButton } from 'src/shared/ui/menuButton/menuButton.tsx'
 import { theme } from 'src/app/styles/theme.ts'
+import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 
 export const Dashboard = () => {
     const lang = useSelector(selectLang)
@@ -21,6 +22,7 @@ export const Dashboard = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(innerWidth > theme.breakpoints.tablet)
     const toggleIsMenuOpen = () => setIsMenuOpen(!isMenuOpen)
     const menuButtonTitle = isMenuOpen ? TITLES[lang].CLOSE_MENU : TITLES[lang].OPEN_MENU
+    const cardsError = useSelector(selectCardsError)
 
     useEffect(() => {
         dispatch(fetchCards(lang))
@@ -32,11 +34,20 @@ export const Dashboard = () => {
         return () => removeEventListener(EVENTS.RESIZE, onWindowResize)
     }, [dispatch, lang])
 
+    // ToDo: Refactor JSX.
     return (
         <>
             <DashboardHeader isMenuOpen={isMenuOpen} />
             {!isCardsLoading && (
-                <S.Dashboard>{hasCards ? <Cards cards={cards} /> : TEXTS[lang].CARDS_NOT_FOUND}</S.Dashboard>
+                <S.Dashboard>
+                    {cardsError ? (
+                        <ErrorMessage>{cardsError}</ErrorMessage>
+                    ) : hasCards ? (
+                        <Cards cards={cards} />
+                    ) : (
+                        TEXTS[lang].CARDS_NOT_FOUND
+                    )}
+                </S.Dashboard>
             )}
             <MenuButton icon={EMOJIS.MENU} onClick={toggleIsMenuOpen} title={menuButtonTitle} />
         </>

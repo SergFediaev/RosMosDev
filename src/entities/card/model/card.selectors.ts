@@ -18,6 +18,8 @@ export const selectHasCardFilters = (state: AppState) => state.cards.filters.len
 
 export const selectIsCardsLoading = (state: AppState) => state.cards.isLoading
 
+export const selectCardsError = (state: AppState) => state.cards.error
+
 export const selectFilteredCards = createSelector(selectCardItems, selectCardsFilter, (cards, { value }) => {
     if (value === FILTERS.UNCATEGORIZED) return cards.filter(card => !card.tags)
 

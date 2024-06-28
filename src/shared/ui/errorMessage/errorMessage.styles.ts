@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 
-const ErrorMessage = styled.p`
+const ErrorMessage = styled.span`
     background-color: ${theme.colors.backgroundErrorMessage};
     color: ${theme.colors.fontDefault};
     border: ${theme.colors.fontDefault} ${theme.sizes.regularBorder} dashed;

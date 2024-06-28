@@ -123,7 +123,7 @@ export const Settings = () => {
                                 align={VALUES.STRETCH}
                                 isLoading={settings.isLoading}
                             />
-                            {settings.error && <ErrorMessage>{settings.error}</ErrorMessage>}
+                            {!settings.isLoading && settings.error && <ErrorMessage>{settings.error}</ErrorMessage>}
                         </>
                     )}
                     {isBackgroundVideo && (
