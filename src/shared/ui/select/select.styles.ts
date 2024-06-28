@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 
+// ToDo: Empty styled.
 const Select = styled.div``
 
 const Selected = styled.span`

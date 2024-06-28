@@ -1,3 +1,4 @@
 import { VALUES } from 'src/shared/const'
 
-export type LoadingSizes = typeof VALUES.MEDIUM_SIZE | typeof VALUES.LARGE_SIZE
+// ToDo: Duplicated size types.
+export type LoadingSizes = typeof VALUES.BIG_SIZE | typeof VALUES.LARGE_SIZE

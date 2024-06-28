@@ -22,7 +22,7 @@ export const SettingsHeader = () => {
                 icon={EMOJIS.HOME}
                 onClick={openDashboard}
                 title={TITLES[lang].OPEN_DASHBOARD}
-                size={VALUES.MEDIUM_SIZE}
+                iconSize={VALUES.BIG_SIZE}
             />
         </S.DashboardHeader>
     )

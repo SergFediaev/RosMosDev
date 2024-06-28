@@ -26,8 +26,8 @@ export const DashboardHeader = ({ isMenuOpen }: Props) => {
                     icon={EMOJIS.SETTINGS}
                     onClick={openSettings}
                     title={TITLES[lang].OPEN_SETTINGS}
-                    size={VALUES.MEDIUM_SIZE}
-                    isSpinning
+                    iconSize={VALUES.BIG_SIZE}
+                    isIconSpinning
                 />
             </S.Actions>
         </S.DashboardHeader>

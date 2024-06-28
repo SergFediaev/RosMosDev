@@ -10,6 +10,7 @@ import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
 
 type InitialState = {
     items: CardType[]
+    isLearningMode: boolean
     search: string
     sort: Sort
     sorts: Sort[]
@@ -21,6 +22,7 @@ type InitialState = {
 
 const initialState: InitialState = {
     items: [],
+    isLearningMode: true,
     search: VALUES.EMPTY_STRING,
     sort: getSorts()[0],
     sorts: getSorts(),
@@ -38,6 +40,18 @@ const cardsSlice = createSlice({
     name: 'cards',
     initialState,
     reducers: create => ({
+        toggleIsLearningMode: create.reducer(state => {
+            state.isLearningMode = !state.isLearningMode
+        }),
+        setCardsSearch: create.reducer((state, action: PayloadAction<{ search: string }>) => {
+            state.search = action.payload.search
+        }),
+        setCardsSort: create.reducer((state, action: PayloadAction<{ sort: Sort }>) => {
+            state.sort = action.payload.sort
+        }),
+        setCardsFilter: create.reducer((state, action: PayloadAction<{ filter: Filter }>) => {
+            state.filter = action.payload.filter
+        }),
         fetchCards: create.asyncThunk<CardsWithFilters, Lang>(
             async (lang, { rejectWithValue }) => {
                 try {
@@ -64,15 +78,6 @@ const cardsSlice = createSlice({
                 },
             },
         ),
-        setCardsSearch: create.reducer((state, action: PayloadAction<{ search: string }>) => {
-            state.search = action.payload.search
-        }),
-        setCardsSort: create.reducer((state, action: PayloadAction<{ sort: Sort }>) => {
-            state.sort = action.payload.sort
-        }),
-        setCardsFilter: create.reducer((state, action: PayloadAction<{ filter: Filter }>) => {
-            state.filter = action.payload.filter
-        }),
     }),
 })
 
@@ -80,4 +85,4 @@ export const cardsName = cardsSlice.name
 
 export const cardsReducer = cardsSlice.reducer
 
-export const { fetchCards, setCardsSearch, setCardsSort, setCardsFilter } = cardsSlice.actions
+export const { toggleIsLearningMode, setCardsSearch, setCardsSort, setCardsFilter, fetchCards } = cardsSlice.actions

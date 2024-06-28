@@ -12,6 +12,11 @@ export const TITLES = {
         SOUL: 'Soul',
         ENABLE_BACKGROUND_SOUND: 'Enable background sound',
         MUTE_BACKGROUND_SOUND: 'Mute background sound',
+        ENABLE_LEARNING_MODE: 'Enable learning mode',
+        ENABLE_TRAINING_MODE: 'Enable training mode',
+        OPEN_CARD: 'Open card',
+        CLOSE_CARD: 'Close card',
+        HIGHLIGHT_CARD: 'Highlight card',
     },
     ru: {
         SEARCH: 'Поиск карточек по заголовкам, тегам и контенту',
@@ -26,5 +31,10 @@ export const TITLES = {
         SOUL: 'Душой',
         ENABLE_BACKGROUND_SOUND: 'Включить фоновый звук',
         MUTE_BACKGROUND_SOUND: 'Заглушить фоновый звук',
+        ENABLE_LEARNING_MODE: 'Включить режим изучения',
+        ENABLE_TRAINING_MODE: 'Включить режим тренировки',
+        OPEN_CARD: 'Открыть карточку',
+        CLOSE_CARD: 'Закрыть карточку',
+        HIGHLIGHT_CARD: 'Выделить карточку',
     },
 } as const

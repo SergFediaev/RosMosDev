@@ -6,6 +6,8 @@ export const selectCards = (state: AppState) => state.cards
 
 export const selectCardItems = (state: AppState) => state.cards.items
 
+export const selectIsLearningMode = (state: AppState) => state.cards.isLearningMode
+
 export const selectCardsSearch = (state: AppState) => state.cards.search
 
 export const selectCardsSort = (state: AppState) => state.cards.sort

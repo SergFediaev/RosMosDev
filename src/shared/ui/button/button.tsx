@@ -12,8 +12,8 @@ type Props = {
 }
 
 // ToDo: undefined on click.
-export const Button = ({ name, onClick, isLoading, ...restProps }: Props) => (
-    <S.Button onClick={isLoading ? undefined : onClick} isLoading={isLoading} {...restProps}>
-        {isLoading ? <Loading /> : name}
+export const Button = ({ name, onClick, ...rest }: Props) => (
+    <S.Button onClick={rest.isLoading ? undefined : onClick} {...rest}>
+        {rest.isLoading ? <Loading /> : name}
     </S.Button>
 )
