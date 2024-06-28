@@ -25,8 +25,5 @@ const instance = axios.create({
 })
 
 export const randomWallpaperApi = {
-    async getRandomWallpaper() {
-        const response = await instance.get<Blob>(endpoint, { params })
-        return URL.createObjectURL(response.data)
-    },
+    getRandomWallpaper: () => instance.get<Blob>(endpoint, { params }),
 }

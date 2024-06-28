@@ -122,7 +122,8 @@ const settingsSlice = createSlice({
         fetchRandomWallpaper: create.asyncThunk<string, Lang>(
             async (lang, { rejectWithValue }) => {
                 try {
-                    return await randomWallpaperApi.getRandomWallpaper()
+                    const response = await randomWallpaperApi.getRandomWallpaper()
+                    return URL.createObjectURL(response.data)
                 } catch (error) {
                     return rejectWithValue({ error: handleNetworkError(error, lang) })
                 }
