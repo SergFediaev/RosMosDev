@@ -12,7 +12,7 @@ export const Card = ({ card }: Props) => {
         <S.Card>
             <h2>{title}</h2>
             <p>{tags}</p>
-            <p>{content}</p>
+            <S.Content>{content}</S.Content>
         </S.Card>
     )
 }

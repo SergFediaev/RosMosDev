@@ -14,6 +14,11 @@ const Card = styled.article`
     box-shadow: ${theme.shadows.bottomLeft};
 `
 
+const Content = styled.p`
+    white-space: pre-wrap;
+`
+
 export const S = {
     Card,
+    Content,
 }
