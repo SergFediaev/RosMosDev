@@ -34,22 +34,25 @@ export const Card = ({ card }: Props) => {
 
     useEffect(() => setIsOpen(isLearningMode), [isLearningMode])
 
+    // ToDo: Copy to clipboard.
     return (
         <S.Card highlightColor={highlightColor}>
             <h2>{title}</h2>
             <p>{tags}</p>
             {isOpen && <S.Content>{content}</S.Content>}
-            <S.Info>{id}</S.Info>
-            {created && (
-                <S.Info>
-                    {TEXTS[lang].CREATED} {created}
-                </S.Info>
-            )}
-            {updated && (
-                <S.Info>
-                    {TEXTS[lang].UPDATED} {updated}
-                </S.Info>
-            )}
+            <S.Info>
+                <p>{id}</p>
+                {created && (
+                    <p>
+                        {TEXTS[lang].CREATED} {created}
+                    </p>
+                )}
+                {updated && (
+                    <p>
+                        {TEXTS[lang].UPDATED} {updated}
+                    </p>
+                )}
+            </S.Info>
             <IconsContainer>
                 <IconButton
                     icon={isOpenIcon}

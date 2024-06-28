@@ -36,6 +36,7 @@ export const theme = {
         bigBorder: '4px',
         rootFont: '20px',
         defaultFont: '1rem',
+        smallFont: '.8rem',
         mediumFont: '1.2rem',
         bigFont: '1.5rem',
         largeFont: '2rem',
