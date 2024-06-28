@@ -14,7 +14,7 @@ const MenuButton = styled.span`
     background-color: ${theme.colors.backgroundOverlay};
     backdrop-filter: blur(${theme.blurs.regularBlur});
     border-top-left-radius: ${theme.roundings.sphere};
-    z-index: 100;
+    z-index: ${theme.indexes.menu};
 
     &:hover {
         cursor: pointer;

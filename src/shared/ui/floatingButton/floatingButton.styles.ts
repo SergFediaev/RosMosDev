@@ -13,7 +13,7 @@ const FloatingButton = styled.span`
     background-color: ${theme.colors.backgroundOverlay};
     backdrop-filter: blur(${theme.blurs.regularBlur});
     border-top-right-radius: ${theme.roundings.sphere};
-    z-index: 100;
+    z-index: ${theme.indexes.menu};
 
     &:hover {
         cursor: pointer;

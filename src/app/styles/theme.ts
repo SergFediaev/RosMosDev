@@ -63,6 +63,11 @@ export const theme = {
         bottom: '0 5px 5px 1px rgba(0, 0, 0, .5)',
         bottomLeft: '-5px 5px 5px 1px rgba(0, 0, 0, .5)',
     },
+    indexes: {
+        menu: 300,
+        header: 200,
+        select: 100,
+    },
     media: {
         mobile: 'screen and (max-width: 576px)', // 0-576
         tablet: 'screen and (max-width: 768px)', // 0-768

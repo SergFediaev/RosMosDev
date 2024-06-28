@@ -15,7 +15,7 @@ const DashboardHeader = styled.header<{ isMenuOpen: boolean }>`
     gap: ${theme.sizes.regularSpace};
     flex-wrap: wrap;
     backdrop-filter: blur(${theme.blurs.regularBlur});
-    z-index: 200;
+    z-index: ${theme.indexes.header};
     transition: ${TIMINGS.TRANSITION_TRANSFORM}s ease-in-out;
     transform: translateY(-100%);
     min-height: ${theme.sizes.headerHeight};

@@ -26,7 +26,7 @@ const Options = styled.ul`
     border-radius: ${theme.roundings.card};
     overflow: hidden;
     box-shadow: ${theme.shadows.bottomLeft};
-    z-index: 100;
+    z-index: ${theme.indexes.select};
 `
 
 const Option = styled.li<{ isHovered: boolean }>`
