@@ -60,6 +60,8 @@ export const TEXTS = {
         OVERLAY: 'Overlay',
         NEW_RANDOM_GRADIENT: 'New random gradient',
         LOAD_RANDOM_WALLPAPER: 'Load random wallpaper',
+        CREATED: 'Created:',
+        UPDATED: 'Updated:',
     },
     [VALUES.RU]: {
         APP_NAME: 'РосМосДев',
@@ -118,5 +120,7 @@ export const TEXTS = {
         OVERLAY: 'Затемнение',
         NEW_RANDOM_GRADIENT: 'Новый случайный градиент',
         LOAD_RANDOM_WALLPAPER: 'Загрузить случайные обои',
+        CREATED: 'Создано:',
+        UPDATED: 'Обновлено:',
     },
 } as const

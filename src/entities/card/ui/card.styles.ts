@@ -22,7 +22,12 @@ const Content = styled.p`
     animation: ${appear} ${TIMINGS.TRANSITION_TRANSFORM}s linear forwards;
 `
 
+const Info = styled.p`
+    text-align: right;
+`
+
 export const S = {
     Card,
     Content,
+    Info,
 }

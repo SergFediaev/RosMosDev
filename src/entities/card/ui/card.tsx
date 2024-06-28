@@ -15,7 +15,7 @@ type Props = {
 
 export const Card = ({ card }: Props) => {
     const lang = useSelector(selectLang)
-    const { title, content, tags = TEXTS[lang].UNCATEGORIZED } = card
+    const { id, title, content, tags = TEXTS[lang].UNCATEGORIZED, created, updated } = card
     const isLearningMode = useSelector(selectIsLearningMode)
 
     const [isOpen, setIsOpen] = useState(isLearningMode)
@@ -39,6 +39,17 @@ export const Card = ({ card }: Props) => {
             <h2>{title}</h2>
             <p>{tags}</p>
             {isOpen && <S.Content>{content}</S.Content>}
+            <S.Info>{id}</S.Info>
+            {created && (
+                <S.Info>
+                    {TEXTS[lang].CREATED} {created}
+                </S.Info>
+            )}
+            {updated && (
+                <S.Info>
+                    {TEXTS[lang].UPDATED} {updated}
+                </S.Info>
+            )}
             <IconsContainer>
                 <IconButton
                     icon={isOpenIcon}
