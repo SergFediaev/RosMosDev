@@ -9,6 +9,7 @@ import { CardFiltersSelect } from 'src/widgets/cardFiltersSelect/cardFiltersSele
 import { CardsModeIconButton } from 'src/widgets/cardsModeIconButton/cardsModeIconButton.tsx'
 import { OpenSettingsIconButton } from 'src/widgets/openSettingsIconButton/openSettingsIconButton.tsx'
 import { OpenCardsIconButton } from 'src/widgets/openCardsIconButton/openCardsIconButton.tsx'
+import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 
 export const CardPage = () => {
     const { id } = useParams<{ id: string }>()
@@ -22,10 +23,10 @@ export const CardPage = () => {
                     <CardFiltersSelect />
                     <CardsModeIconButton />
                 </Toolbar>
-                <div>
+                <NavIcons>
                     <OpenCardsIconButton />
                     <OpenSettingsIconButton />
-                </div>
+                </NavIcons>
             </Header>
             <S.CardPage>
                 {card && (

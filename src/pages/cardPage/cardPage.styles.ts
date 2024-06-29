@@ -4,7 +4,7 @@ import { theme } from 'src/app/styles/theme.ts'
 const CardPage = styled.div`
     display: flex;
     justify-content: center;
-    padding: ${theme.sizes.hugeSpace};
+    padding: ${theme.sizes.largeSpace};
 `
 
 const Card = styled.main`
@@ -17,6 +17,7 @@ const Card = styled.main`
     display: flex;
     flex-direction: column;
     gap: ${theme.sizes.bigSpace};
+    box-shadow: ${theme.shadows.bottomLeft};
 `
 
 export const S = {

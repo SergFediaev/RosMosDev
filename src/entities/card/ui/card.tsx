@@ -7,8 +7,8 @@ import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { Palette } from 'src/shared/ui/palette/palette.tsx'
 import { cardHighlights } from 'src/features/highlightCard/model/cardHighlights.ts'
 import { useEffect, useState } from 'react'
-import { IconsContainer } from 'src/shared/ui/iconsContainer/iconsContainer.tsx'
 import { useNavigate } from 'react-router-dom'
+import { CardIcons } from 'src/shared/ui/cardIcons/cardIcons.tsx'
 
 type Props = {
     card: CardType
@@ -63,7 +63,7 @@ export const Card = ({ card }: Props) => {
                     </>
                 )}
             </S.Info>
-            <IconsContainer>
+            <CardIcons>
                 <IconButton
                     icon={EMOJIS.PALETTE}
                     onClick={toggleShowPalette}
@@ -89,7 +89,7 @@ export const Card = ({ card }: Props) => {
                     iconSize={VALUES.MEDIUM_SIZE}
                 />
                 {showPalette && <Palette colors={cardHighlights} onClick={onSetHighlightColor} />}
-            </IconsContainer>
+            </CardIcons>
         </S.Card>
     )
 }
