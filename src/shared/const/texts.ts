@@ -62,6 +62,9 @@ export const TEXTS = {
         LOAD_RANDOM_WALLPAPER: 'Load random wallpaper',
         CREATED: 'Created:',
         UPDATED: 'Updated:',
+        CARDS: 'Cards',
+        SHOW_CARD_DATE: 'Show date and time of card creation/update',
+        SHOW_CARD_ID: 'Show card ID',
     },
     [VALUES.RU]: {
         APP_NAME: 'РосМосДев',
@@ -122,5 +125,8 @@ export const TEXTS = {
         LOAD_RANDOM_WALLPAPER: 'Загрузить случайные обои',
         CREATED: 'Создано:',
         UPDATED: 'Обновлено:',
+        CARDS: 'Карточки',
+        SHOW_CARD_DATE: 'Показывать дату и время создания/обновления карточки',
+        SHOW_CARD_ID: 'Показывать идентификатор карточки',
     },
 } as const

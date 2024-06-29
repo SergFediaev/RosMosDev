@@ -33,6 +33,7 @@ import { useAppDispatch } from 'src/app/store.ts'
 import { randomGradient } from 'src/widgets/backgroundGradient/lib/randomGradient.ts'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { ButtonsContainer } from 'src/shared/ui/buttonsContainer/buttonsContainer.tsx'
+import { selectShowCardDate, selectShowCardId, toggleShowDate, toggleShowId } from 'src/entities/card'
 
 export const Settings = () => {
     const dispatch = useAppDispatch()
@@ -41,6 +42,8 @@ export const Settings = () => {
     const [isDebugError, setIsDebugError] = useState(false)
     const [isDebugWarning, setIsDebugWarning] = useState(false)
     const debugWarningButtonName = isDebugWarning ? TEXTS[lang].HIDE_ERROR : TEXTS[lang].SHOW_ERROR
+    const showCardId = useSelector(selectShowCardId)
+    const showCardDate = useSelector(selectShowCardDate)
 
     const isBackgroundColor = settings.backgroundType.value === BACKGROUND_TYPES.COLOR
     const isBackgroundRandomGradient = settings.backgroundType.value === BACKGROUND_TYPES.RANDOM_GRADIENT
@@ -53,6 +56,8 @@ export const Settings = () => {
         settings.backgroundType.value === BACKGROUND_TYPES.VIDEO
 
     const onSetLanguage = (language: Language) => dispatch(setLanguage({ language }))
+    const onToggleShowCardId = () => dispatch(toggleShowId())
+    const onToggleShowCardDate = () => dispatch(toggleShowDate())
     const onSetIsDebugEnabled = (isDebugEnabled: boolean) => dispatch(setIsDebugEnabled({ isDebugEnabled }))
     const onSetIsMarkupEnabled = (isMarkupEnabled: boolean) => dispatch(setIsMarkupEnabled({ isMarkupEnabled }))
     const onSetBackgroundType = (backgroundType: BackgroundType) => dispatch(setBackgroundType({ backgroundType }))
@@ -84,6 +89,14 @@ export const Settings = () => {
                     </DescriptionOption>
                     <DescriptionOption description={TEXTS[lang].DEBUG_MODE}>
                         <Checkbox value={settings.isDebugEnabled} onChange={onSetIsDebugEnabled} />
+                    </DescriptionOption>
+                </Setting>
+                <Setting name={TEXTS[lang].CARDS}>
+                    <DescriptionOption description={TEXTS[lang].SHOW_CARD_ID}>
+                        <Checkbox value={showCardId} onChange={onToggleShowCardId} />
+                    </DescriptionOption>
+                    <DescriptionOption description={TEXTS[lang].SHOW_CARD_DATE}>
+                        <Checkbox value={showCardDate} onChange={onToggleShowCardDate} />
                     </DescriptionOption>
                 </Setting>
                 <Setting name={TEXTS[lang].BACKGROUND}>

@@ -1,5 +1,5 @@
 import { S } from 'src/entities/card/ui/card.styles.ts'
-import { CardType, selectIsLearningMode } from 'src/entities/card'
+import { CardType, selectIsLearningMode, selectShowCardDate, selectShowCardId } from 'src/entities/card'
 import { useSelector } from 'react-redux'
 import { EMOJIS, TEXTS, TITLES, VALUES } from 'src/shared/const'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
@@ -17,6 +17,8 @@ export const Card = ({ card }: Props) => {
     const lang = useSelector(selectLang)
     const { id, title, content, tags = TEXTS[lang].UNCATEGORIZED, created, updated } = card
     const isLearningMode = useSelector(selectIsLearningMode)
+    const showCardId = useSelector(selectShowCardId)
+    const showCardDate = useSelector(selectShowCardDate)
 
     const [isOpen, setIsOpen] = useState(isLearningMode)
     const isOpenIcon = isOpen ? EMOJIS.UP : EMOJIS.DOWN
@@ -41,16 +43,20 @@ export const Card = ({ card }: Props) => {
             <p>{tags}</p>
             {isOpen && <S.Content>{content}</S.Content>}
             <S.Info>
-                <p>{id}</p>
-                {created && (
-                    <p>
-                        {TEXTS[lang].CREATED} {created}
-                    </p>
-                )}
-                {updated && (
-                    <p>
-                        {TEXTS[lang].UPDATED} {updated}
-                    </p>
+                {showCardId && <p>{id}</p>}
+                {showCardDate && (
+                    <>
+                        {created && (
+                            <p>
+                                {TEXTS[lang].CREATED} {created}
+                            </p>
+                        )}
+                        {updated && (
+                            <p>
+                                {TEXTS[lang].UPDATED} {updated}
+                            </p>
+                        )}
+                    </>
                 )}
             </S.Info>
             <IconsContainer>

@@ -16,6 +16,8 @@ type InitialState = {
     sorts: Sort[]
     filter: Filter
     filters: Filter[]
+    showId: boolean
+    showDate: boolean
     isLoading: boolean
     error: Nullable<string>
 }
@@ -28,6 +30,8 @@ const initialState: InitialState = {
     sorts: getSorts(),
     filter: getFilters()[0],
     filters: getFilters(),
+    showId: false,
+    showDate: true,
     isLoading: false,
     error: null,
 }
@@ -51,6 +55,12 @@ const cardsSlice = createSlice({
         }),
         setCardsFilter: create.reducer((state, action: PayloadAction<{ filter: Filter }>) => {
             state.filter = action.payload.filter
+        }),
+        toggleShowId: create.reducer(state => {
+            state.showId = !state.showId
+        }),
+        toggleShowDate: create.reducer(state => {
+            state.showDate = !state.showDate
         }),
         fetchCards: create.asyncThunk<CardsWithFilters, Lang>(
             async (lang, { rejectWithValue }) => {
@@ -85,4 +95,12 @@ export const cardsName = cardsSlice.name
 
 export const cardsReducer = cardsSlice.reducer
 
-export const { toggleIsLearningMode, setCardsSearch, setCardsSort, setCardsFilter, fetchCards } = cardsSlice.actions
+export const {
+    toggleIsLearningMode,
+    setCardsSearch,
+    setCardsSort,
+    setCardsFilter,
+    toggleShowId,
+    toggleShowDate,
+    fetchCards,
+} = cardsSlice.actions
