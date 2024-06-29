@@ -16,7 +16,6 @@ import {
 } from 'src/entities/setting/model/settingSlice.ts'
 import { LINKS, SYMBOLS, TEXTS, VALUES } from 'src/shared/const'
 import { nanoid } from '@reduxjs/toolkit'
-import { SettingsHeader } from 'src/pages/settings/settingsHeader/settingsHeader.tsx'
 import { Setting } from 'src/widgets/setting/setting.tsx'
 import { DescriptionOption } from 'src/widgets/setting/descriptionOption/descriptionOption.tsx'
 import { Select } from 'src/shared/ui/select/select.tsx'
@@ -34,6 +33,8 @@ import { randomGradient } from 'src/widgets/backgroundGradient/lib/randomGradien
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { ButtonsContainer } from 'src/shared/ui/buttonsContainer/buttonsContainer.tsx'
 import { selectShowCardDate, selectShowCardId, toggleShowDate, toggleShowId } from 'src/entities/card'
+import { Header } from 'src/widgets/header/header.tsx'
+import { OpenCardsIconButton } from 'src/widgets/openCardsIconButton/openCardsIconButton.tsx'
 
 export const Settings = () => {
     const dispatch = useAppDispatch()
@@ -77,7 +78,13 @@ export const Settings = () => {
 
     return (
         <>
-            <SettingsHeader />
+            <Header>
+                {/* ToDo: Shared component for header h1 */}
+                <h1>
+                    {TEXTS[lang].APP_NAME} {SYMBOLS.SLASH} {TEXTS[lang].SETTINGS}
+                </h1>
+                <OpenCardsIconButton />
+            </Header>
             <S.Settings>
                 <Setting name={TEXTS[lang].APP}>
                     <DescriptionOption description={TEXTS[lang].LANGUAGE}>
@@ -136,7 +143,7 @@ export const Settings = () => {
                                 align={VALUES.STRETCH}
                                 isLoading={settings.isLoading}
                             />
-                            {!settings.isLoading && settings.error && <ErrorMessage>{settings.error}</ErrorMessage>}
+                            {!settings.isLoading && settings.error && <ErrorMessage error={settings.error} />}
                         </>
                     )}
                     {isBackgroundVideo && (
@@ -184,13 +191,7 @@ export const Settings = () => {
                                 onClick={onDebugError}
                                 isWarning
                             />
-                            {isDebugWarning && (
-                                <ErrorMessage>
-                                    {TEXTS[lang].DEBUG_ERROR}
-                                    {SYMBOLS.SPACE}
-                                    {nanoid()}
-                                </ErrorMessage>
-                            )}
+                            {isDebugWarning && <ErrorMessage error={`${TEXTS[lang].DEBUG_ERROR} ${nanoid()}`} />}
                         </ButtonsContainer>
                     </Setting>
                 )}

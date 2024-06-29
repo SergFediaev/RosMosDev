@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 import { TIMINGS } from 'src/shared/const'
 
-const DashboardHeader = styled.header<{ isMenuOpen: boolean }>`
+const Header = styled.header<{ isMenuOpen: boolean }>`
     position: absolute;
     top: 0;
     right: 0;
@@ -29,10 +29,6 @@ const DashboardHeader = styled.header<{ isMenuOpen: boolean }>`
         `}
 `
 
-// ToDo: Style actions.
-const Actions = styled.div``
-
 export const S = {
-    DashboardHeader,
-    Actions,
+    Header,
 }

@@ -1,15 +1,8 @@
 import { S } from './errorMessage.styles.ts'
-import { ReactNode } from 'react'
 import { SYMBOLS } from 'src/shared/const'
 
 type Props = {
-    children: ReactNode
+    error: string
 }
 
-export const ErrorMessage = ({ children }: Props) => (
-    <S.ErrorMessage>
-        {SYMBOLS.WARNING}
-        {SYMBOLS.SPACE}
-        {children}
-    </S.ErrorMessage>
-)
+export const ErrorMessage = ({ error }: Props) => <S.ErrorMessage>{`${SYMBOLS.WARNING} ${error}`}</S.ErrorMessage>

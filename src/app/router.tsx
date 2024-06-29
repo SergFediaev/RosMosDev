@@ -3,7 +3,8 @@ import { App } from 'src/app/app.tsx'
 import { ErrorPage } from 'src/pages/errorPage/ui/errorPage.tsx'
 import { PATHS } from 'src/shared/const/paths.ts'
 import { Settings } from 'src/pages/settings/settings.tsx'
-import { Dashboard } from 'src/pages/dashboard/dashboard.tsx'
+import { CardsPage } from 'src/pages/cardsPage/cardsPage.tsx'
+import { CardPage } from 'src/pages/cardPage/cardPage.tsx'
 
 export const router = createBrowserRouter([
     {
@@ -13,7 +14,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Dashboard />,
+                element: <CardsPage />,
+            },
+            {
+                path: `${PATHS.CARD}${PATHS.ID}`,
+                element: <CardPage />,
             },
             {
                 path: PATHS.SETTINGS,

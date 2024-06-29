@@ -12,7 +12,11 @@ export const selectCardsSearch = (state: AppState) => state.cards.search
 
 export const selectCardsSort = (state: AppState) => state.cards.sort
 
+export const selectCardSorts = (state: AppState) => state.cards.sorts
+
 export const selectCardsFilter = (state: AppState) => state.cards.filter
+
+export const selectCardFilters = (state: AppState) => state.cards.filters
 
 export const selectHasCardFilters = (state: AppState) => state.cards.filters.length > 1
 

@@ -41,6 +41,7 @@ export const theme = {
         bigFont: '1.5rem',
         largeFont: '2rem',
         cardWidth: '400px',
+        viewCardWidth: '1200px',
         checkbox: '40px',
         headerHeight: '100px',
     },
