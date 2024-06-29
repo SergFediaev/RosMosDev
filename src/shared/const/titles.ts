@@ -21,6 +21,9 @@ export const TITLES = {
         VIEW_CARD: 'View card',
         SHOW_ANSWER: 'Show answer',
         HIDE_ANSWER: 'Hide answer',
+        PREV_CARD: 'Previous card',
+        NEXT_CARD: 'Next card',
+        RANDOM_CARD: 'Random card',
     },
     ru: {
         SEARCH: 'Поиск карточек по заголовкам, тегам и контенту',
@@ -44,5 +47,8 @@ export const TITLES = {
         VIEW_CARD: 'Посмотреть карточку',
         SHOW_ANSWER: 'Показать ответ',
         HIDE_ANSWER: 'Скрыть ответ',
+        PREV_CARD: 'Предыдущая карточка',
+        NEXT_CARD: 'Следующая карточка',
+        RANDOM_CARD: 'Случайная карточка',
     },
 } as const

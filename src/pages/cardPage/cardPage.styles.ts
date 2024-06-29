@@ -8,6 +8,7 @@ const CardPage = styled.div`
 `
 
 const Card = styled.main`
+    width: 100%;
     max-width: ${theme.sizes.viewCardWidth};
     background-color: ${theme.colors.backgroundSecondary};
     color: ${theme.colors.fontSecondary};
@@ -21,7 +22,13 @@ const Card = styled.main`
     perspective: ${theme.perspectives.card};
 `
 
+const CardsQuantity = styled.span`
+    font-size: ${theme.sizes.bigFont};
+    font-weight: bold;
+`
+
 export const S = {
     CardPage,
     Card,
+    CardsQuantity,
 }

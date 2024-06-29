@@ -26,7 +26,7 @@ const Back = styled.div`
 
 const Spoiler = styled.div<{ isOpen: boolean }>`
     min-height: 50vh;
-    transition: transform ${TIMINGS.FLIP_TRANSITION}s;
+    transition: transform ${TIMINGS.TRANSITION_TRANSFORM}s;
     transform-style: preserve-3d;
 
     ${({ isOpen }) =>

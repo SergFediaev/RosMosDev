@@ -45,7 +45,8 @@ export const Card = ({ card }: Props) => {
         setShowPalette(false)
         setHighlightColor(highlightColor)
     }
-    const copyToClipboard = () => navigator.clipboard.writeText(`${title}${VALUES.DOUBLE_NEW_LINE}${content}`)
+    const copyToClipboard = () =>
+        navigator.clipboard.writeText(isOpen ? `${title}${VALUES.DOUBLE_NEW_LINE}${content}` : title)
     const viewCard = () => navigate(`${PATHS.CARD}${id}`)
 
     useEffect(() => setIsOpen(isLearningMode), [isLearningMode])

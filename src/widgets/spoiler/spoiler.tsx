@@ -16,7 +16,7 @@ export const Spoiler = ({ children }: Props) => {
     const answerTitle = isOpen ? TITLES[lang].HIDE_ANSWER : TITLES[lang].SHOW_ANSWER
     const toggleIsOpen = () => setIsOpen(!isOpen)
 
-    useEffect(() => setIsOpen(isLearningMode), [isLearningMode])
+    useEffect(() => setIsOpen(isLearningMode), [isLearningMode, children])
 
     return (
         <S.Spoiler isOpen={isOpen} onClick={toggleIsOpen} title={answerTitle}>

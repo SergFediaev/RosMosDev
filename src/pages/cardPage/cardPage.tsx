@@ -1,6 +1,6 @@
 import { S } from 'src/pages/cardPage/cardPage.styles.ts'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AppState } from 'src/app/store.ts'
 import { Header } from 'src/widgets/header/header.tsx'
 import { Toolbar } from 'src/pages/dashboard/dashboardHeader/toolbar/toolbar.tsx'
@@ -14,6 +14,10 @@ import { Spoiler } from 'src/widgets/spoiler/spoiler.tsx'
 import { CardInfo } from 'src/widgets/cardInfo/cardInfo.tsx'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { CardTags } from 'src/widgets/cardTags/cardTags.tsx'
+import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
+import { EMOJIS, PATHS, TITLES, VALUES } from 'src/shared/const'
+import { selectCardsFilter, selectFilteredCards } from 'src/entities/card'
+import { useEffect } from 'react'
 
 export const CardPage = () => {
     const lang = useSelector(selectLang)
@@ -22,6 +26,29 @@ export const CardPage = () => {
     const card = useSelector((state: AppState) => state.cards.items.find(card => card.id === id)!!)
     const { title, content, tags, created, updated } = card
 
+    const filter = useSelector(selectCardsFilter)
+    const filteredCards = useSelector(selectFilteredCards)
+    const cardIndex = filteredCards.findIndex(card => card.id === id)
+
+    const navigate = useNavigate()
+    const navigateToCard = (cardIndex: number) => navigate(`${PATHS.CARD}${filteredCards[cardIndex].id}`)
+
+    const prevCard = () => {
+        let prevIndex = cardIndex - 1
+        if (prevIndex < 0) prevIndex = filteredCards.length - 1
+        navigateToCard(prevIndex)
+    }
+
+    const nextCard = () => {
+        let nextIndex = cardIndex + 1
+        if (nextIndex === filteredCards.length) nextIndex = 0
+        navigateToCard(nextIndex)
+    }
+
+    const randomCard = () => navigateToCard(Math.floor(Math.random() * filteredCards.length))
+
+    useEffect(() => navigateToCard(0), [filter])
+
     return (
         <>
             <Header>
@@ -29,6 +56,25 @@ export const CardPage = () => {
                     <LogoAcronym />
                     <CardFiltersSelect />
                     <CardsModeIconButton />
+                    <IconButton
+                        icon={EMOJIS.PREV}
+                        onClick={prevCard}
+                        iconSize={VALUES.BIG_SIZE}
+                        title={TITLES[lang].PREV_CARD}
+                    />
+                    <S.CardsQuantity>{`${cardIndex + 1} / ${filteredCards.length}`}</S.CardsQuantity>
+                    <IconButton
+                        icon={EMOJIS.NEXT}
+                        onClick={nextCard}
+                        iconSize={VALUES.BIG_SIZE}
+                        title={TITLES[lang].NEXT_CARD}
+                    />
+                    <IconButton
+                        icon={EMOJIS.RANDOM}
+                        onClick={randomCard}
+                        iconSize={VALUES.BIG_SIZE}
+                        title={TITLES[lang].RANDOM_CARD}
+                    />
                 </Toolbar>
                 <NavIcons>
                     <OpenCardsIconButton />
