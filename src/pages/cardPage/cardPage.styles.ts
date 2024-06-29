@@ -18,6 +18,7 @@ const Card = styled.main`
     flex-direction: column;
     gap: ${theme.sizes.bigSpace};
     box-shadow: ${theme.shadows.bottomLeft};
+    perspective: ${theme.perspectives.card};
 `
 
 export const S = {

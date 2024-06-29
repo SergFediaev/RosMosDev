@@ -10,10 +10,17 @@ import { CardsModeIconButton } from 'src/widgets/cardsModeIconButton/cardsModeIc
 import { OpenSettingsIconButton } from 'src/widgets/openSettingsIconButton/openSettingsIconButton.tsx'
 import { OpenCardsIconButton } from 'src/widgets/openCardsIconButton/openCardsIconButton.tsx'
 import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
+import { Spoiler } from 'src/widgets/spoiler/spoiler.tsx'
+import { CardInfo } from 'src/widgets/cardInfo/cardInfo.tsx'
+import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
+import { CardTags } from 'src/widgets/cardTags/cardTags.tsx'
 
 export const CardPage = () => {
+    const lang = useSelector(selectLang)
     const { id } = useParams<{ id: string }>()
-    const card = useSelector((state: AppState) => state.cards.items.find(card => card.id === id))
+    // ToDo: Refactor card.id in JSX, !! and find card in selector.
+    const card = useSelector((state: AppState) => state.cards.items.find(card => card.id === id)!!)
+    const { title, content, tags, created, updated } = card
 
     return (
         <>
@@ -29,14 +36,12 @@ export const CardPage = () => {
                 </NavIcons>
             </Header>
             <S.CardPage>
-                {card && (
-                    <S.Card>
-                        <h2>{card.title}</h2>
-                        <p>{card.tags}</p>
-                        <p>{card.content}</p>
-                        <p>{id}</p>
-                    </S.Card>
-                )}
+                <S.Card>
+                    <h2>{title}</h2>
+                    <CardTags lang={lang} tags={tags} />
+                    <Spoiler>{content}</Spoiler>
+                    <CardInfo id={card.id} created={created} updated={updated} lang={lang} />
+                </S.Card>
             </S.CardPage>
         </>
     )

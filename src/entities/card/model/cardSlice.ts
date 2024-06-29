@@ -16,6 +16,7 @@ type InitialState = {
     sorts: Sort[]
     filter: Filter
     filters: Filter[]
+    showTags: boolean
     showId: boolean
     showDate: boolean
     isLoading: boolean
@@ -30,6 +31,7 @@ const initialState: InitialState = {
     sorts: getSorts(),
     filter: getFilters()[0],
     filters: getFilters(),
+    showTags: true,
     showId: false,
     showDate: true,
     isLoading: false,
@@ -55,6 +57,9 @@ const cardsSlice = createSlice({
         }),
         setCardsFilter: create.reducer((state, action: PayloadAction<{ filter: Filter }>) => {
             state.filter = action.payload.filter
+        }),
+        toggleShowTags: create.reducer(state => {
+            state.showTags = !state.showTags
         }),
         toggleShowId: create.reducer(state => {
             state.showId = !state.showId
@@ -100,6 +105,7 @@ export const {
     setCardsSearch,
     setCardsSort,
     setCardsFilter,
+    toggleShowTags,
     toggleShowId,
     toggleShowDate,
     fetchCards,

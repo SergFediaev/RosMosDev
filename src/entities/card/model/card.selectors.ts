@@ -20,6 +20,8 @@ export const selectCardFilters = (state: AppState) => state.cards.filters
 
 export const selectHasCardFilters = (state: AppState) => state.cards.filters.length > 1
 
+export const selectShowCardTags = (state: AppState) => state.cards.showTags
+
 export const selectShowCardId = (state: AppState) => state.cards.showId
 
 export const selectShowCardDate = (state: AppState) => state.cards.showDate

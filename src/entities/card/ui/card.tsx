@@ -1,7 +1,13 @@
 import { S } from 'src/entities/card/ui/card.styles.ts'
-import { CardType, selectIsLearningMode, selectShowCardDate, selectShowCardId } from 'src/entities/card'
+import {
+    CardType,
+    selectIsLearningMode,
+    selectShowCardDate,
+    selectShowCardId,
+    selectShowCardTags,
+} from 'src/entities/card'
 import { useSelector } from 'react-redux'
-import { EMOJIS, PATHS, TEXTS, TITLES, VALUES } from 'src/shared/const'
+import { EMOJIS, PATHS, TITLES, VALUES } from 'src/shared/const'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { Palette } from 'src/shared/ui/palette/palette.tsx'
@@ -9,6 +15,9 @@ import { cardHighlights } from 'src/features/highlightCard/model/cardHighlights.
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CardIcons } from 'src/shared/ui/cardIcons/cardIcons.tsx'
+import { CardInfo } from 'src/widgets/cardInfo/cardInfo.tsx'
+import { theme } from 'src/app/styles/theme.ts'
+import { CardTags } from 'src/widgets/cardTags/cardTags.tsx'
 
 type Props = {
     card: CardType
@@ -17,8 +26,9 @@ type Props = {
 export const Card = ({ card }: Props) => {
     const lang = useSelector(selectLang)
     const navigate = useNavigate()
-    const { id, title, content, tags = TEXTS[lang].UNCATEGORIZED, created, updated } = card
+    const { id, title, content, tags, created, updated } = card
     const isLearningMode = useSelector(selectIsLearningMode)
+    const showCardTags = useSelector(selectShowCardTags)
     const showCardId = useSelector(selectShowCardId)
     const showCardDate = useSelector(selectShowCardDate)
 
@@ -44,25 +54,17 @@ export const Card = ({ card }: Props) => {
     return (
         <S.Card highlightColor={highlightColor}>
             <h2>{title}</h2>
-            <p>{tags}</p>
+            {showCardTags && <CardTags lang={lang} tags={tags} />}
             {isOpen && <S.Content>{content}</S.Content>}
-            <S.Info>
-                {showCardId && <p>{id}</p>}
-                {showCardDate && (
-                    <>
-                        {created && (
-                            <p>
-                                {TEXTS[lang].CREATED} {created}
-                            </p>
-                        )}
-                        {updated && (
-                            <p>
-                                {TEXTS[lang].UPDATED} {updated}
-                            </p>
-                        )}
-                    </>
-                )}
-            </S.Info>
+            <CardInfo
+                id={id}
+                created={created}
+                updated={updated}
+                showCardId={showCardId}
+                showCardDate={showCardDate}
+                lang={lang}
+                fontSize={theme.sizes.smallFont}
+            />
             <CardIcons>
                 <IconButton
                     icon={EMOJIS.PALETTE}

@@ -7,7 +7,7 @@ export const theme = {
         backgroundAccent: '#2268d0',
         backgroundOverlay: 'rgba(0, 0, 0, .5)',
         backgroundHeader: 'rgba(44, 44, 44,.7)',
-        backgroundSetting: 'rgba(44, 44, 44, .98)',
+        backgroundSetting: 'rgba(44, 44, 44, .96)',
         backgroundWarning: '#c50000',
         backgroundErrorPage: '#1030b7',
         backgroundErrorMessage: '#ff0',
@@ -68,6 +68,12 @@ export const theme = {
         bottom: '0 5px 5px 1px rgba(0, 0, 0, .5)',
         bottomLeft: '-5px 5px 5px 1px rgba(0, 0, 0, .5)',
     },
+    degrees: {
+        flip: '180deg',
+    },
+    perspectives: {
+        card: '1000px',
+    },
     indexes: {
         menu: 300,
         header: 200,
@@ -81,6 +87,9 @@ export const theme = {
     breakpoints: {
         mobile: 360,
         tablet: 768,
+    },
+    fonts: {
+        monospace: `Consolas, 'Lucida Console', monospace`,
     },
     emojis: {
         segoe: `Inter, Arial, Helvetica, sans-serif, 'Segoe UI Emoji', Noto`,

@@ -1,14 +1,6 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { TIMINGS } from 'src/shared/const'
-
-const rotateHue = keyframes`
-    from {
-        filter: hue-rotate(0);
-    }
-    to {
-        filter: hue-rotate(360deg);
-    }
-`
+import { rotateHue } from 'src/shared/ui/animations/rotateHue.ts'
 
 const BackgroundGradient = styled.div<{ randomGradient: string }>`
     position: fixed;

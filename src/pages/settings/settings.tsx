@@ -32,7 +32,14 @@ import { useAppDispatch } from 'src/app/store.ts'
 import { randomGradient } from 'src/widgets/backgroundGradient/lib/randomGradient.ts'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { ButtonsContainer } from 'src/shared/ui/buttonsContainer/buttonsContainer.tsx'
-import { selectShowCardDate, selectShowCardId, toggleShowDate, toggleShowId } from 'src/entities/card'
+import {
+    selectShowCardDate,
+    selectShowCardId,
+    selectShowCardTags,
+    toggleShowDate,
+    toggleShowId,
+    toggleShowTags,
+} from 'src/entities/card'
 import { Header } from 'src/widgets/header/header.tsx'
 import { OpenCardsIconButton } from 'src/widgets/openCardsIconButton/openCardsIconButton.tsx'
 
@@ -43,6 +50,7 @@ export const Settings = () => {
     const [isDebugError, setIsDebugError] = useState(false)
     const [isDebugWarning, setIsDebugWarning] = useState(false)
     const debugWarningButtonName = isDebugWarning ? TEXTS[lang].HIDE_ERROR : TEXTS[lang].SHOW_ERROR
+    const showCardTags = useSelector(selectShowCardTags)
     const showCardId = useSelector(selectShowCardId)
     const showCardDate = useSelector(selectShowCardDate)
 
@@ -57,6 +65,8 @@ export const Settings = () => {
         settings.backgroundType.value === BACKGROUND_TYPES.VIDEO
 
     const onSetLanguage = (language: Language) => dispatch(setLanguage({ language }))
+    // ToDo: Card tags, filters, categories.
+    const onToggleShowCardTags = () => dispatch(toggleShowTags())
     const onToggleShowCardId = () => dispatch(toggleShowId())
     const onToggleShowCardDate = () => dispatch(toggleShowDate())
     const onSetIsDebugEnabled = (isDebugEnabled: boolean) => dispatch(setIsDebugEnabled({ isDebugEnabled }))
@@ -99,6 +109,9 @@ export const Settings = () => {
                     </DescriptionOption>
                 </Setting>
                 <Setting name={TEXTS[lang].CARDS}>
+                    <DescriptionOption description={TEXTS[lang].SHOW_CARD_CATEGORIES}>
+                        <Checkbox value={showCardTags} onChange={onToggleShowCardTags} />
+                    </DescriptionOption>
                     <DescriptionOption description={TEXTS[lang].SHOW_CARD_ID}>
                         <Checkbox value={showCardId} onChange={onToggleShowCardId} />
                     </DescriptionOption>

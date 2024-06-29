@@ -22,18 +22,7 @@ const Content = styled.p`
     animation: ${appear} ${TIMINGS.TRANSITION_TRANSFORM}s linear forwards;
 `
 
-// ToDo: Duplicated font-family.
-const Info = styled.section`
-    text-align: right;
-    font-size: ${theme.sizes.smallFont};
-
-    & p {
-        font-family: Consolas, 'Lucida Console', monospace;
-    }
-`
-
 export const S = {
     Card,
     Content,
-    Info,
 }

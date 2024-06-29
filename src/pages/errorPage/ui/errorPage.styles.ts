@@ -5,7 +5,7 @@ import error from 'src/shared/assets/gifs/error.gif'
 import { appear } from 'src/shared/ui/animations/appear.ts'
 
 const Message = styled.p<{ index: number }>`
-    font-family: Consolas, 'Lucida Console', monospace;
+    font-family: ${theme.fonts.monospace};
     opacity: 0;
     animation: ${appear} ${TIMINGS.MESSAGE_APPEAR}ms forwards;
     animation-delay: ${({ index }) => TIMINGS.MESSAGE_APPEAR * index}s;

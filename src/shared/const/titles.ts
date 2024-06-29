@@ -19,6 +19,8 @@ export const TITLES = {
         HIGHLIGHT_CARD: 'Highlight card',
         COPY_TO_CLIPBOARD: 'Copy to clipboard',
         VIEW_CARD: 'View card',
+        SHOW_ANSWER: 'Show answer',
+        HIDE_ANSWER: 'Hide answer',
     },
     ru: {
         SEARCH: 'Поиск карточек по заголовкам, тегам и контенту',
@@ -40,5 +42,7 @@ export const TITLES = {
         HIGHLIGHT_CARD: 'Выделить карточку',
         COPY_TO_CLIPBOARD: 'Копировать в буфер обмена',
         VIEW_CARD: 'Посмотреть карточку',
+        SHOW_ANSWER: 'Показать ответ',
+        HIDE_ANSWER: 'Скрыть ответ',
     },
 } as const
