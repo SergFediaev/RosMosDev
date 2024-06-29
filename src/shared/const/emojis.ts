@@ -21,4 +21,5 @@ export const EMOJIS = {
     PALETTE: '🎨',
     FAVORITE: '⭐',
     VIEW: '👁️',
+    CLIPBOARD: '📋',
 } as const

@@ -2,6 +2,7 @@ export const VALUES = {
     EMPTY_STRING: '',
     COMMA: ',',
     COMMA_SPACE: ', ',
+    NEW_LINE: '\n',
     EN: 'en',
     RU: 'ru',
     CARD_TITLE: 'title',

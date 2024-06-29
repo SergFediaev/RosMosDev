@@ -17,6 +17,7 @@ export const TITLES = {
         OPEN_CARD: 'Open card',
         CLOSE_CARD: 'Close card',
         HIGHLIGHT_CARD: 'Highlight card',
+        COPY_TO_CLIPBOARD: 'Copy to clipboard',
     },
     ru: {
         SEARCH: 'Поиск карточек по заголовкам, тегам и контенту',
@@ -36,5 +37,6 @@ export const TITLES = {
         OPEN_CARD: 'Открыть карточку',
         CLOSE_CARD: 'Закрыть карточку',
         HIGHLIGHT_CARD: 'Выделить карточку',
+        COPY_TO_CLIPBOARD: 'Копировать в буфер обмена',
     },
 } as const

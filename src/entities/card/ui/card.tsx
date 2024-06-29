@@ -33,10 +33,11 @@ export const Card = ({ card }: Props) => {
         setShowPalette(false)
         setHighlightColor(highlightColor)
     }
+    const copyToClipboard = () =>
+        navigator.clipboard.writeText(`${title}${VALUES.NEW_LINE}${VALUES.NEW_LINE}${content}`)
 
     useEffect(() => setIsOpen(isLearningMode), [isLearningMode])
 
-    // ToDo: Copy to clipboard.
     return (
         <S.Card highlightColor={highlightColor}>
             <h2>{title}</h2>
@@ -61,15 +62,21 @@ export const Card = ({ card }: Props) => {
             </S.Info>
             <IconsContainer>
                 <IconButton
-                    icon={isOpenIcon}
-                    onClick={toggleIsOpen}
-                    title={isOpenTitle}
-                    iconSize={VALUES.MEDIUM_SIZE}
-                />
-                <IconButton
                     icon={EMOJIS.PALETTE}
                     onClick={toggleShowPalette}
                     title={TITLES[lang].HIGHLIGHT_CARD}
+                    iconSize={VALUES.MEDIUM_SIZE}
+                />
+                <IconButton
+                    icon={EMOJIS.CLIPBOARD}
+                    onClick={copyToClipboard}
+                    title={TITLES[lang].COPY_TO_CLIPBOARD}
+                    iconSize={VALUES.MEDIUM_SIZE}
+                />
+                <IconButton
+                    icon={isOpenIcon}
+                    onClick={toggleIsOpen}
+                    title={isOpenTitle}
                     iconSize={VALUES.MEDIUM_SIZE}
                 />
                 {showPalette && <Palette colors={cardHighlights} onClick={onSetHighlightColor} />}
