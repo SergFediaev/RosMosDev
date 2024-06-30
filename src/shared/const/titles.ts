@@ -24,6 +24,8 @@ export const TITLES = {
         PREV_CARD: 'Previous card',
         NEXT_CARD: 'Next card',
         RANDOM_CARD: 'Random card',
+        ONLINE: 'Online',
+        OFFLINE: 'Offline',
     },
     ru: {
         SEARCH: 'Поиск карточек по заголовкам, тегам и контенту',
@@ -50,5 +52,7 @@ export const TITLES = {
         PREV_CARD: 'Предыдущая карточка',
         NEXT_CARD: 'Следующая карточка',
         RANDOM_CARD: 'Случайная карточка',
+        ONLINE: 'Онлайн',
+        OFFLINE: 'Оффлайн',
     },
 } as const

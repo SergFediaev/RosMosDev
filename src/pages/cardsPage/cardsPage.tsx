@@ -12,6 +12,7 @@ import { CardsModeIconButton } from 'src/widgets/cardsModeIconButton/cardsModeIc
 import { CardSortsSelect } from 'src/widgets/cardSortsSelect/cardSortsSelect.tsx'
 import { CardsContainer } from 'src/pages/cardsPage/cardsContainer/cardsContainer.tsx'
 import { OpenSettingsIconButton } from 'src/widgets/openSettingsIconButton/openSettingsIconButton.tsx'
+import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 
 export const CardsPage = () => {
     const lang = useSelector(selectLang)
@@ -32,7 +33,9 @@ export const CardsPage = () => {
                     <CardFiltersSelect />
                     <CardsModeIconButton />
                 </Toolbar>
-                <OpenSettingsIconButton />
+                <NavIcons>
+                    <OpenSettingsIconButton />
+                </NavIcons>
             </Header>
             <CardsContainer />
         </>

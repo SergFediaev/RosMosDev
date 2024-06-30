@@ -13,6 +13,7 @@ import {
     setIsDebugEnabled,
     setIsMarkupEnabled,
     setLanguage,
+    toggleShowConnectionAlways,
 } from 'src/entities/setting/model/settingSlice.ts'
 import { LINKS, SYMBOLS, TEXTS, VALUES } from 'src/shared/const'
 import { nanoid } from '@reduxjs/toolkit'
@@ -42,6 +43,7 @@ import {
 } from 'src/entities/card'
 import { Header } from 'src/widgets/header/header.tsx'
 import { OpenCardsIconButton } from 'src/widgets/openCardsIconButton/openCardsIconButton.tsx'
+import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 
 export const Settings = () => {
     const dispatch = useAppDispatch()
@@ -69,6 +71,8 @@ export const Settings = () => {
     const onToggleShowCardTags = () => dispatch(toggleShowTags())
     const onToggleShowCardId = () => dispatch(toggleShowId())
     const onToggleShowCardDate = () => dispatch(toggleShowDate())
+    // ToDo: Refactor all toggles.
+    const onToggleShowConnectionAlways = () => dispatch(toggleShowConnectionAlways())
     const onSetIsDebugEnabled = (isDebugEnabled: boolean) => dispatch(setIsDebugEnabled({ isDebugEnabled }))
     const onSetIsMarkupEnabled = (isMarkupEnabled: boolean) => dispatch(setIsMarkupEnabled({ isMarkupEnabled }))
     const onSetBackgroundType = (backgroundType: BackgroundType) => dispatch(setBackgroundType({ backgroundType }))
@@ -93,7 +97,9 @@ export const Settings = () => {
                 <h1>
                     {TEXTS[lang].APP_NAME} {SYMBOLS.SLASH} {TEXTS[lang].SETTINGS}
                 </h1>
-                <OpenCardsIconButton />
+                <NavIcons>
+                    <OpenCardsIconButton />
+                </NavIcons>
             </Header>
             <S.Settings>
                 <Setting name={TEXTS[lang].APP}>
@@ -103,6 +109,9 @@ export const Settings = () => {
                             selectedOption={settings.language.label}
                             onSelect={onSetLanguage}
                         />
+                    </DescriptionOption>
+                    <DescriptionOption description={TEXTS[lang].SHOW_CONNECTION_ALWAYS}>
+                        <Checkbox value={settings.showConnectionAlways} onChange={onToggleShowConnectionAlways} />
                     </DescriptionOption>
                     <DescriptionOption description={TEXTS[lang].DEBUG_MODE}>
                         <Checkbox value={settings.isDebugEnabled} onChange={onSetIsDebugEnabled} />

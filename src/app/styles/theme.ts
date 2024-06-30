@@ -15,6 +15,8 @@ export const theme = {
         fontPrimary: '#fffff0', // Ivory
         fontSecondary: '#1f2626',
         fontAccent: '#0ff',
+        positive: '#00ff00', // Lime
+        negative: '#ff4500', // Orangered
         highlightYellow: '#ff0',
         highlightGreen: '#adff2f', // GreenYellow
         highlightBlue: '#e0ffff', // LightCyan

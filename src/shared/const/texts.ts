@@ -66,6 +66,7 @@ export const TEXTS = {
         SHOW_CARD_CATEGORIES: 'Show card categories',
         SHOW_CARD_ID: 'Show card ID',
         SHOW_CARD_DATE: 'Show date and time of card creation/update',
+        SHOW_CONNECTION_ALWAYS: 'Always show network status',
     },
     [VALUES.RU]: {
         APP_NAME: 'РосМосДев',
@@ -130,5 +131,6 @@ export const TEXTS = {
         SHOW_CARD_CATEGORIES: 'Показывать категории карточки',
         SHOW_CARD_ID: 'Показывать идентификатор карточки',
         SHOW_CARD_DATE: 'Показывать дату и время создания/обновления карточки',
+        SHOW_CONNECTION_ALWAYS: 'Всегда показывать статус сети',
     },
 } as const

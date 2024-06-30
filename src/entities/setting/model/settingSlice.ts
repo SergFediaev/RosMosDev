@@ -17,6 +17,7 @@ import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
 type InitialState = {
     language: Language
     languages: Language[]
+    showConnectionAlways: boolean
     isDebugEnabled: boolean
     isMarkupEnabled: boolean
     backgroundType: BackgroundType
@@ -36,6 +37,7 @@ type InitialState = {
 const initialState: InitialState = {
     language: getLanguages()[0],
     languages: getLanguages(),
+    showConnectionAlways: false,
     isDebugEnabled: false,
     isMarkupEnabled: false,
     backgroundType: getBackgroundTypes()[4],
@@ -68,6 +70,9 @@ const settingsSlice = createSlice({
             state.backgroundTypes = getBackgroundTypes(value)
             state.backgroundWallpapers = getBackgroundWallpapers(value)
             state.backgroundVideos = getBackgroundVideos(value)
+        }),
+        toggleShowConnectionAlways: create.reducer(state => {
+            state.showConnectionAlways = !state.showConnectionAlways
         }),
         setIsDebugEnabled: create.reducer(
             (
@@ -159,6 +164,7 @@ export const settingsReducer = settingsSlice.reducer
 
 export const {
     setLanguage,
+    toggleShowConnectionAlways,
     setIsDebugEnabled,
     setIsMarkupEnabled,
     setBackgroundType,

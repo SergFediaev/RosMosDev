@@ -1,3 +1,4 @@
+// ToDo: Generic animation speeds like slow/fast.
 export const TIMINGS = {
     SECOND: 1_000,
     RESTART_SECONDS: 30,

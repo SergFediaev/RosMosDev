@@ -25,4 +25,6 @@ export const EMOJIS = {
     FAVORITE: '⭐',
     VIEW: '👁️',
     CLIPBOARD: '📋',
+    POSITIVE: '🟢',
+    NEGATIVE: '🔴',
 } as const
