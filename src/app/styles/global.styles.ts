@@ -70,7 +70,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     html {
-        font-size: ${theme.sizes.rootFont};
+        font-size: clamp(.9rem, 1.5vw, 1.2rem);
     }
 
     body {
