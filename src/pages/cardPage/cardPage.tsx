@@ -16,8 +16,8 @@ import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { CardTags } from 'src/widgets/cardTags/cardTags.tsx'
 import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { EMOJIS, PATHS, TITLES, VALUES } from 'src/shared/const'
-import { selectCardsFilter, selectFilteredCards } from 'src/entities/card'
-import { useEffect } from 'react'
+import { selectFilteredCards } from 'src/entities/card'
+import { useCallback, useEffect } from 'react'
 
 export const CardPage = () => {
     const lang = useSelector(selectLang)
@@ -26,12 +26,14 @@ export const CardPage = () => {
     const card = useSelector((state: AppState) => state.cards.items.find(card => card.id === id)!!)
     const { title, content, tags, created, updated } = card
 
-    const filter = useSelector(selectCardsFilter)
     const filteredCards = useSelector(selectFilteredCards)
     const cardIndex = filteredCards.findIndex(card => card.id === id)
 
     const navigate = useNavigate()
-    const navigateToCard = (cardIndex: number) => navigate(`${PATHS.CARD}${filteredCards[cardIndex].id}`)
+    const navigateToCard = useCallback(
+        (cardIndex: number) => navigate(`${PATHS.CARD}${filteredCards[cardIndex].id}`),
+        [filteredCards, navigate],
+    )
 
     const prevCard = () => {
         let prevIndex = cardIndex - 1
@@ -47,7 +49,9 @@ export const CardPage = () => {
 
     const randomCard = () => navigateToCard(Math.floor(Math.random() * filteredCards.length))
 
-    useEffect(() => navigateToCard(0), [filter])
+    useEffect(() => {
+        if (cardIndex === -1) navigateToCard(0)
+    }, [cardIndex, navigateToCard])
 
     return (
         <>
