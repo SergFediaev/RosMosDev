@@ -2,9 +2,9 @@ import { AppState } from 'src/app/store.ts'
 import { createSelector } from '@reduxjs/toolkit'
 import { FILTERS } from 'src/features/filterCards'
 
-export const selectCards = (state: AppState) => state.cards
+export const selectCards = (state: AppState) => state.cards.items
 
-export const selectCardItems = (state: AppState) => state.cards.items
+export const selectHasCards = (state: AppState) => !!state.cards.items.length
 
 export const selectIsLearningMode = (state: AppState) => state.cards.isLearningMode
 
@@ -30,7 +30,7 @@ export const selectIsCardsLoading = (state: AppState) => state.cards.isLoading
 
 export const selectCardsError = (state: AppState) => state.cards.error
 
-export const selectFilteredCards = createSelector(selectCardItems, selectCardsFilter, (cards, { value }) => {
+export const selectFilteredCards = createSelector(selectCards, selectCardsFilter, (cards, { value }) => {
     if (value === FILTERS.UNCATEGORIZED) return cards.filter(card => !card.tags)
 
     if (value !== FILTERS.ALL) return cards.filter(card => card.tags?.toLowerCase().includes(value))

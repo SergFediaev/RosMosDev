@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { Header } from 'src/widgets/header/header.tsx'
-import { fetchCards } from 'src/entities/card'
+import { fetchCards, selectHasCards } from 'src/entities/card'
 import { Toolbar } from 'src/pages/dashboard/dashboardHeader/toolbar/toolbar.tsx'
 import { LogoAcronym } from 'src/shared/ui/logoAcronym/logoAcronym.tsx'
 import { Search } from 'src/widgets/search/search.tsx'
@@ -16,10 +16,11 @@ import { OpenSettingsIconButton } from 'src/widgets/openSettingsIconButton/openS
 export const CardsPage = () => {
     const lang = useSelector(selectLang)
     const dispatch = useAppDispatch()
+    const hasCards = useSelector(selectHasCards)
 
     useEffect(() => {
-        dispatch(fetchCards(lang))
-    }, [dispatch, lang])
+        if (!hasCards) dispatch(fetchCards(lang))
+    }, [dispatch, hasCards, lang])
 
     return (
         <>
