@@ -9,8 +9,9 @@ const Option = styled.div`
     column-gap: ${theme.sizes.regularSpace};
 `
 
-// ToDo: remove empty styled.
-const Description = styled.p``
+const Description = styled.p`
+    max-width: 70%;
+`
 
 export const S = {
     Option,
