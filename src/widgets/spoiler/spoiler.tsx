@@ -1,17 +1,17 @@
 import { S } from './spoiler.styles.ts'
 import { ReactNode, useEffect, useState } from 'react'
 import { TITLES } from 'src/shared/const'
-import { useSelector } from 'react-redux'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { selectIsLearningMode } from 'src/entities/card'
+import { useAppSelector } from 'src/app/store.ts'
 
 type Props = {
     children: ReactNode
 }
 
 export const Spoiler = ({ children }: Props) => {
-    const lang = useSelector(selectLang)
-    const isLearningMode = useSelector(selectIsLearningMode)
+    const lang = useAppSelector(selectLang)
+    const isLearningMode = useAppSelector(selectIsLearningMode)
     const [isOpen, setIsOpen] = useState(isLearningMode)
     const answerTitle = isOpen ? TITLES[lang].HIDE_ANSWER : TITLES[lang].SHOW_ANSWER
     const toggleIsOpen = () => setIsOpen(!isOpen)

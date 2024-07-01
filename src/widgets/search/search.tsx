@@ -1,6 +1,5 @@
 import { S } from './search.styles.ts'
-import { useSelector } from 'react-redux'
-import { useAppDispatch } from 'src/app/store.ts'
+import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
 import { selectCardsSearch, setCardsSearch } from 'src/entities/card'
 import { EMOJIS, TEXTS, TITLES, TYPES, VALUES } from 'src/shared/const'
 import { ChangeEvent, useRef } from 'react'
@@ -8,9 +7,9 @@ import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 
 export const Search = () => {
-    const lang = useSelector(selectLang)
+    const lang = useAppSelector(selectLang)
     const dispatch = useAppDispatch()
-    const search = useSelector(selectCardsSearch)
+    const search = useAppSelector(selectCardsSearch)
     const icon = search ? EMOJIS.CANCEL : EMOJIS.SEARCH
     const title = search ? TITLES[lang].CLEAR_SEARCH : TITLES[lang].SEARCH
     const input = useRef<HTMLInputElement>(null)

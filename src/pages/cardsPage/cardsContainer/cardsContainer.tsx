@@ -1,12 +1,12 @@
 import { S } from './cardsContainer.styles.ts'
 import { Cards } from 'src/pages/cardsPage/cardsContainer/cards/cards.tsx'
-import { useSelector } from 'react-redux'
 import { selectSortedCards } from 'src/features/sortCards'
 import { selectIsCardsLoading } from 'src/entities/card'
+import { useAppSelector } from 'src/app/store.ts'
 
 export const CardsContainer = () => {
-    const sortedCards = useSelector(selectSortedCards)
-    const isCardsLoading = useSelector(selectIsCardsLoading)
+    const sortedCards = useAppSelector(selectSortedCards)
+    const isCardsLoading = useAppSelector(selectIsCardsLoading)
 
     if (isCardsLoading) return
 

@@ -1,5 +1,4 @@
 import { S } from 'src/widgets/backgroundVideo/ui/backgroundVideo.styles.ts'
-import { useSelector } from 'react-redux'
 import { useRef, useState } from 'react'
 import { EMOJIS, TITLES, VALUES } from 'src/shared/const'
 import { FloatingButton } from 'src/shared/ui/floatingButton/floatingButton.tsx'
@@ -7,11 +6,12 @@ import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { selectBackgroundVideo } from 'src/widgets/backgroundVideo/model/backgroundVideo.selectors.ts'
 import { selectHasBackgroundOverlay } from 'src/widgets/backgroundOverlay/model/backgroundOverlay.selectors.ts'
 import { BackgroundOverlay } from 'src/widgets/backgroundOverlay/ui/backgroundOverlay.tsx'
+import { useAppSelector } from 'src/app/store.ts'
 
 export const BackgroundVideo = () => {
-    const lang = useSelector(selectLang)
-    const backgroundVideo = useSelector(selectBackgroundVideo)
-    const hasBackgroundOverlay = useSelector(selectHasBackgroundOverlay)
+    const lang = useAppSelector(selectLang)
+    const backgroundVideo = useAppSelector(selectBackgroundVideo)
+    const hasBackgroundOverlay = useAppSelector(selectHasBackgroundOverlay)
 
     const [isMuted, setIsMuted] = useState(true)
     const toggleIsMuted = () => setIsMuted(!isMuted)

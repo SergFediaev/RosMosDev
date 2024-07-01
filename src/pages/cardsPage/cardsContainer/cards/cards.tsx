@@ -1,18 +1,18 @@
 import { S } from 'src/pages/cardsPage/cardsContainer/cards/cards.styles.ts'
 import { Card, CardType, selectCardsError } from 'src/entities/card'
 import { TEXTS } from 'src/shared/const'
-import { useSelector } from 'react-redux'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
+import { useAppSelector } from 'src/app/store.ts'
 
 type Props = {
     cards: CardType[]
 }
 
 export const Cards = ({ cards }: Props) => {
-    const lang = useSelector(selectLang)
+    const lang = useAppSelector(selectLang)
     const hasCards = cards.length
-    const cardsError = useSelector(selectCardsError)
+    const cardsError = useAppSelector(selectCardsError)
 
     if (cardsError) return <ErrorMessage error={cardsError} />
 

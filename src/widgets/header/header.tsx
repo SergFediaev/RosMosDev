@@ -2,16 +2,16 @@ import { S } from 'src/widgets/header/header.styles.ts'
 import { ReactNode, useEffect, useState } from 'react'
 import { theme } from 'src/app/styles/theme.ts'
 import { EMOJIS, EVENTS, TITLES } from 'src/shared/const'
-import { useSelector } from 'react-redux'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { MenuButton } from 'src/shared/ui/menuButton/menuButton.tsx'
+import { useAppSelector } from 'src/app/store.ts'
 
 type Props = {
     children: ReactNode
 }
 
 export const Header = ({ children }: Props) => {
-    const lang = useSelector(selectLang)
+    const lang = useAppSelector(selectLang)
     const [isMenuOpen, setIsMenuOpen] = useState(innerWidth > theme.breakpoints.tablet)
     const menuButtonTitle = isMenuOpen ? TITLES[lang].CLOSE_MENU : TITLES[lang].OPEN_MENU
     const toggleIsMenuOpen = () => setIsMenuOpen(!isMenuOpen)

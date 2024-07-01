@@ -1,14 +1,13 @@
 import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { EMOJIS, TITLES, VALUES } from 'src/shared/const'
-import { useSelector } from 'react-redux'
 import { selectIsLearningMode, toggleIsLearningMode } from 'src/entities/card'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
-import { useAppDispatch } from 'src/app/store.ts'
+import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
 
 export const CardsModeIconButton = () => {
-    const lang = useSelector(selectLang)
+    const lang = useAppSelector(selectLang)
     const dispatch = useAppDispatch()
-    const isLearningMode = useSelector(selectIsLearningMode)
+    const isLearningMode = useAppSelector(selectIsLearningMode)
     const cardsModeIcon = isLearningMode ? EMOJIS.TRAINING : EMOJIS.LEARNING
     const cardsModeTitle = isLearningMode ? TITLES[lang].ENABLE_TRAINING_MODE : TITLES[lang].ENABLE_LEARNING_MODE
     const onToggleIsLearningMode = () => dispatch(toggleIsLearningMode())

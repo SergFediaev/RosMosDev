@@ -1,5 +1,4 @@
 import { S } from './settings.styles.ts'
-import { useSelector } from 'react-redux'
 import { selectLang, selectSettings } from 'src/entities/setting/model/setting.selectors.ts'
 import { Language } from 'src/shared/types/language.ts'
 import {
@@ -29,7 +28,7 @@ import { BACKGROUND_TYPES } from 'src/widgets/background/const/backgroundTypes.t
 import { BackgroundVideo } from 'src/widgets/backgroundVideo/types/backgroundVideo.types.ts'
 import { BackgroundWallpaper } from 'src/widgets/backgroundWallpaper/model/backgroundWallpaper.types.ts'
 import { ColorPicker } from 'src/shared/ui/colorPicker/colorPicker.tsx'
-import { useAppDispatch } from 'src/app/store.ts'
+import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
 import { randomGradient } from 'src/widgets/backgroundGradient/lib/randomGradient.ts'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { ButtonsContainer } from 'src/shared/ui/buttonsContainer/buttonsContainer.tsx'
@@ -47,14 +46,14 @@ import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 
 export const Settings = () => {
     const dispatch = useAppDispatch()
-    const settings = useSelector(selectSettings)
-    const lang = useSelector(selectLang)
+    const settings = useAppSelector(selectSettings)
+    const lang = useAppSelector(selectLang)
     const [isDebugError, setIsDebugError] = useState(false)
     const [isDebugWarning, setIsDebugWarning] = useState(false)
     const debugWarningButtonName = isDebugWarning ? TEXTS[lang].HIDE_ERROR : TEXTS[lang].SHOW_ERROR
-    const showCardTags = useSelector(selectShowCardTags)
-    const showCardId = useSelector(selectShowCardId)
-    const showCardDate = useSelector(selectShowCardDate)
+    const showCardTags = useAppSelector(selectShowCardTags)
+    const showCardId = useAppSelector(selectShowCardId)
+    const showCardDate = useAppSelector(selectShowCardDate)
 
     const isBackgroundColor = settings.backgroundType.value === BACKGROUND_TYPES.COLOR
     const isBackgroundRandomGradient = settings.backgroundType.value === BACKGROUND_TYPES.RANDOM_GRADIENT

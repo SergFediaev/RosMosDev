@@ -2,16 +2,16 @@ import { S } from './navIcons.styles.ts'
 import { ReactNode, useEffect, useState } from 'react'
 import { Icon } from 'src/shared/ui/icon/icon.tsx'
 import { EMOJIS, EVENTS, TITLES, VALUES } from 'src/shared/const'
-import { useSelector } from 'react-redux'
 import { selectLang, selectShowConnectionAlways } from 'src/entities/setting/model/setting.selectors.ts'
+import { useAppSelector } from 'src/app/store.ts'
 
 type Props = {
     children: ReactNode
 }
 
 export const NavIcons = ({ children }: Props) => {
-    const lang = useSelector(selectLang)
-    const showConnectionAlways = useSelector(selectShowConnectionAlways)
+    const lang = useAppSelector(selectLang)
+    const showConnectionAlways = useAppSelector(selectShowConnectionAlways)
     const [isOnline, setIsOnline] = useState(navigator.onLine)
     const connectionIcon = isOnline ? EMOJIS.POSITIVE : EMOJIS.NEGATIVE
     const connectionTitle = isOnline ? TITLES[lang].ONLINE : TITLES[lang].OFFLINE

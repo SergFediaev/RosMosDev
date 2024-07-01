@@ -2,16 +2,15 @@ import { Select } from 'src/shared/ui/select/select.tsx'
 import { TITLES } from 'src/shared/const'
 import { Filter } from 'src/features/filterCards'
 import { selectCardFilters, selectCardsFilter, selectHasCardFilters, setCardsFilter } from 'src/entities/card'
-import { useAppDispatch } from 'src/app/store.ts'
-import { useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 
 export const CardFiltersSelect = () => {
-    const lang = useSelector(selectLang)
+    const lang = useAppSelector(selectLang)
     const dispatch = useAppDispatch()
-    const cardsFilter = useSelector(selectCardsFilter)
-    const cardFilters = useSelector(selectCardFilters)
-    const hasCardFilters = useSelector(selectHasCardFilters)
+    const cardsFilter = useAppSelector(selectCardsFilter)
+    const cardFilters = useAppSelector(selectCardFilters)
+    const hasCardFilters = useAppSelector(selectHasCardFilters)
     const onSelectFilter = (filter: Filter) => dispatch(setCardsFilter({ filter }))
 
     if (!hasCardFilters) return

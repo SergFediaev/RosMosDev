@@ -6,7 +6,6 @@ import {
     selectShowCardId,
     selectShowCardTags,
 } from 'src/entities/card'
-import { useSelector } from 'react-redux'
 import { EMOJIS, PATHS, TITLES, VALUES } from 'src/shared/const'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
@@ -18,19 +17,20 @@ import { CardIcons } from 'src/shared/ui/cardIcons/cardIcons.tsx'
 import { CardInfo } from 'src/widgets/cardInfo/cardInfo.tsx'
 import { theme } from 'src/app/styles/theme.ts'
 import { CardTags } from 'src/widgets/cardTags/cardTags.tsx'
+import { useAppSelector } from 'src/app/store.ts'
 
 type Props = {
     card: CardType
 }
 
 export const Card = ({ card }: Props) => {
-    const lang = useSelector(selectLang)
+    const lang = useAppSelector(selectLang)
     const navigate = useNavigate()
     const { id, title, content, tags, created, updated } = card
-    const isLearningMode = useSelector(selectIsLearningMode)
-    const showCardTags = useSelector(selectShowCardTags)
-    const showCardId = useSelector(selectShowCardId)
-    const showCardDate = useSelector(selectShowCardDate)
+    const isLearningMode = useAppSelector(selectIsLearningMode)
+    const showCardTags = useAppSelector(selectShowCardTags)
+    const showCardId = useAppSelector(selectShowCardId)
+    const showCardDate = useAppSelector(selectShowCardDate)
 
     const [isOpen, setIsOpen] = useState(isLearningMode)
     const isOpenIcon = isOpen ? EMOJIS.UP : EMOJIS.DOWN

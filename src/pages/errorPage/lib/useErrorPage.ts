@@ -3,8 +3,8 @@ import { useNavigate, useRouteError } from 'react-router-dom'
 import { handleRouteError } from 'src/shared/lib/handleRouteError.ts'
 import { useCallback, useEffect, useState } from 'react'
 import { addressApi } from 'src/pages/errorPage/api/addressApi.ts'
-import { useSelector } from 'react-redux'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
+import { useAppSelector } from 'src/app/store.ts'
 
 const date = Date()
 
@@ -17,7 +17,7 @@ const {
 const { characterSet, contentType, compatMode } = document
 
 export const useErrorPage = () => {
-    const lang = useSelector(selectLang)
+    const lang = useAppSelector(selectLang)
     const navigate = useNavigate()
     const routeError = useRouteError()
     const error = handleRouteError(routeError, lang)
