@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { TIMINGS } from 'src/shared/const'
 import { rotateHue } from 'src/shared/ui/animations/rotateHue.ts'
 
-const BackgroundGradient = styled.div<{ randomGradient: string }>`
+const BackgroundRandomGradient = styled.div<{ randomGradient: string }>`
     position: fixed;
     top: 0;
     right: 0;
@@ -14,5 +14,5 @@ const BackgroundGradient = styled.div<{ randomGradient: string }>`
 `
 
 export const S = {
-    BackgroundGradient,
+    BackgroundRandomGradient,
 }

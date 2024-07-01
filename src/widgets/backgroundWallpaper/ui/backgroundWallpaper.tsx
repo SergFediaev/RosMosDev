@@ -1,8 +1,7 @@
 import { S } from 'src/widgets/backgroundWallpaper/ui/backgroundWallpaper.styles.ts'
-import { selectBackgroundWallpaper } from 'src/widgets/backgroundWallpaper/model/backgroundWallpaper.selectors.ts'
-import { selectHasBackgroundOverlay } from 'src/widgets/backgroundOverlay/model/backgroundOverlay.selectors.ts'
-import { BackgroundOverlay } from 'src/widgets/backgroundOverlay/ui/backgroundOverlay.tsx'
+import { BackgroundOverlay } from 'src/widgets/backgroundOverlay/backgroundOverlay.tsx'
 import { useAppSelector } from 'src/app/store.ts'
+import { selectBackgroundWallpaper, selectHasBackgroundOverlay } from 'src/entities/background/model/backgroundSlice.ts'
 
 export const BackgroundWallpaper = () => {
     const wallpaper = useAppSelector(selectBackgroundWallpaper)
@@ -10,7 +9,7 @@ export const BackgroundWallpaper = () => {
 
     return (
         <>
-            <S.BackgroundWallpaper wallpaper={wallpaper} />
+            <S.BackgroundWallpaper wallpaper={wallpaper.value} />
             {hasBackgroundOverlay && <BackgroundOverlay />}
         </>
     )

@@ -1,8 +1,10 @@
 import { S } from './backgroundRandomWallpaper.styles.ts'
-import { selectBackgroundRandomWallpaper } from 'src/widgets/backgroundRandomWallpaper/model/backgroundRandomWallpaper.selectors.ts'
-import { selectHasBackgroundOverlay } from 'src/widgets/backgroundOverlay/model/backgroundOverlay.selectors.ts'
-import { BackgroundOverlay } from 'src/widgets/backgroundOverlay/ui/backgroundOverlay.tsx'
 import { useAppSelector } from 'src/app/store.ts'
+import {
+    selectBackgroundRandomWallpaper,
+    selectHasBackgroundOverlay,
+} from 'src/entities/background/model/backgroundSlice.ts'
+import { BackgroundOverlay } from 'src/widgets/backgroundOverlay/backgroundOverlay.tsx'
 
 export const BackgroundRandomWallpaper = () => {
     const randomWallpaper = useAppSelector(selectBackgroundRandomWallpaper)

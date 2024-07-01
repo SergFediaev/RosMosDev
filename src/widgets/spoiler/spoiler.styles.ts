@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { randomGradient } from 'src/widgets/backgroundGradient/lib/randomGradient.ts'
+import { randomGradient } from 'src/widgets/backgroundRandomGradient/lib/randomGradient.ts'
 import { rotateHue } from 'src/shared/ui/animations/rotateHue.ts'
 import { TIMINGS } from 'src/shared/const'
 import { theme } from 'src/app/styles/theme.ts'

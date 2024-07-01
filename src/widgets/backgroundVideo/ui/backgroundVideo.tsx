@@ -3,10 +3,9 @@ import { useRef, useState } from 'react'
 import { EMOJIS, TITLES, VALUES } from 'src/shared/const'
 import { FloatingButton } from 'src/shared/ui/floatingButton/floatingButton.tsx'
 import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
-import { selectBackgroundVideo } from 'src/widgets/backgroundVideo/model/backgroundVideo.selectors.ts'
-import { selectHasBackgroundOverlay } from 'src/widgets/backgroundOverlay/model/backgroundOverlay.selectors.ts'
-import { BackgroundOverlay } from 'src/widgets/backgroundOverlay/ui/backgroundOverlay.tsx'
+import { BackgroundOverlay } from 'src/widgets/backgroundOverlay/backgroundOverlay.tsx'
 import { useAppSelector } from 'src/app/store.ts'
+import { selectBackgroundVideo, selectHasBackgroundOverlay } from 'src/entities/background/model/backgroundSlice.ts'
 
 export const BackgroundVideo = () => {
     const lang = useAppSelector(selectLang)
@@ -24,7 +23,7 @@ export const BackgroundVideo = () => {
     return (
         <>
             <S.BackgroundVideo
-                src={backgroundVideo.source}
+                src={backgroundVideo.value.source}
                 muted={isMuted}
                 onClick={toggleIsMuted}
                 ref={videoPlayer}
@@ -32,7 +31,9 @@ export const BackgroundVideo = () => {
                 loop
             />
             {hasBackgroundOverlay && <BackgroundOverlay />}
-            {backgroundVideo.hasSound && <FloatingButton icon={soundIcon} onClick={toggleIsMuted} title={soundTitle} />}
+            {backgroundVideo.value.hasSound && (
+                <FloatingButton icon={soundIcon} onClick={toggleIsMuted} title={soundTitle} />
+            )}
         </>
     )
 }
