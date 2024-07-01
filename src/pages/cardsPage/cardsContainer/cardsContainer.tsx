@@ -1,7 +1,6 @@
 import { S } from './cardsContainer.styles.ts'
 import { Cards } from 'src/pages/cardsPage/cardsContainer/cards/cards.tsx'
-import { selectSortedCards } from 'src/features/sortCards'
-import { selectIsCardsLoading } from 'src/entities/card'
+import { selectIsCardsLoading, selectSortedCards } from 'src/entities/card'
 import { useAppSelector } from 'src/app/store.ts'
 
 export const CardsContainer = () => {
