@@ -116,6 +116,23 @@ export const Settings = () => {
                         <Checkbox value={settings.isDebugEnabled} onChange={onSetIsDebugEnabled} />
                     </DescriptionOption>
                 </Setting>
+                {settings.isDebugEnabled && (
+                    <Setting name={TEXTS[lang].DEBUG}>
+                        <DescriptionOption description={TEXTS[lang].DISPLAY_MARKUP}>
+                            <Checkbox value={settings.isMarkupEnabled} onChange={onSetIsMarkupEnabled} />
+                        </DescriptionOption>
+                        <ButtonsContainer>
+                            <Button align={VALUES.STRETCH} name={debugWarningButtonName} onClick={toggleDebugWarning} />
+                            <Button
+                                align={VALUES.STRETCH}
+                                name={TEXTS[lang].THROW_ERROR}
+                                onClick={onDebugError}
+                                isWarning
+                            />
+                            {isDebugWarning && <ErrorMessage error={`${TEXTS[lang].DEBUG_ERROR} ${nanoid()}`} />}
+                        </ButtonsContainer>
+                    </Setting>
+                )}
                 <Setting name={TEXTS[lang].CARDS}>
                     <DescriptionOption description={TEXTS[lang].SHOW_CARD_CATEGORIES}>
                         <Checkbox value={showCardTags} onChange={onToggleShowCardTags} />
@@ -199,23 +216,6 @@ export const Settings = () => {
                     <Signature lang={lang} />
                     <em>{TEXTS[lang].DEDICATION}</em>
                 </Setting>
-                {settings.isDebugEnabled && (
-                    <Setting name={TEXTS[lang].DEBUG}>
-                        <DescriptionOption description={TEXTS[lang].DISPLAY_MARKUP}>
-                            <Checkbox value={settings.isMarkupEnabled} onChange={onSetIsMarkupEnabled} />
-                        </DescriptionOption>
-                        <ButtonsContainer>
-                            <Button align={VALUES.STRETCH} name={debugWarningButtonName} onClick={toggleDebugWarning} />
-                            <Button
-                                align={VALUES.STRETCH}
-                                name={TEXTS[lang].THROW_ERROR}
-                                onClick={onDebugError}
-                                isWarning
-                            />
-                            {isDebugWarning && <ErrorMessage error={`${TEXTS[lang].DEBUG_ERROR} ${nanoid()}`} />}
-                        </ButtonsContainer>
-                    </Setting>
-                )}
             </S.Settings>
         </>
     )
