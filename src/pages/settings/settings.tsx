@@ -1,7 +1,12 @@
 import { S } from './settings.styles.ts'
-import { selectLang, selectSettings } from 'src/entities/setting/model/setting.selectors.ts'
 import { Language } from 'src/shared/types/language.ts'
 import {
+    selectIsDebugEnabled,
+    selectIsMarkupEnabled,
+    selectLang,
+    selectLanguage,
+    selectLanguages,
+    selectShowConnectionAlways,
     setIsDebugEnabled,
     setLanguage,
     toggleIsMarkupEnabled,
@@ -33,15 +38,22 @@ import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 import { BackgroundSettings } from 'src/pages/settings/backgroundSettings/backgroundSettings.tsx'
 
 export const Settings = () => {
-    const dispatch = useAppDispatch()
-    const settings = useAppSelector(selectSettings)
     const lang = useAppSelector(selectLang)
-    const [isDebugError, setIsDebugError] = useState(false)
-    const [isDebugWarning, setIsDebugWarning] = useState(false)
-    const debugWarningButtonName = isDebugWarning ? TEXTS[lang].HIDE_ERROR : TEXTS[lang].SHOW_ERROR
+    const dispatch = useAppDispatch()
+
+    const language = useAppSelector(selectLanguage)
+    const languages = useAppSelector(selectLanguages)
+    const showConnectionAlways = useAppSelector(selectShowConnectionAlways)
+    const isDebugEnabled = useAppSelector(selectIsDebugEnabled)
+    const isMarkupEnabled = useAppSelector(selectIsMarkupEnabled)
+
     const showCardTags = useAppSelector(selectShowCardTags)
     const showCardId = useAppSelector(selectShowCardId)
     const showCardDate = useAppSelector(selectShowCardDate)
+
+    const [isDebugError, setIsDebugError] = useState(false)
+    const [isDebugWarning, setIsDebugWarning] = useState(false)
+    const debugWarningButtonName = isDebugWarning ? TEXTS[lang].HIDE_ERROR : TEXTS[lang].SHOW_ERROR
 
     const onSetLanguage = (language: Language) => dispatch(setLanguage({ language }))
     // ToDo: Card tags, filters, categories.
@@ -71,23 +83,19 @@ export const Settings = () => {
             <S.Settings>
                 <Setting name={TEXTS[lang].APP}>
                     <DescriptionOption description={TEXTS[lang].LANGUAGE}>
-                        <Select
-                            options={settings.languages}
-                            selectedOption={settings.language.label}
-                            onSelect={onSetLanguage}
-                        />
+                        <Select options={languages} selectedOption={language.label} onSelect={onSetLanguage} />
                     </DescriptionOption>
                     <DescriptionOption description={TEXTS[lang].SHOW_CONNECTION_ALWAYS}>
-                        <Checkbox value={settings.showConnectionAlways} onChange={onToggleShowConnectionAlways} />
+                        <Checkbox value={showConnectionAlways} onChange={onToggleShowConnectionAlways} />
                     </DescriptionOption>
                     <DescriptionOption description={TEXTS[lang].DEBUG_MODE}>
-                        <Checkbox value={settings.isDebugEnabled} onChange={onSetIsDebugEnabled} />
+                        <Checkbox value={isDebugEnabled} onChange={onSetIsDebugEnabled} />
                     </DescriptionOption>
                 </Setting>
-                {settings.isDebugEnabled && (
+                {isDebugEnabled && (
                     <Setting name={TEXTS[lang].DEBUG}>
                         <DescriptionOption description={TEXTS[lang].DISPLAY_MARKUP}>
-                            <Checkbox value={settings.isMarkupEnabled} onChange={onToggleIsMarkupEnabled} />
+                            <Checkbox value={isMarkupEnabled} onChange={onToggleIsMarkupEnabled} />
                         </DescriptionOption>
                         <ButtonsContainer>
                             <Button align={VALUES.STRETCH} name={debugWarningButtonName} onClick={toggleDebugWarning} />

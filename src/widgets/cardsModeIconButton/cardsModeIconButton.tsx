@@ -1,8 +1,8 @@
 import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { EMOJIS, TITLES, VALUES } from 'src/shared/const'
 import { selectIsLearningMode, toggleIsLearningMode } from 'src/entities/card'
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const CardsModeIconButton = () => {
     const lang = useAppSelector(selectLang)

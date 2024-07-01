@@ -2,10 +2,10 @@ import { S } from 'src/widgets/backgroundVideo/ui/backgroundVideo.styles.ts'
 import { useRef, useState } from 'react'
 import { EMOJIS, TITLES, VALUES } from 'src/shared/const'
 import { FloatingButton } from 'src/shared/ui/floatingButton/floatingButton.tsx'
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { BackgroundOverlay } from 'src/widgets/backgroundOverlay/backgroundOverlay.tsx'
 import { useAppSelector } from 'src/app/store.ts'
 import { selectBackgroundVideo, selectHasBackgroundOverlay } from 'src/entities/background/model/backgroundSlice.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const BackgroundVideo = () => {
     const lang = useAppSelector(selectLang)

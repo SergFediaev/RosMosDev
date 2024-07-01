@@ -2,9 +2,9 @@ import { S } from 'src/widgets/header/header.styles.ts'
 import { ReactNode, useEffect, useState } from 'react'
 import { theme } from 'src/app/styles/theme.ts'
 import { EMOJIS, EVENTS, TITLES } from 'src/shared/const'
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { MenuButton } from 'src/shared/ui/menuButton/menuButton.tsx'
 import { useAppSelector } from 'src/app/store.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 type Props = {
     children: ReactNode

@@ -3,7 +3,7 @@ import { TITLES } from 'src/shared/const'
 import { Filter } from 'src/features/filterCards'
 import { selectCardFilters, selectCardsFilter, selectHasCardFilters, setCardsFilter } from 'src/entities/card'
 import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const CardFiltersSelect = () => {
     const lang = useAppSelector(selectLang)

@@ -1,7 +1,7 @@
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { S } from 'src/shared/ui/logoAcronym/logoAcronym.styles.ts'
 import { TEXTS } from 'src/shared/const'
 import { useAppSelector } from 'src/app/store.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const LogoAcronym = () => {
     const lang = useAppSelector(selectLang)

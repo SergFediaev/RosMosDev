@@ -21,6 +21,14 @@ const initialState: InitialState = {
 const settingsSlice = createSlice({
     name: 'settings',
     initialState,
+    selectors: {
+        selectLang: state => state.language.value,
+        selectLanguage: state => state.language,
+        selectLanguages: state => state.languages,
+        selectShowConnectionAlways: state => state.showConnectionAlways,
+        selectIsDebugEnabled: state => state.isDebugEnabled,
+        selectIsMarkupEnabled: state => state.isMarkupEnabled,
+    },
     reducers: create => ({
         setLanguage: create.reducer((state, action: PayloadAction<{ language: Language }>) => {
             state.language = action.payload.language
@@ -52,3 +60,12 @@ export const settingsReducer = settingsSlice.reducer
 
 export const { setLanguage, toggleShowConnectionAlways, setIsDebugEnabled, toggleIsMarkupEnabled } =
     settingsSlice.actions
+
+export const {
+    selectLang,
+    selectLanguage,
+    selectLanguages,
+    selectShowConnectionAlways,
+    selectIsDebugEnabled,
+    selectIsMarkupEnabled,
+} = settingsSlice.selectors

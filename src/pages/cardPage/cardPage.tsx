@@ -11,12 +11,12 @@ import { OpenCardsIconButton } from 'src/widgets/openCardsIconButton/openCardsIc
 import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 import { Spoiler } from 'src/widgets/spoiler/spoiler.tsx'
 import { CardInfo } from 'src/widgets/cardInfo/cardInfo.tsx'
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { CardTags } from 'src/widgets/cardTags/cardTags.tsx'
 import { FilteredCardsNav } from 'src/widgets/filteredCardsNav/filteredCardsNav.tsx'
 import { TEXTS, VALUES } from 'src/shared/const'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { selectCardById } from 'src/entities/card'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const CardPage = () => {
     const lang = useAppSelector(selectLang)

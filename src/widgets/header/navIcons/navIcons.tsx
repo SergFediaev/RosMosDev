@@ -2,8 +2,8 @@ import { S } from './navIcons.styles.ts'
 import { ReactNode, useEffect, useState } from 'react'
 import { Icon } from 'src/shared/ui/icon/icon.tsx'
 import { EMOJIS, EVENTS, TITLES, VALUES } from 'src/shared/const'
-import { selectLang, selectShowConnectionAlways } from 'src/entities/setting/model/setting.selectors.ts'
 import { useAppSelector } from 'src/app/store.ts'
+import { selectLang, selectShowConnectionAlways } from 'src/entities/setting/model/settingSlice.ts'
 
 type Props = {
     children: ReactNode

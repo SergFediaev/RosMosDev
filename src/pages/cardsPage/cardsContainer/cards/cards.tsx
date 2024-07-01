@@ -1,9 +1,9 @@
 import { S } from 'src/pages/cardsPage/cardsContainer/cards/cards.styles.ts'
 import { Card, CardType, selectCardsError } from 'src/entities/card'
 import { TEXTS } from 'src/shared/const'
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { useAppSelector } from 'src/app/store.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 type Props = {
     cards: CardType[]

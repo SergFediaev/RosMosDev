@@ -30,8 +30,8 @@ import {
     setBackgroundWallpaper,
     toggleHasBackgroundOverlay,
 } from 'src/entities/background/model/backgroundSlice.ts'
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { BACKGROUND_TYPES } from 'src/widgets/background/const/backgroundTypes.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const BackgroundSettings = () => {
     const lang = useAppSelector(selectLang)

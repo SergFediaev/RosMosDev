@@ -3,8 +3,8 @@ import { useNavigate, useRouteError } from 'react-router-dom'
 import { handleRouteError } from 'src/shared/lib/handleRouteError.ts'
 import { useCallback, useEffect, useState } from 'react'
 import { addressApi } from 'src/pages/errorPage/api/addressApi.ts'
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
 import { useAppSelector } from 'src/app/store.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 const date = Date()
 

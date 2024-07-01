@@ -7,7 +7,7 @@ import { CardPage } from 'src/pages/cardPage/cardPage.tsx'
 import { Settings } from 'src/pages/settings/settings.tsx'
 import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
 import { fetchCards } from 'src/entities/card'
-import { selectLang } from 'src/entities/setting/model/setting.selectors.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const BrowserRouterProvider = () => {
     const lang = useAppSelector(selectLang)
