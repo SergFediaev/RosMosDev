@@ -22,13 +22,7 @@ const Card = styled.main`
     perspective: ${theme.perspectives.card};
 `
 
-const CardsQuantity = styled.span`
-    font-size: ${theme.sizes.bigFont};
-    font-weight: bold;
-`
-
 export const S = {
     CardPage,
     Card,
-    CardsQuantity,
 }

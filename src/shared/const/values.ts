@@ -6,6 +6,7 @@ export const VALUES = {
     DOUBLE_NEW_LINE: '\n\n',
     EN: 'en',
     RU: 'ru',
+    CARD_ID: 'id',
     CARD_TITLE: 'title',
     MEDIUM_SIZE: '1.5rem',
     BIG_SIZE: '2rem',

@@ -4,7 +4,7 @@ import { FILTERS } from 'src/features/filterCards'
 
 export const selectCards = (state: AppState) => state.cards.items
 
-export const selectHasCards = (state: AppState) => !!state.cards.items.length
+export const selectCardById = (id?: string) => (state: AppState) => state.cards.items.find(card => card.id === id)
 
 export const selectIsLearningMode = (state: AppState) => state.cards.isLearningMode
 
@@ -37,6 +37,9 @@ export const selectFilteredCards = createSelector(selectCards, selectCardsFilter
 
     return cards
 })
+
+export const selectFilteredCardIndexById = (id?: string) =>
+    createSelector(selectFilteredCards, cards => cards.findIndex(card => card.id === id))
 
 export const selectSearchedCards = createSelector(selectFilteredCards, selectCardsSearch, (cards, cardsSearch) => {
     if (cardsSearch) {
