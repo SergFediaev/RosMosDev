@@ -11,8 +11,8 @@ const CheckboxStyles = styled.div<{ isChecked: boolean }>`
     transition: ${TIMINGS.CHECK_TRANSITION}s ease-in-out;
     background-color: ${({ isChecked }) => (isChecked ? theme.colors.backgroundAccent : 'transparent')};
     color: ${({ isChecked }) => (isChecked ? theme.colors.fontPrimary : 'transparent')};
-    border: ${({ isChecked }) => (isChecked ? theme.colors.backgroundAccent : theme.colors.fontPrimary)} solid
-        ${theme.sizes.regularBorder};
+    border: ${({ isChecked }) => (isChecked ? theme.colors.backgroundAccent : theme.colors.fontPrimary)}
+        ${theme.sizes.regularBorder} solid;
 
     &:after {
         content: ${({ isChecked }) => (isChecked ? `'${SYMBOLS.CHECK}'` : `'${SYMBOLS.SPACE}'`)};
