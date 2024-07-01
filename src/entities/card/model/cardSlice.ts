@@ -1,6 +1,6 @@
 import { cardsApi, CardsWithFilters, CardType, getCardsFromSpreadsheet } from 'src/entities/card'
 import { getSorts, Sort } from 'src/features/sortCards'
-import { cardFilters, Filter, getFilters } from 'src/features/filterCards'
+import { cardFilters, Filter, FILTERS, getFilters } from 'src/features/filterCards'
 import { Nullable } from 'src/shared/types/nullable.ts'
 import { VALUES } from 'src/shared/const'
 import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
@@ -81,8 +81,22 @@ const cardsSlice = createSlice({
                     state.isLoading = true
                 },
                 fulfilled: (state, action) => {
-                    state.items = action.payload.cards
-                    state.filters = action.payload.filters
+                    const { cards, filters } = action.payload
+                    state.items = cards
+
+                    state.filters = filters.map(({ label, value }) => ({
+                        value,
+                        label: `${label} (${
+                            cards.filter(card => {
+                                if (value === FILTERS.UNCATEGORIZED) return !card.tags
+
+                                if (value !== FILTERS.ALL) return card.tags?.toLowerCase().includes(value)
+
+                                return card
+                            }).length
+                        })`,
+                    }))
+
                     if (state.error) state.error = null
                 },
                 rejected: (state, action) => {
