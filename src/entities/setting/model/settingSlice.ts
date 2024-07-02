@@ -10,17 +10,9 @@ type InitialState = {
     isMarkupEnabled: boolean
 }
 
-const initialState: InitialState = {
-    language: getLanguages()[0],
-    languages: getLanguages(),
-    showConnectionAlways: false,
-    isDebugEnabled: false,
-    isMarkupEnabled: false,
-}
-
 const settingsSlice = createSlice({
     name: 'settings',
-    initialState,
+    initialState: {} as InitialState,
     selectors: {
         selectLang: state => state.language.value,
         selectLanguage: state => state.language,

@@ -2,11 +2,6 @@ import { BackgroundType } from 'src/widgets/background/types/backgroundType.type
 import { BackgroundWallpaper } from 'src/widgets/backgroundWallpaper/model/backgroundWallpaper.types.ts'
 import { Nullable } from 'src/shared/types/nullable.ts'
 import { BackgroundVideo } from 'src/widgets/backgroundVideo/types/backgroundVideo.types.ts'
-import { getBackgroundTypes } from 'src/widgets/background/lib/getBackgroundTypes.ts'
-import { theme } from 'src/app/styles/theme.ts'
-import { randomGradient } from 'src/widgets/backgroundRandomGradient/lib/randomGradient.ts'
-import { getBackgroundWallpapers } from 'src/widgets/backgroundWallpaper/lib/getBackgroundWallpapers.ts'
-import { getBackgroundVideos } from 'src/widgets/backgroundVideo/lib/getBackgroundVideos.ts'
 import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Lang } from 'src/shared/types/language.ts'
 import { randomWallpaperApi } from 'src/widgets/backgroundRandomWallpaper/api/randomWallpaperApi.ts'
@@ -28,28 +23,13 @@ type InitialState = {
     error: Nullable<string>
 }
 
-const initialState: InitialState = {
-    backgroundType: getBackgroundTypes()[4],
-    backgroundTypes: getBackgroundTypes(),
-    backgroundColor: theme.colors.backgroundDefault,
-    backgroundRandomGradient: randomGradient(),
-    backgroundWallpaper: getBackgroundWallpapers()[0],
-    backgroundWallpapers: getBackgroundWallpapers(),
-    backgroundRandomWallpaper: null,
-    backgroundVideo: getBackgroundVideos()[0],
-    backgroundVideos: getBackgroundVideos(),
-    hasBackgroundOverlay: false,
-    isLoading: false,
-    error: null,
-}
-
 const createSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })
 
 const backgroundsSlice = createSlice({
     name: 'backgrounds',
-    initialState,
+    initialState: {} as InitialState,
     selectors: {
         selectBackgroundType: state => state.backgroundType,
         selectBackgroundTypes: state => state.backgroundTypes,

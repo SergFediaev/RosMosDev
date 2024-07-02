@@ -1,8 +1,7 @@
 import { cardsApi, CardsWithFilters, CardType, getCardsFromSpreadsheet } from 'src/entities/card'
-import { getSorts, Sort } from 'src/features/sortCards'
-import { cardFilters, Filter, FILTERS, getFilters } from 'src/features/filterCards'
+import { Sort } from 'src/features/sortCards'
+import { cardFilters, Filter, FILTERS } from 'src/features/filterCards'
 import { Nullable } from 'src/shared/types/nullable.ts'
-import { VALUES } from 'src/shared/const'
 import { asyncThunkCreator, buildCreateSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 import { Lang } from 'src/shared/types/language.ts'
@@ -23,28 +22,13 @@ type InitialState = {
     error: Nullable<string>
 }
 
-const initialState: InitialState = {
-    items: [],
-    isLearningMode: true,
-    search: VALUES.EMPTY_STRING,
-    sort: getSorts()[0],
-    sorts: getSorts(),
-    filter: getFilters()[0],
-    filters: getFilters(),
-    showTags: true,
-    showId: false,
-    showDate: true,
-    isLoading: false,
-    error: null,
-}
-
 const createSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })
 
 const cardsSlice = createSlice({
     name: 'cards',
-    initialState,
+    initialState: {} as InitialState,
     selectors: {
         selectCards: state => state.items,
         selectIsLearningMode: state => state.isLearningMode,
