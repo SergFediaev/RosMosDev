@@ -17,4 +17,5 @@ export const VALUES = {
     BACKGROUND_SOUND_VOLUME: 0.1,
     STRETCH: 'stretch',
     END: 'end',
+    DISPATCH: 'dispatch',
 } as const
