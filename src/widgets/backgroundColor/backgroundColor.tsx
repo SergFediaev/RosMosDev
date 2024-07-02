@@ -1,5 +1,5 @@
 import { S } from 'src/widgets/backgroundColor/backgroundColor.styles.ts'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 import { selectBackgroundColor } from 'src/entities/background/model/backgroundSlice.ts'
 
 export const BackgroundColor = () => {

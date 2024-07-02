@@ -1,5 +1,5 @@
 import { S } from './backgroundRandomWallpaper.styles.ts'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 import {
     selectBackgroundRandomWallpaper,
     selectHasBackgroundOverlay,

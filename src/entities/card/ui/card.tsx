@@ -16,7 +16,7 @@ import { CardIcons } from 'src/shared/ui/cardIcons/cardIcons.tsx'
 import { CardInfo } from 'src/widgets/cardInfo/cardInfo.tsx'
 import { theme } from 'src/app/styles/theme.ts'
 import { CardTags } from 'src/widgets/cardTags/cardTags.tsx'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 type Props = {

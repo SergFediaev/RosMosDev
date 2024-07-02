@@ -1,5 +1,5 @@
 import { S } from './search.styles.ts'
-import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
+import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
 import { selectCardsSearch, setCardsSearch } from 'src/entities/card'
 import { EMOJIS, TEXTS, TITLES, TYPES, VALUES } from 'src/shared/const'
 import { ChangeEvent, useRef } from 'react'

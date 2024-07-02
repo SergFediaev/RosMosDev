@@ -2,7 +2,7 @@ import { S } from './spoiler.styles.ts'
 import { ReactNode, useEffect, useState } from 'react'
 import { TITLES } from 'src/shared/const'
 import { selectIsLearningMode } from 'src/entities/card'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 type Props = {

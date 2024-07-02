@@ -3,7 +3,7 @@ import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { EMOJIS, EVENTS, KEYS, PATHS, SYMBOLS, TITLES, VALUES } from 'src/shared/const'
 import { useNavigate } from 'react-router-dom'
 import { useCallback, useEffect } from 'react'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 import { selectFilteredCardIndexById, selectFilteredCards } from 'src/entities/card'
 import { Lang } from 'src/shared/types/language.ts'
 

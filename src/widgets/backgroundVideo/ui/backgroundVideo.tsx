@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 import { EMOJIS, TITLES, VALUES } from 'src/shared/const'
 import { FloatingButton } from 'src/shared/ui/floatingButton/floatingButton.tsx'
 import { BackgroundOverlay } from 'src/widgets/backgroundOverlay/backgroundOverlay.tsx'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 import { selectBackgroundVideo, selectHasBackgroundOverlay } from 'src/entities/background/model/backgroundSlice.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 

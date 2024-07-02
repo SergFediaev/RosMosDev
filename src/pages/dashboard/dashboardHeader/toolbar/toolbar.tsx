@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { Loading } from 'src/shared/ui/loading/loading.tsx'
 import { VALUES } from 'src/shared/const'
 import { selectIsCardsLoading } from 'src/entities/card'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 
 type Props = {
     children: ReactNode

@@ -4,7 +4,7 @@ import { BackgroundWallpaper } from 'src/widgets/backgroundWallpaper/ui/backgrou
 import { BackgroundColor } from 'src/widgets/backgroundColor/backgroundColor.tsx'
 import { BACKGROUND_TYPES } from 'src/widgets/background/const/backgroundTypes.ts'
 import { BackgroundRandomWallpaper } from 'src/widgets/backgroundRandomWallpaper/ui/backgroundRandomWallpaper.tsx'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 import { selectBackgroundType } from 'src/entities/background/model/backgroundSlice.ts'
 
 export const Background = () => {

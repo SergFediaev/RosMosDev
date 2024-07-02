@@ -1,7 +1,7 @@
 import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { EMOJIS, TITLES, VALUES } from 'src/shared/const'
 import { selectIsLearningMode, toggleIsLearningMode } from 'src/entities/card'
-import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
+import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const CardsModeIconButton = () => {

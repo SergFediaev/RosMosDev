@@ -5,7 +5,7 @@ import { ErrorPage } from 'src/pages/errorPage/ui/errorPage.tsx'
 import { CardsPage } from 'src/pages/cardsPage/cardsPage.tsx'
 import { CardPage } from 'src/pages/cardPage/cardPage.tsx'
 import { Settings } from 'src/pages/settings/settings.tsx'
-import { useAppDispatch } from 'src/app/store.ts'
+import { useAppDispatch } from 'src/app/store/store.ts'
 import { fetchCards } from 'src/entities/card'
 
 export const BrowserRouterProvider = () => {

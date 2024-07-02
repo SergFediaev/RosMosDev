@@ -1,6 +1,6 @@
 import { S } from 'src/shared/ui/logoAcronym/logoAcronym.styles.ts'
 import { TEXTS } from 'src/shared/const'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const LogoAcronym = () => {

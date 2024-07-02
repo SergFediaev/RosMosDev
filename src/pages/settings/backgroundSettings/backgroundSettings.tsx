@@ -10,7 +10,7 @@ import { BackgroundType } from 'src/widgets/background/types/backgroundType.type
 import { randomGradient } from 'src/widgets/backgroundRandomGradient/lib/randomGradient.ts'
 import { BackgroundWallpaper } from 'src/widgets/backgroundWallpaper/model/backgroundWallpaper.types.ts'
 import { BackgroundVideo } from 'src/widgets/backgroundVideo/types/backgroundVideo.types.ts'
-import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
+import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
 import {
     fetchRandomWallpaper,
     selectBackgroundColor,

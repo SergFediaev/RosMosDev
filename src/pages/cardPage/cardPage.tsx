@@ -1,6 +1,6 @@
 import { S } from 'src/pages/cardPage/cardPage.styles.ts'
 import { useParams } from 'react-router-dom'
-import { useAppSelector } from 'src/app/store.ts'
+import { useAppSelector } from 'src/app/store/store.ts'
 import { Header } from 'src/widgets/header/header.tsx'
 import { Toolbar } from 'src/pages/dashboard/dashboardHeader/toolbar/toolbar.tsx'
 import { LogoAcronym } from 'src/shared/ui/logoAcronym/logoAcronym.tsx'

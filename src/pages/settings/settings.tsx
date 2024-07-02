@@ -21,7 +21,7 @@ import { Checkbox } from 'src/shared/ui/checkbox/checkbox.tsx'
 import { Signature } from 'src/pages/settings/signature/signature.tsx'
 import { Button } from 'src/shared/ui/button/button.tsx'
 import { useState } from 'react'
-import { useAppDispatch, useAppSelector } from 'src/app/store.ts'
+import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { ButtonsContainer } from 'src/shared/ui/buttonsContainer/buttonsContainer.tsx'
 import {
