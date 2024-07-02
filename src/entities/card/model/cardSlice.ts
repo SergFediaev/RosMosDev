@@ -66,8 +66,11 @@ const cardsSlice = createSlice({
         toggleShowDate: create.reducer(state => {
             state.showDate = !state.showDate
         }),
-        fetchCards: create.asyncThunk<CardsWithFilters, Lang>(
-            async (lang, { rejectWithValue }) => {
+        fetchCards: create.asyncThunk<CardsWithFilters>(
+            async (_, { getState, rejectWithValue }) => {
+                const state = getState() as { settings: { language: { value: Lang } } }
+                const lang = state.settings.language.value
+
                 try {
                     const response = await cardsApi.getCards()
                     return getCardsFromSpreadsheet(response.data, cardFilters(), lang)
