@@ -1,6 +1,7 @@
 import { Language } from 'src/shared/types/language.ts'
 import { getLanguages } from 'src/entities/setting/lib/getLanguages.ts'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { defaultSettings } from 'src/app'
 
 type InitialState = {
     language: Language
@@ -23,8 +24,11 @@ const settingsSlice = createSlice({
     },
     reducers: create => ({
         setLanguage: create.reducer((state, action: PayloadAction<{ language: Language }>) => {
-            state.language = action.payload.language
-            state.languages = getLanguages(action.payload.language.value)
+            const lang = action.payload.language.value
+            const languages = getLanguages(lang)
+            const language = languages.find(({ value }) => value === lang)
+            state.languages = languages
+            if (language) state.language = language
         }),
         toggleShowConnectionAlways: create.reducer(state => {
             state.showConnectionAlways = !state.showConnectionAlways
@@ -43,6 +47,7 @@ const settingsSlice = createSlice({
         toggleIsMarkupEnabled: create.reducer(state => {
             state.isMarkupEnabled = !state.isMarkupEnabled
         }),
+        restoreDefaultSettings: create.reducer((): InitialState => defaultSettings),
     }),
 })
 
@@ -50,8 +55,13 @@ export const settingsName = settingsSlice.name
 
 export const settingsReducer = settingsSlice.reducer
 
-export const { setLanguage, toggleShowConnectionAlways, setIsDebugEnabled, toggleIsMarkupEnabled } =
-    settingsSlice.actions
+export const {
+    setLanguage,
+    toggleShowConnectionAlways,
+    setIsDebugEnabled,
+    toggleIsMarkupEnabled,
+    restoreDefaultSettings,
+} = settingsSlice.actions
 
 export const {
     selectLang,

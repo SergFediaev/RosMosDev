@@ -67,6 +67,10 @@ export const TEXTS = {
         SHOW_CARD_ID: 'Show card ID',
         SHOW_CARD_DATE: 'Show date and time of card creation/update',
         SHOW_CONNECTION_ALWAYS: 'Always show network status',
+        RESET: 'Reset',
+        RESTORE_DEFAULT_SETTINGS: 'Restore default settings',
+        CLEAR_SESSION_STORAGE: 'Clear session storage',
+        CLEAR_LOCAL_STORAGE: 'Clear local storage',
     },
     [VALUES.RU]: {
         APP_NAME: 'РосМосДев',
@@ -132,5 +136,9 @@ export const TEXTS = {
         SHOW_CARD_ID: 'Показывать идентификатор карточки',
         SHOW_CARD_DATE: 'Показывать дату и время создания/обновления карточки',
         SHOW_CONNECTION_ALWAYS: 'Всегда показывать статус сети',
+        RESET: 'Сброс',
+        RESTORE_DEFAULT_SETTINGS: 'Восстановить настройки по умолчанию',
+        CLEAR_SESSION_STORAGE: 'Очистить хранилище сеанса',
+        CLEAR_LOCAL_STORAGE: 'Очистить локальное хранилище',
     },
 } as const

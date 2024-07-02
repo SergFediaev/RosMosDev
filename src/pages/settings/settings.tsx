@@ -1,6 +1,7 @@
 import { S } from './settings.styles.ts'
 import { Language } from 'src/shared/types/language.ts'
 import {
+    restoreDefaultSettings,
     selectIsDebugEnabled,
     selectIsMarkupEnabled,
     selectLang,
@@ -36,6 +37,8 @@ import { Header } from 'src/widgets/header/header.tsx'
 import { OpenCardsIconButton } from 'src/widgets/openCardsIconButton/openCardsIconButton.tsx'
 import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 import { BackgroundSettings } from 'src/pages/settings/backgroundSettings/backgroundSettings.tsx'
+import { clearLocalStorage } from 'src/shared/lib/localStorage.ts'
+import { clearSessionStorage } from 'src/shared/lib/sessionStorage.ts'
 
 export const Settings = () => {
     const lang = useAppSelector(selectLang)
@@ -63,6 +66,7 @@ export const Settings = () => {
     const onToggleShowConnectionAlways = () => dispatch(toggleShowConnectionAlways())
     const onSetIsDebugEnabled = (isDebugEnabled: boolean) => dispatch(setIsDebugEnabled({ isDebugEnabled }))
     const onToggleIsMarkupEnabled = () => dispatch(toggleIsMarkupEnabled())
+    const onRestoreDefaultSettings = () => dispatch(restoreDefaultSettings())
 
     const onDebugError = () => setIsDebugError(true)
     const toggleDebugWarning = () => setIsDebugWarning(!isDebugWarning)
@@ -137,6 +141,26 @@ export const Settings = () => {
                     </p>
                     <Signature lang={lang} />
                     <em>{TEXTS[lang].DEDICATION}</em>
+                </Setting>
+                <Setting name={TEXTS[lang].RESET}>
+                    <Button
+                        align={VALUES.STRETCH}
+                        name={TEXTS[lang].RESTORE_DEFAULT_SETTINGS}
+                        onClick={onRestoreDefaultSettings}
+                    />
+                    <ButtonsContainer>
+                        <Button
+                            align={VALUES.STRETCH}
+                            name={TEXTS[lang].CLEAR_SESSION_STORAGE}
+                            onClick={clearSessionStorage}
+                        />
+                        <Button
+                            align={VALUES.STRETCH}
+                            name={TEXTS[lang].CLEAR_LOCAL_STORAGE}
+                            onClick={clearLocalStorage}
+                            isWarning
+                        />
+                    </ButtonsContainer>
                 </Setting>
             </S.Settings>
         </>

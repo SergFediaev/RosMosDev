@@ -17,17 +17,7 @@ import {
     setBackgroundWallpaper,
     toggleHasBackgroundOverlay,
 } from 'src/entities/background/model/backgroundSlice.ts'
-import {
-    cardsName,
-    fetchCards,
-    setCardsFilter,
-    setCardsSearch,
-    setCardsSort,
-    toggleIsLearningMode,
-    toggleShowDate,
-    toggleShowId,
-    toggleShowTags,
-} from 'src/entities/card'
+import { cardsName, toggleShowDate, toggleShowId, toggleShowTags } from 'src/entities/card'
 import { AppDispatch, RootState } from 'src/app/store/store.ts'
 
 export const listenerMiddleware = createListenerMiddleware()
@@ -37,16 +27,7 @@ const startAppListening = listenerMiddleware.startListening.withTypes<RootState,
 export const addAppListener = addListener.withTypes<RootState, AppDispatch>()
 
 startAppListening({
-    matcher: isAnyOf(
-        toggleIsLearningMode,
-        setCardsSearch,
-        setCardsSort,
-        setCardsFilter,
-        toggleShowTags,
-        toggleShowId,
-        toggleShowDate,
-        fetchCards.fulfilled,
-    ),
+    matcher: isAnyOf(toggleShowTags, toggleShowId, toggleShowDate),
     effect: (_, listenerApi) => setToLocalStorage(cardsName, listenerApi.getState().cards),
 })
 

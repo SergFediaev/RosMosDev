@@ -7,6 +7,12 @@ import { Lang } from 'src/shared/types/language.ts'
 import { randomWallpaperApi } from 'src/widgets/backgroundRandomWallpaper/api/randomWallpaperApi.ts'
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
+import { restoreDefaultSettings, setLanguage } from 'src/entities/setting/model/settingSlice.ts'
+import { defaultBackgrounds } from 'src/app'
+import { getBackgroundTypes } from 'src/widgets/background/lib/getBackgroundTypes.ts'
+import { getBackgroundWallpapers } from 'src/widgets/backgroundWallpaper/lib/getBackgroundWallpapers.ts'
+import { getBackgroundVideos } from 'src/widgets/backgroundVideo/lib/getBackgroundVideos.ts'
+import { isObjectsShallowEqual } from 'src/shared/lib/isObjectsShallowEqual.ts'
 
 type InitialState = {
     backgroundType: BackgroundType
@@ -113,6 +119,31 @@ const backgroundsSlice = createSlice({
             },
         ),
     }),
+    extraReducers: builder =>
+        builder
+            .addCase(setLanguage, (state, action) => {
+                const lang = action.payload.language.value
+
+                const backgroundTypes = getBackgroundTypes(lang)
+                const backgroundType = backgroundTypes.find(({ value }) => value === state.backgroundType.value)
+                state.backgroundTypes = backgroundTypes
+                if (backgroundType) state.backgroundType = backgroundType
+
+                const backgroundWallpapers = getBackgroundWallpapers(lang)
+                const backgroundWallpaper = backgroundWallpapers.find(
+                    ({ value }) => value === state.backgroundWallpaper.value,
+                )
+                state.backgroundWallpapers = backgroundWallpapers
+                if (backgroundWallpaper) state.backgroundWallpaper = backgroundWallpaper
+
+                const backgroundVideos = getBackgroundVideos(lang)
+                const backgroundVideo = backgroundVideos.find(({ value }) =>
+                    isObjectsShallowEqual(value, state.backgroundVideo.value),
+                )
+                state.backgroundVideos = backgroundVideos
+                if (backgroundVideo) state.backgroundVideo = backgroundVideo
+            })
+            .addCase(restoreDefaultSettings, (): InitialState => defaultBackgrounds),
 })
 
 export const backgroundsName = backgroundsSlice.name

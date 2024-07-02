@@ -1,11 +1,14 @@
 import { cardsApi, CardsWithFilters, CardType, getCardsFromSpreadsheet } from 'src/entities/card'
-import { Sort } from 'src/features/sortCards'
+import { getSorts, Sort } from 'src/features/sortCards'
 import { cardFilters, Filter, FILTERS } from 'src/features/filterCards'
 import { Nullable } from 'src/shared/types/nullable.ts'
 import { asyncThunkCreator, buildCreateSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 import { Lang } from 'src/shared/types/language.ts'
 import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
+import { restoreDefaultSettings, setLanguage } from 'src/entities/setting/model/settingSlice.ts'
+import { defaultCards } from 'src/app'
+import { isObjectsShallowEqual } from 'src/shared/lib/isObjectsShallowEqual.ts'
 
 type InitialState = {
     items: CardType[]
@@ -85,19 +88,10 @@ const cardsSlice = createSlice({
                 fulfilled: (state, action) => {
                     const { cards, filters } = action.payload
                     state.items = cards
+                    state.filters = filters
 
-                    state.filters = filters.map(({ label, value }) => ({
-                        value,
-                        label: `${label} (${
-                            cards.filter(card => {
-                                if (value === FILTERS.UNCATEGORIZED) return !card.tags
-
-                                if (value !== FILTERS.ALL) return card.tags?.toLowerCase().includes(value)
-
-                                return card
-                            }).length
-                        })`,
-                    }))
+                    const filter = filters.find(({ value }) => value === state.filter.value)
+                    if (filter) state.filter = filter
 
                     if (state.error) state.error = null
                 },
@@ -110,6 +104,22 @@ const cardsSlice = createSlice({
             },
         ),
     }),
+    extraReducers: builder =>
+        builder
+            .addCase(setLanguage, (state, action) => {
+                const lang = action.payload.language.value
+
+                const sorts = getSorts(lang)
+                const sort = sorts.find(({ value }) => isObjectsShallowEqual(value, state.sort.value))
+                state.sorts = sorts
+                if (sort) state.sort = sort
+
+                const filters = cardFilters().getFilters(lang, state.items)
+                const filter = filters.find(({ value }) => value === state.filter.value)
+                state.filters = filters
+                if (filter) state.filter = filter
+            })
+            .addCase(restoreDefaultSettings, (): InitialState => defaultCards),
 })
 
 export const cardsName = cardsSlice.name

@@ -20,5 +20,6 @@ export const getCardsFromSpreadsheet = (
 
     if (cards.some(card => !card.tags) && cardFilter.count > 1) cardFilter.addFilter = FILTERS.UNCATEGORIZED
 
-    return { cards, filters: cardFilter.getFilters(lang) }
+    const filters = cardFilter.getFilters(lang, cards)
+    return { cards, filters }
 }

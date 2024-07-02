@@ -22,7 +22,7 @@ import { cardsName } from 'src/entities/card'
 import { backgroundsName } from 'src/entities/background/model/backgroundSlice.ts'
 import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
 
-const defaultCards: RootState[typeof cardsName] = {
+export const defaultCards: RootState[typeof cardsName] = {
     items: [],
     isLearningMode: true,
     search: VALUES.EMPTY_STRING,
@@ -37,7 +37,7 @@ const defaultCards: RootState[typeof cardsName] = {
     error: null,
 }
 
-const defaultSettings: RootState[typeof settingsName] = {
+export const defaultSettings: RootState[typeof settingsName] = {
     language: getLanguages()[0],
     languages: getLanguages(),
     showConnectionAlways: false,
@@ -45,7 +45,7 @@ const defaultSettings: RootState[typeof settingsName] = {
     isMarkupEnabled: false,
 }
 
-const defaultBackgrounds: RootState[typeof backgroundsName] = {
+export const defaultBackgrounds: RootState[typeof backgroundsName] = {
     backgroundType: getBackgroundTypes()[4],
     backgroundTypes: getBackgroundTypes(),
     backgroundColor: theme.colors.backgroundDefault,

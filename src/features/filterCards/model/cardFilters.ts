@@ -1,6 +1,7 @@
 import { Filter, FILTERS } from 'src/features/filterCards'
 import { TEXTS } from 'src/shared/const'
 import { Lang } from 'src/shared/types/language.ts'
+import { CardType } from 'src/entities/card'
 
 export class CardFilters {
     #filters: Set<string>
@@ -17,13 +18,23 @@ export class CardFilters {
         this.#filters.add(filter)
     }
 
-    getFilters(lang: Lang): Filter[] {
+    getFilters(lang: Lang, cards: CardType[]): Filter[] {
         return [...this.#filters].map(filter => {
             let label = filter
-            if (filter === FILTERS.ALL) label = TEXTS[lang].ALL
-            if (filter === FILTERS.UNCATEGORIZED) label = TEXTS[lang].UNCATEGORIZED
+            const value = filter.toLowerCase()
 
-            return { label, value: filter.toLowerCase() }
+            switch (filter) {
+                case FILTERS.ALL:
+                    label = `${TEXTS[lang].ALL} (${cards.length})`
+                    break
+                case FILTERS.UNCATEGORIZED:
+                    label = `${TEXTS[lang].UNCATEGORIZED} (${cards.filter(({ tags }) => !tags).length})`
+                    break
+                default:
+                    label = `${label} (${cards.filter(({ tags }) => tags?.toLowerCase().includes(value)).length})`
+            }
+
+            return { label, value }
         })
     }
 
