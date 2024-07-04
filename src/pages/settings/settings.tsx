@@ -148,6 +148,7 @@ export const Settings = () => {
                         align={VALUES.STRETCH}
                         name={TEXTS[lang].RESTORE_DEFAULT_SETTINGS}
                         onClick={onRestoreDefaultSettings}
+                        isWarning
                     />
                     <ButtonsContainer>
                         <Button
@@ -159,7 +160,6 @@ export const Settings = () => {
                             align={VALUES.STRETCH}
                             name={TEXTS[lang].CLEAR_LOCAL_STORAGE}
                             onClick={clearLocalStorage}
-                            isWarning
                         />
                     </ButtonsContainer>
                 </Setting>
