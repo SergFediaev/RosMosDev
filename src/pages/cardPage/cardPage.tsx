@@ -13,14 +13,14 @@ import { Spoiler } from 'src/widgets/spoiler/spoiler.tsx'
 import { CardInfo } from 'src/widgets/cardInfo/cardInfo.tsx'
 import { CardTags } from 'src/widgets/cardTags/cardTags.tsx'
 import { FilteredCardsNav } from 'src/widgets/filteredCardsNav/filteredCardsNav.tsx'
-import { TEXTS, VALUES } from 'src/shared/const'
+import { KEYS, TEXTS } from 'src/shared/const'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { selectCardById } from 'src/entities/card'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
 export const CardPage = () => {
     const lang = useAppSelector(selectLang)
-    const params = useParams<{ [VALUES.CARD_ID]: string }>()
+    const params = useParams<{ [KEYS.ID]: string }>()
     const card = useAppSelector(selectCardById(params.id))
 
     // ToDo: Custom card not found page.
