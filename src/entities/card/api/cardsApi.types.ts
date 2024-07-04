@@ -7,7 +7,7 @@ export type Spreadsheet = {
 
 type Sheet = {
     properties: Properties
-    data: [{ rowData: RowData[] }]
+    data: Data[]
 }
 
 type Properties = {
@@ -24,6 +24,12 @@ type GridProperties = {
     frozenRowCount: number
 }
 
+type Data = { rowData: RowData[] }
+
 type RowData = {
-    values: [{ formattedValue: string }]
+    values?: Partial<Value>[]
+}
+
+type Value = {
+    formattedValue: string
 }
