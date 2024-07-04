@@ -28,7 +28,7 @@ import {
     setBackgroundType,
     setBackgroundVideo,
     setBackgroundWallpaper,
-    toggleHasBackgroundOverlay,
+    setHasBackgroundOverlay,
 } from 'src/entities/background/model/backgroundSlice.ts'
 import { BACKGROUND_TYPES } from 'src/widgets/background/const/backgroundTypes.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
@@ -66,7 +66,8 @@ export const BackgroundSettings = () => {
         dispatch(setBackgroundWallpaper({ backgroundWallpaper }))
     const onFetchRandomWallpaper = () => dispatch(fetchRandomWallpaper(lang))
     const onSetBackgroundVideo = (backgroundVideo: BackgroundVideo) => dispatch(setBackgroundVideo({ backgroundVideo }))
-    const onToggleHasBackgroundOverlay = () => dispatch(toggleHasBackgroundOverlay())
+    const toggleHasBackgroundOverlay = () =>
+        dispatch(setHasBackgroundOverlay({ hasBackgroundOverlay: !hasBackgroundOverlay }))
 
     return (
         <Setting name={TEXTS[lang].BACKGROUND}>
@@ -120,7 +121,7 @@ export const BackgroundSettings = () => {
             )}
             {isBackgroundOverlayAvailable && (
                 <DescriptionOption description={TEXTS[lang].OVERLAY}>
-                    <Checkbox value={hasBackgroundOverlay} onChange={onToggleHasBackgroundOverlay} />
+                    <Checkbox value={hasBackgroundOverlay} onChange={toggleHasBackgroundOverlay} />
                 </DescriptionOption>
             )}
         </Setting>

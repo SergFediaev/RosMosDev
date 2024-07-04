@@ -1,14 +1,16 @@
 import { cardsApi, CardsWithFilters, CardType, getCardsFromSpreadsheet } from 'src/entities/card'
 import { getSorts, Sort } from 'src/features/sortCards'
-import { cardFilters, Filter, FILTERS } from 'src/features/filterCards'
+import { cardFilters, Filter, FILTERS, getFilters } from 'src/features/filterCards'
 import { Nullable } from 'src/shared/types/nullable.ts'
 import { asyncThunkCreator, buildCreateSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 import { Lang } from 'src/shared/types/language.ts'
 import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
 import { restoreDefaultSettings, setLanguage } from 'src/entities/setting/model/settingSlice.ts'
-import { defaultCards } from 'src/app'
 import { isObjectsShallowEqual } from 'src/shared/lib/isObjectsShallowEqual.ts'
+import { KEYS, VALUES } from 'src/shared/const'
+import { getFromSessionStorage } from 'src/shared/lib/sessionStorage.ts'
+import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
 
 type InitialState = {
     items: CardType[]
@@ -25,13 +27,28 @@ type InitialState = {
     error: Nullable<string>
 }
 
+const initialState: InitialState = {
+    items: getFromSessionStorage(KEYS.CARDS, []),
+    isLearningMode: getFromSessionStorage(KEYS.IS_LEARNING_MODE, true),
+    search: getFromSessionStorage(KEYS.SEARCH, VALUES.EMPTY_STRING),
+    sort: getFromSessionStorage(KEYS.SORT, getSorts()[0]),
+    sorts: getFromLocalStorage(KEYS.SORTS, getSorts()),
+    filter: getFromSessionStorage(KEYS.FILTER, getFilters()[0]),
+    filters: getFromSessionStorage(KEYS.FILTERS, getFilters()),
+    showTags: getFromLocalStorage(KEYS.SHOW_TAGS, true),
+    showId: getFromLocalStorage(KEYS.SHOW_ID, false),
+    showDate: getFromLocalStorage(KEYS.SHOW_DATE, true),
+    isLoading: false,
+    error: null,
+}
+
 const createSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })
 
 const cardsSlice = createSlice({
-    name: 'cards',
-    initialState: {} as InitialState,
+    name: KEYS.CARDS,
+    initialState,
     selectors: {
         selectCards: state => state.items,
         selectIsLearningMode: state => state.isLearningMode,
@@ -48,8 +65,8 @@ const cardsSlice = createSlice({
         selectCardsError: state => state.error,
     },
     reducers: create => ({
-        toggleIsLearningMode: create.reducer(state => {
-            state.isLearningMode = !state.isLearningMode
+        setIsLearningMode: create.reducer((state, action: PayloadAction<{ isLearningMode: boolean }>) => {
+            state.isLearningMode = action.payload.isLearningMode
         }),
         setCardsSearch: create.reducer((state, action: PayloadAction<{ search: string }>) => {
             state.search = action.payload.search
@@ -60,14 +77,14 @@ const cardsSlice = createSlice({
         setCardsFilter: create.reducer((state, action: PayloadAction<{ filter: Filter }>) => {
             state.filter = action.payload.filter
         }),
-        toggleShowTags: create.reducer(state => {
-            state.showTags = !state.showTags
+        setShowTags: create.reducer((state, action: PayloadAction<{ showTags: boolean }>) => {
+            state.showTags = action.payload.showTags
         }),
-        toggleShowId: create.reducer(state => {
-            state.showId = !state.showId
+        setShowId: create.reducer((state, action: PayloadAction<{ showId: boolean }>) => {
+            state.showId = action.payload.showId
         }),
-        toggleShowDate: create.reducer(state => {
-            state.showDate = !state.showDate
+        setShowDate: create.reducer((state, action: PayloadAction<{ showDate: boolean }>) => {
+            state.showDate = action.payload.showDate
         }),
         fetchCards: create.asyncThunk<CardsWithFilters>(
             async (_, { getState, rejectWithValue }) => {
@@ -119,7 +136,7 @@ const cardsSlice = createSlice({
                 state.filters = filters
                 if (filter) state.filter = filter
             })
-            .addCase(restoreDefaultSettings, (): InitialState => defaultCards),
+            .addCase(restoreDefaultSettings, () => initialState),
 })
 
 export const cardsName = cardsSlice.name
@@ -127,13 +144,13 @@ export const cardsName = cardsSlice.name
 export const cardsReducer = cardsSlice.reducer
 
 export const {
-    toggleIsLearningMode,
+    setIsLearningMode,
     setCardsSearch,
     setCardsSort,
     setCardsFilter,
-    toggleShowTags,
-    toggleShowId,
-    toggleShowDate,
+    setShowTags,
+    setShowId,
+    setShowDate,
     fetchCards,
 } = cardsSlice.actions
 

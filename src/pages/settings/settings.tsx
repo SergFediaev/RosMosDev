@@ -9,9 +9,9 @@ import {
     selectLanguages,
     selectShowConnectionAlways,
     setIsDebugEnabled,
+    setIsMarkupEnabled,
     setLanguage,
-    toggleIsMarkupEnabled,
-    toggleShowConnectionAlways,
+    setShowConnectionAlways,
 } from 'src/entities/setting/model/settingSlice.ts'
 import { LINKS, SYMBOLS, TEXTS, VALUES } from 'src/shared/const'
 import { nanoid } from '@reduxjs/toolkit'
@@ -29,9 +29,9 @@ import {
     selectShowCardDate,
     selectShowCardId,
     selectShowCardTags,
-    toggleShowDate,
-    toggleShowId,
-    toggleShowTags,
+    setShowDate,
+    setShowId,
+    setShowTags,
 } from 'src/entities/card'
 import { Header } from 'src/widgets/header/header.tsx'
 import { OpenCardsIconButton } from 'src/widgets/openCardsIconButton/openCardsIconButton.tsx'
@@ -60,12 +60,13 @@ export const Settings = () => {
 
     const onSetLanguage = (language: Language) => dispatch(setLanguage({ language }))
     // ToDo: Card tags, filters, categories.
-    const onToggleShowCardTags = () => dispatch(toggleShowTags())
-    const onToggleShowCardId = () => dispatch(toggleShowId())
-    const onToggleShowCardDate = () => dispatch(toggleShowDate())
-    const onToggleShowConnectionAlways = () => dispatch(toggleShowConnectionAlways())
-    const onSetIsDebugEnabled = (isDebugEnabled: boolean) => dispatch(setIsDebugEnabled({ isDebugEnabled }))
-    const onToggleIsMarkupEnabled = () => dispatch(toggleIsMarkupEnabled())
+    const toggleShowCardTags = () => dispatch(setShowTags({ showTags: !showCardTags }))
+    const toggleShowCardId = () => dispatch(setShowId({ showId: !showCardId }))
+    const toggleShowCardDate = () => dispatch(setShowDate({ showDate: !showCardDate }))
+    const toggleShowConnectionAlways = () =>
+        dispatch(setShowConnectionAlways({ showConnectionAlways: !showConnectionAlways }))
+    const toggleIsDebugEnabled = () => dispatch(setIsDebugEnabled({ isDebugEnabled: !isDebugEnabled }))
+    const toggleIsMarkupEnabled = () => dispatch(setIsMarkupEnabled({ isMarkupEnabled: !isMarkupEnabled }))
     const onRestoreDefaultSettings = () => dispatch(restoreDefaultSettings())
 
     const onDebugError = () => setIsDebugError(true)
@@ -90,16 +91,16 @@ export const Settings = () => {
                         <Select options={languages} selectedOption={language.label} onSelect={onSetLanguage} />
                     </DescriptionOption>
                     <DescriptionOption description={TEXTS[lang].SHOW_CONNECTION_ALWAYS}>
-                        <Checkbox value={showConnectionAlways} onChange={onToggleShowConnectionAlways} />
+                        <Checkbox value={showConnectionAlways} onChange={toggleShowConnectionAlways} />
                     </DescriptionOption>
                     <DescriptionOption description={TEXTS[lang].DEBUG_MODE}>
-                        <Checkbox value={isDebugEnabled} onChange={onSetIsDebugEnabled} />
+                        <Checkbox value={isDebugEnabled} onChange={toggleIsDebugEnabled} />
                     </DescriptionOption>
                 </Setting>
                 {isDebugEnabled && (
                     <Setting name={TEXTS[lang].DEBUG}>
                         <DescriptionOption description={TEXTS[lang].DISPLAY_MARKUP}>
-                            <Checkbox value={isMarkupEnabled} onChange={onToggleIsMarkupEnabled} />
+                            <Checkbox value={isMarkupEnabled} onChange={toggleIsMarkupEnabled} />
                         </DescriptionOption>
                         <ButtonsContainer>
                             <Button align={VALUES.STRETCH} name={debugWarningButtonName} onClick={toggleDebugWarning} />
@@ -115,13 +116,13 @@ export const Settings = () => {
                 )}
                 <Setting name={TEXTS[lang].CARDS}>
                     <DescriptionOption description={TEXTS[lang].SHOW_CARD_CATEGORIES}>
-                        <Checkbox value={showCardTags} onChange={onToggleShowCardTags} />
+                        <Checkbox value={showCardTags} onChange={toggleShowCardTags} />
                     </DescriptionOption>
                     <DescriptionOption description={TEXTS[lang].SHOW_CARD_ID}>
-                        <Checkbox value={showCardId} onChange={onToggleShowCardId} />
+                        <Checkbox value={showCardId} onChange={toggleShowCardId} />
                     </DescriptionOption>
                     <DescriptionOption description={TEXTS[lang].SHOW_CARD_DATE}>
-                        <Checkbox value={showCardDate} onChange={onToggleShowCardDate} />
+                        <Checkbox value={showCardDate} onChange={toggleShowCardDate} />
                     </DescriptionOption>
                 </Setting>
                 <BackgroundSettings />

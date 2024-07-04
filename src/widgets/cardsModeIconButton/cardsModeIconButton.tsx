@@ -1,6 +1,6 @@
 import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { EMOJIS, TITLES, VALUES } from 'src/shared/const'
-import { selectIsLearningMode, toggleIsLearningMode } from 'src/entities/card'
+import { selectIsLearningMode, setIsLearningMode } from 'src/entities/card'
 import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 
@@ -10,12 +10,12 @@ export const CardsModeIconButton = () => {
     const isLearningMode = useAppSelector(selectIsLearningMode)
     const cardsModeIcon = isLearningMode ? EMOJIS.TRAINING : EMOJIS.LEARNING
     const cardsModeTitle = isLearningMode ? TITLES[lang].ENABLE_TRAINING_MODE : TITLES[lang].ENABLE_LEARNING_MODE
-    const onToggleIsLearningMode = () => dispatch(toggleIsLearningMode())
+    const toggleIsLearningMode = () => dispatch(setIsLearningMode({ isLearningMode: !isLearningMode }))
 
     return (
         <IconButton
             icon={cardsModeIcon}
-            onClick={onToggleIsLearningMode}
+            onClick={toggleIsLearningMode}
             title={cardsModeTitle}
             iconSize={VALUES.BIG_SIZE}
         />

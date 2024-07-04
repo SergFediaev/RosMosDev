@@ -1,4 +1,4 @@
-import { EVENTS, KEYS, PATHS, SYMBOLS, TEXTS, TIMINGS, VALUES } from 'src/shared/const'
+import { BUTTONS, EVENTS, PATHS, SYMBOLS, TEXTS, TIMINGS, VALUES } from 'src/shared/const'
 import { useNavigate, useRouteError } from 'react-router-dom'
 import { handleRouteError } from 'src/shared/lib/handleRouteError.ts'
 import { useCallback, useEffect, useState } from 'react'
@@ -41,8 +41,8 @@ export const useErrorPage = () => {
         }
 
         const onKeyDown = ({ key }: KeyboardEvent) => {
-            if (key === KEYS.ENTER) onRestart()
-            if (key === KEYS.ESCAPE) onWaiting()
+            if (key === BUTTONS.ENTER) onRestart()
+            if (key === BUTTONS.ESCAPE) onWaiting()
         }
 
         addEventListener(EVENTS.KEY_DOWN, onKeyDown)

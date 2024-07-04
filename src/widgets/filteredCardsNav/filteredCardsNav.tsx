@@ -1,6 +1,6 @@
 import { S } from './filteredCardsNav.styles.ts'
 import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
-import { EMOJIS, EVENTS, KEYS, PATHS, SYMBOLS, TITLES, VALUES } from 'src/shared/const'
+import { BUTTONS, EMOJIS, EVENTS, PATHS, SYMBOLS, TITLES, VALUES } from 'src/shared/const'
 import { useNavigate } from 'react-router-dom'
 import { useCallback, useEffect } from 'react'
 import { useAppSelector } from 'src/app/store/store.ts'
@@ -57,11 +57,11 @@ export const FilteredCardsNav = ({ id, lang }: Props) => {
             event.preventDefault()
 
             switch (event.key) {
-                case KEYS.ARROW_LEFT:
+                case BUTTONS.ARROW_LEFT:
                     return prevCard()
-                case KEYS.ARROW_RIGHT:
+                case BUTTONS.ARROW_RIGHT:
                     return nextCard()
-                case KEYS.R: {
+                case BUTTONS.R: {
                     if (isCardsRandomAvailable) return randomCard()
                 }
             }

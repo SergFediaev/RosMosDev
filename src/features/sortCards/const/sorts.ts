@@ -1,7 +1,7 @@
-import { VALUES } from 'src/shared/const'
+import { KEYS } from 'src/shared/const'
 
 export const SORTS = {
-    ALPHABET: VALUES.CARD_TITLE,
+    ALPHABET: KEYS.TITLE,
     ASCENDING: 1,
     DESCENDING: -1,
 } as const

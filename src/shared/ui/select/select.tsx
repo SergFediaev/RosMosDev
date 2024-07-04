@@ -1,6 +1,6 @@
 import { S } from './select.styles.ts'
 import { KeyboardEvent, MouseEvent, useState } from 'react'
-import { KEYS, SYMBOLS } from 'src/shared/const'
+import { BUTTONS, SYMBOLS } from 'src/shared/const'
 import { Icon } from 'src/shared/ui/icon/icon.tsx'
 
 type Props<T> = {
@@ -43,14 +43,14 @@ export const Select = <T,>({ options, isSelectionEndless = true, title, ...props
     const onKeyDownSelect = (event: KeyboardEvent) => {
         event.preventDefault()
 
-        if (event.key === KEYS.ESCAPE) {
+        if (event.key === BUTTONS.ESCAPE) {
             closeSelect()
             return
         }
 
         const selectedOptionIndex = options.findIndex(option => option.label === selectedOption)
 
-        if (event.key === KEYS.ENTER) {
+        if (event.key === BUTTONS.ENTER) {
             if (isSelectOpened) {
                 if (props.selectedOption !== selectedOption) props.onSelect(options[selectedOptionIndex])
                 closeSelect()
@@ -61,7 +61,7 @@ export const Select = <T,>({ options, isSelectionEndless = true, title, ...props
 
         let stepIndex = selectedOptionIndex
 
-        if (event.key === KEYS.ARROW_UP) {
+        if (event.key === BUTTONS.ARROW_UP) {
             stepIndex -= 1
 
             if (stepIndex < 0) {
@@ -70,7 +70,7 @@ export const Select = <T,>({ options, isSelectionEndless = true, title, ...props
             }
         }
 
-        if (event.key === KEYS.ARROW_DOWN) {
+        if (event.key === BUTTONS.ARROW_DOWN) {
             stepIndex += 1
 
             if (stepIndex > options.length - 1) {

@@ -1,7 +1,8 @@
 import { Language } from 'src/shared/types/language.ts'
 import { getLanguages } from 'src/entities/setting/lib/getLanguages.ts'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { defaultSettings } from 'src/app'
+import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
+import { KEYS } from 'src/shared/const'
 
 type InitialState = {
     language: Language
@@ -11,9 +12,17 @@ type InitialState = {
     isMarkupEnabled: boolean
 }
 
+const initialState: InitialState = {
+    language: getFromLocalStorage(KEYS.LANGUAGE, getLanguages()[0]),
+    languages: getFromLocalStorage(KEYS.LANGUAGES, getLanguages()),
+    showConnectionAlways: getFromLocalStorage(KEYS.SHOW_CONNECTION_ALWAYS, false),
+    isDebugEnabled: getFromLocalStorage(KEYS.IS_DEBUG_ENABLED, false),
+    isMarkupEnabled: getFromLocalStorage(KEYS.IS_MARKUP_ENABLED, false),
+}
+
 const settingsSlice = createSlice({
     name: 'settings',
-    initialState: {} as InitialState,
+    initialState,
     selectors: {
         selectLang: state => state.language.value,
         selectLanguage: state => state.language,
@@ -30,8 +39,8 @@ const settingsSlice = createSlice({
             state.languages = languages
             if (language) state.language = language
         }),
-        toggleShowConnectionAlways: create.reducer(state => {
-            state.showConnectionAlways = !state.showConnectionAlways
+        setShowConnectionAlways: create.reducer((state, action: PayloadAction<{ showConnectionAlways: boolean }>) => {
+            state.showConnectionAlways = action.payload.showConnectionAlways
         }),
         setIsDebugEnabled: create.reducer(
             (
@@ -44,10 +53,10 @@ const settingsSlice = createSlice({
                 if (!action.payload.isDebugEnabled) state.isMarkupEnabled = false
             },
         ),
-        toggleIsMarkupEnabled: create.reducer(state => {
-            state.isMarkupEnabled = !state.isMarkupEnabled
+        setIsMarkupEnabled: create.reducer((state, action: PayloadAction<{ isMarkupEnabled: boolean }>) => {
+            state.isMarkupEnabled = action.payload.isMarkupEnabled
         }),
-        restoreDefaultSettings: create.reducer((): InitialState => defaultSettings),
+        restoreDefaultSettings: create.reducer(() => initialState),
     }),
 })
 
@@ -55,13 +64,8 @@ export const settingsName = settingsSlice.name
 
 export const settingsReducer = settingsSlice.reducer
 
-export const {
-    setLanguage,
-    toggleShowConnectionAlways,
-    setIsDebugEnabled,
-    toggleIsMarkupEnabled,
-    restoreDefaultSettings,
-} = settingsSlice.actions
+export const { setLanguage, setShowConnectionAlways, setIsDebugEnabled, setIsMarkupEnabled, restoreDefaultSettings } =
+    settingsSlice.actions
 
 export const {
     selectLang,

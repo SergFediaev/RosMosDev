@@ -8,11 +8,15 @@ import { randomWallpaperApi } from 'src/widgets/backgroundRandomWallpaper/api/ra
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
 import { restoreDefaultSettings, setLanguage } from 'src/entities/setting/model/settingSlice.ts'
-import { defaultBackgrounds } from 'src/app'
 import { getBackgroundTypes } from 'src/widgets/background/lib/getBackgroundTypes.ts'
 import { getBackgroundWallpapers } from 'src/widgets/backgroundWallpaper/lib/getBackgroundWallpapers.ts'
 import { getBackgroundVideos } from 'src/widgets/backgroundVideo/lib/getBackgroundVideos.ts'
 import { isObjectsShallowEqual } from 'src/shared/lib/isObjectsShallowEqual.ts'
+import { theme } from 'src/app/styles/theme.ts'
+import { randomGradient } from 'src/widgets/backgroundRandomGradient/lib/randomGradient.ts'
+import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
+import { blobToBase64 } from 'src/shared/lib/blobToBase64.ts'
+import { KEYS } from 'src/shared/const'
 
 type InitialState = {
     backgroundType: BackgroundType
@@ -29,13 +33,28 @@ type InitialState = {
     error: Nullable<string>
 }
 
+const initialState: InitialState = {
+    backgroundType: getFromLocalStorage(KEYS.BACKGROUND_TYPE, getBackgroundTypes()[4]),
+    backgroundTypes: getFromLocalStorage(KEYS.BACKGROUND_TYPES, getBackgroundTypes()),
+    backgroundColor: getFromLocalStorage(KEYS.BACKGROUND_COLOR, theme.colors.backgroundDefault),
+    backgroundRandomGradient: getFromLocalStorage(KEYS.BACKGROUND_RANDOM_GRADIENT, randomGradient()),
+    backgroundWallpaper: getFromLocalStorage(KEYS.BACKGROUND_WALLPAPER, getBackgroundWallpapers()[0]),
+    backgroundWallpapers: getFromLocalStorage(KEYS.BACKGROUND_WALLPAPERS, getBackgroundWallpapers()),
+    backgroundRandomWallpaper: getFromLocalStorage(KEYS.BACKGROUND_RANDOM_WALLPAPER, null),
+    backgroundVideo: getFromLocalStorage(KEYS.BACKGROUND_VIDEO, getBackgroundVideos()[0]),
+    backgroundVideos: getFromLocalStorage(KEYS.BACKGROUND_VIDEOS, getBackgroundVideos()),
+    hasBackgroundOverlay: getFromLocalStorage(KEYS.HAS_BACKGROUND_OVERLAY, false),
+    isLoading: false,
+    error: null,
+}
+
 const createSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })
 
 const backgroundsSlice = createSlice({
     name: 'backgrounds',
-    initialState: {} as InitialState,
+    initialState,
     selectors: {
         selectBackgroundType: state => state.backgroundType,
         selectBackgroundTypes: state => state.backgroundTypes,
@@ -90,14 +109,14 @@ const backgroundsSlice = createSlice({
         setBackgroundVideo: create.reducer((state, action: PayloadAction<{ backgroundVideo: BackgroundVideo }>) => {
             state.backgroundVideo = action.payload.backgroundVideo
         }),
-        toggleHasBackgroundOverlay: create.reducer(state => {
-            state.hasBackgroundOverlay = !state.hasBackgroundOverlay
+        setHasBackgroundOverlay: create.reducer((state, action: PayloadAction<{ hasBackgroundOverlay: boolean }>) => {
+            state.hasBackgroundOverlay = action.payload.hasBackgroundOverlay
         }),
         fetchRandomWallpaper: create.asyncThunk<string, Lang>(
             async (lang, { rejectWithValue }) => {
                 try {
                     const response = await randomWallpaperApi.getRandomWallpaper()
-                    return URL.createObjectURL(response.data)
+                    return blobToBase64(response.data)
                 } catch (error) {
                     return rejectWithValue({ error: handleNetworkError(error, lang) })
                 }
@@ -143,7 +162,7 @@ const backgroundsSlice = createSlice({
                 state.backgroundVideos = backgroundVideos
                 if (backgroundVideo) state.backgroundVideo = backgroundVideo
             })
-            .addCase(restoreDefaultSettings, (): InitialState => defaultBackgrounds),
+            .addCase(restoreDefaultSettings, () => initialState),
 })
 
 export const backgroundsName = backgroundsSlice.name
@@ -156,7 +175,7 @@ export const {
     setBackgroundRandomGradient,
     setBackgroundWallpaper,
     setBackgroundVideo,
-    toggleHasBackgroundOverlay,
+    setHasBackgroundOverlay,
     fetchRandomWallpaper,
 } = backgroundsSlice.actions
 
