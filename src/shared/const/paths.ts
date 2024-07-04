@@ -1,10 +1,10 @@
-import { VALUES } from 'src/shared/const/values.ts'
+import { KEYS } from 'src/shared/const/keys.ts'
 
 export const PATHS = {
     ROOT: '/',
     BACK: -1,
     ERROR: '/error',
-    ID: `:${VALUES.CARD_ID}`,
+    ID: `:${KEYS.ID}`,
     CARD: '/card/',
     SETTINGS: '/settings',
 } as const
