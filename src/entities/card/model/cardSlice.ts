@@ -31,7 +31,7 @@ const initialState: InitialState = {
     items: getFromSessionStorage(KEYS.CARDS, []),
     isLearningMode: getFromSessionStorage(KEYS.IS_LEARNING_MODE, true),
     search: getFromSessionStorage(KEYS.SEARCH, VALUES.EMPTY_STRING),
-    sort: getFromSessionStorage(KEYS.SORT, getSorts()[0]),
+    sort: getFromLocalStorage(KEYS.SORT, getSorts()[0]),
     sorts: getFromLocalStorage(KEYS.SORTS, getSorts()),
     filter: getFromSessionStorage(KEYS.FILTER, getFilters()[0]),
     filters: getFromSessionStorage(KEYS.FILTERS, getFilters()),

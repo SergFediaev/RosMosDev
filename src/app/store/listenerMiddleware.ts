@@ -85,7 +85,7 @@ startAppListening({
         setToLocalStorage(KEYS.LANGUAGE, getState().settings.language)
         setToLocalStorage(KEYS.LANGUAGES, getState().settings.languages)
 
-        setToSessionStorage(KEYS.SORT, getState().cards.sort)
+        setToLocalStorage(KEYS.SORT, getState().cards.sort)
         setToLocalStorage(KEYS.SORTS, getState().cards.sorts)
 
         setToSessionStorage(KEYS.FILTER, getState().cards.filter)
