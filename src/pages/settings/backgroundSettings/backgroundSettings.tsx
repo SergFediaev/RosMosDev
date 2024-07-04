@@ -7,7 +7,7 @@ import { Button } from 'src/shared/ui/button/button.tsx'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { Checkbox } from 'src/shared/ui/checkbox/checkbox.tsx'
 import { BackgroundType } from 'src/widgets/background/types/backgroundType.types.ts'
-import { randomGradient } from 'src/widgets/backgroundRandomGradient/lib/randomGradient.ts'
+import { getRandomGradient } from 'src/widgets/backgroundRandomGradient/lib/getRandomGradient.ts'
 import { BackgroundWallpaper } from 'src/widgets/backgroundWallpaper/model/backgroundWallpaper.types.ts'
 import { BackgroundVideo } from 'src/widgets/backgroundVideo/types/backgroundVideo.types.ts'
 import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
@@ -61,7 +61,7 @@ export const BackgroundSettings = () => {
     const onSetBackgroundType = (backgroundType: BackgroundType) => dispatch(setBackgroundType({ backgroundType }))
     const onSetBackgroundColor = (backgroundColor: string) => dispatch(setBackgroundColor({ backgroundColor }))
     const onSetBackgroundRandomGradient = () =>
-        dispatch(setBackgroundRandomGradient({ backgroundRandomGradient: randomGradient() }))
+        dispatch(setBackgroundRandomGradient({ backgroundRandomGradient: getRandomGradient() }))
     const onSetBackgroundWallpaper = (backgroundWallpaper: BackgroundWallpaper) =>
         dispatch(setBackgroundWallpaper({ backgroundWallpaper }))
     const onFetchRandomWallpaper = () => dispatch(fetchRandomWallpaper(lang))

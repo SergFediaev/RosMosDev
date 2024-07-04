@@ -13,7 +13,7 @@ import { getBackgroundWallpapers } from 'src/widgets/backgroundWallpaper/lib/get
 import { getBackgroundVideos } from 'src/widgets/backgroundVideo/lib/getBackgroundVideos.ts'
 import { isObjectsShallowEqual } from 'src/shared/lib/isObjectsShallowEqual.ts'
 import { theme } from 'src/app/styles/theme.ts'
-import { randomGradient } from 'src/widgets/backgroundRandomGradient/lib/randomGradient.ts'
+import { getRandomGradient } from 'src/widgets/backgroundRandomGradient/lib/getRandomGradient.ts'
 import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { blobToBase64 } from 'src/shared/lib/blobToBase64.ts'
 import { KEYS } from 'src/shared/const'
@@ -37,7 +37,7 @@ const initialState: InitialState = {
     backgroundType: getFromLocalStorage(KEYS.BACKGROUND_TYPE, getBackgroundTypes()[4]),
     backgroundTypes: getFromLocalStorage(KEYS.BACKGROUND_TYPES, getBackgroundTypes()),
     backgroundColor: getFromLocalStorage(KEYS.BACKGROUND_COLOR, theme.colors.backgroundDefault),
-    backgroundRandomGradient: getFromLocalStorage(KEYS.BACKGROUND_RANDOM_GRADIENT, randomGradient()),
+    backgroundRandomGradient: getFromLocalStorage(KEYS.BACKGROUND_RANDOM_GRADIENT, getRandomGradient()),
     backgroundWallpaper: getFromLocalStorage(KEYS.BACKGROUND_WALLPAPER, getBackgroundWallpapers()[0]),
     backgroundWallpapers: getFromLocalStorage(KEYS.BACKGROUND_WALLPAPERS, getBackgroundWallpapers()),
     backgroundRandomWallpaper: getFromLocalStorage(KEYS.BACKGROUND_RANDOM_WALLPAPER, null),

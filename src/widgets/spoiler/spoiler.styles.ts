@@ -1,12 +1,11 @@
 import styled, { css } from 'styled-components'
-import { randomGradient } from 'src/widgets/backgroundRandomGradient/lib/randomGradient.ts'
 import { rotateHue } from 'src/shared/ui/animations/rotateHue.ts'
 import { TIMINGS } from 'src/shared/const'
 import { theme } from 'src/app/styles/theme.ts'
 
 // ToDo: Duplicated animation.
-const Front = styled.div`
-    background: ${randomGradient()};
+const Front = styled.div<{ randomGradient: string }>`
+    background: ${({ randomGradient }) => randomGradient};
     animation: ${rotateHue} ${TIMINGS.ROTATE_ANIMATION}s alternate linear infinite;
 
     &:hover {
