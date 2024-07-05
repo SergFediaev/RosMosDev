@@ -39,8 +39,9 @@ export const addAppListener = addListener.withTypes<RootState, AppDispatch>()
 startAppListening({
     actionCreator: fetchCards.fulfilled,
     effect: (_, { getState }) => {
-        setToSessionStorage(KEYS.CARDS, getState().cards.items)
-        setToSessionStorage(KEYS.FILTERS, getState().cards.filters)
+        const cards = getState().cards
+        setToSessionStorage(KEYS.CARDS, cards.items)
+        setToSessionStorage(KEYS.FILTERS, cards.filters)
     },
 })
 
@@ -56,7 +57,7 @@ startAppListening({
 
 startAppListening({
     actionCreator: setCardsSort,
-    effect: ({ payload: { sort } }) => setToSessionStorage(KEYS.SORT, sort),
+    effect: ({ payload: { sort } }) => setToLocalStorage(KEYS.SORT, sort),
 })
 
 startAppListening({
@@ -82,23 +83,25 @@ startAppListening({
 startAppListening({
     actionCreator: setLanguage,
     effect: (_, { getState }) => {
-        setToLocalStorage(KEYS.LANGUAGE, getState().settings.language)
-        setToLocalStorage(KEYS.LANGUAGES, getState().settings.languages)
+        const state = getState()
 
-        setToLocalStorage(KEYS.SORT, getState().cards.sort)
-        setToLocalStorage(KEYS.SORTS, getState().cards.sorts)
+        setToLocalStorage(KEYS.LANGUAGE, state.settings.language)
+        setToLocalStorage(KEYS.LANGUAGES, state.settings.languages)
 
-        setToSessionStorage(KEYS.FILTER, getState().cards.filter)
-        setToSessionStorage(KEYS.FILTERS, getState().cards.filters)
+        setToLocalStorage(KEYS.SORT, state.cards.sort)
+        setToLocalStorage(KEYS.SORTS, state.cards.sorts)
 
-        setToLocalStorage(KEYS.BACKGROUND_TYPE, getState().backgrounds.backgroundType)
-        setToLocalStorage(KEYS.BACKGROUND_TYPES, getState().backgrounds.backgroundTypes)
+        setToSessionStorage(KEYS.FILTER, state.cards.filter)
+        setToSessionStorage(KEYS.FILTERS, state.cards.filters)
 
-        setToLocalStorage(KEYS.BACKGROUND_WALLPAPER, getState().backgrounds.backgroundWallpaper)
-        setToLocalStorage(KEYS.BACKGROUND_WALLPAPERS, getState().backgrounds.backgroundWallpapers)
+        setToLocalStorage(KEYS.BACKGROUND_TYPE, state.backgrounds.backgroundType)
+        setToLocalStorage(KEYS.BACKGROUND_TYPES, state.backgrounds.backgroundTypes)
 
-        setToLocalStorage(KEYS.BACKGROUND_VIDEO, getState().backgrounds.backgroundVideo)
-        setToLocalStorage(KEYS.BACKGROUND_VIDEOS, getState().backgrounds.backgroundVideos)
+        setToLocalStorage(KEYS.BACKGROUND_WALLPAPER, state.backgrounds.backgroundWallpaper)
+        setToLocalStorage(KEYS.BACKGROUND_WALLPAPERS, state.backgrounds.backgroundWallpapers)
+
+        setToLocalStorage(KEYS.BACKGROUND_VIDEO, state.backgrounds.backgroundVideo)
+        setToLocalStorage(KEYS.BACKGROUND_VIDEOS, state.backgrounds.backgroundVideos)
     },
 })
 
