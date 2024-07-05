@@ -7,6 +7,7 @@ import { CardPage } from 'src/pages/cardPage/cardPage.tsx'
 import { Settings } from 'src/pages/settings/settings.tsx'
 import { useAppDispatch } from 'src/app/store/store.ts'
 import { fetchCards } from 'src/entities/card'
+import { ProfilePage } from 'src/pages/profilePage/profilePage.tsx'
 
 export const BrowserRouterProvider = () => {
     const dispatch = useAppDispatch()
@@ -31,6 +32,10 @@ export const BrowserRouterProvider = () => {
                         {
                             path: PATHS.SETTINGS,
                             element: <Settings />,
+                        },
+                        {
+                            path: PATHS.PROFILE,
+                            element: <ProfilePage />,
                         },
                     ],
                 },

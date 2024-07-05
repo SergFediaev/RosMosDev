@@ -27,4 +27,5 @@ export const EMOJIS = {
     CLIPBOARD: '📋',
     POSITIVE: '🟢',
     NEGATIVE: '🔴',
+    PROFILE: '🔑',
 } as const

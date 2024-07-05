@@ -39,6 +39,7 @@ import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 import { BackgroundSettings } from 'src/pages/settings/backgroundSettings/backgroundSettings.tsx'
 import { clearLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { clearSessionStorage } from 'src/shared/lib/sessionStorage.ts'
+import { OpenProfileIconButton } from 'src/widgets/openProfileIconButton/openProfileIconButton.tsx'
 
 export const Settings = () => {
     const lang = useAppSelector(selectLang)
@@ -82,6 +83,7 @@ export const Settings = () => {
                     {TEXTS[lang].APP_NAME} {SYMBOLS.SLASH} {TEXTS[lang].SETTINGS}
                 </h1>
                 <NavIcons>
+                    <OpenProfileIconButton />
                     <OpenCardsIconButton />
                 </NavIcons>
             </Header>

@@ -8,6 +8,7 @@ import { CardSortsSelect } from 'src/widgets/cardSortsSelect/cardSortsSelect.tsx
 import { CardsContainer } from 'src/pages/cardsPage/cardsContainer/cardsContainer.tsx'
 import { OpenSettingsIconButton } from 'src/widgets/openSettingsIconButton/openSettingsIconButton.tsx'
 import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
+import { OpenProfileIconButton } from 'src/widgets/openProfileIconButton/openProfileIconButton.tsx'
 
 export const CardsPage = () => (
     <>
@@ -20,6 +21,7 @@ export const CardsPage = () => (
                 <CardsModeIconButton />
             </Toolbar>
             <NavIcons>
+                <OpenProfileIconButton />
                 <OpenSettingsIconButton />
             </NavIcons>
         </Header>
