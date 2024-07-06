@@ -7,7 +7,6 @@ import {
     selectShowCardTags,
 } from 'src/entities/card'
 import { EMOJIS, PATHS, TITLES, VALUES } from 'src/shared/const'
-import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { Palette } from 'src/shared/ui/palette/palette.tsx'
 import { cardHighlights } from 'src/features/highlightCard/model/cardHighlights.ts'
 import { useEffect, useState } from 'react'
@@ -18,6 +17,7 @@ import { theme } from 'src/app/styles/theme.ts'
 import { CardTags } from 'src/widgets/cardTags/cardTags.tsx'
 import { useAppSelector } from 'src/app/store/store.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
+import { IconButton } from 'src/shared/ui/iconButton/iconButton.tsx'
 
 type Props = {
     card: CardType

@@ -1,5 +1,5 @@
 import { S } from './icon.styles.ts'
-import { IconSizes } from 'src/shared/ui/buttonIcon/iconButton.types.ts'
+import { IconSizes } from 'src/shared/ui/iconButton/iconButton.types.ts'
 
 type Props = {
     icon: string

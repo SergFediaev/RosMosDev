@@ -1,11 +1,11 @@
 import { S } from './filteredCardsNav.styles.ts'
-import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { BUTTONS, EMOJIS, EVENTS, PATHS, SYMBOLS, TITLES, VALUES } from 'src/shared/const'
 import { useNavigate } from 'react-router-dom'
 import { useCallback, useEffect } from 'react'
 import { useAppSelector } from 'src/app/store/store.ts'
 import { selectFilteredCardIndexById, selectFilteredCards } from 'src/entities/card'
 import { Lang } from 'src/shared/types/language.ts'
+import { IconButton } from 'src/shared/ui/iconButton/iconButton.tsx'
 
 type Props = {
     id: string

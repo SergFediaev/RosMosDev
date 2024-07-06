@@ -4,11 +4,24 @@ import { TEXTS } from 'src/shared/const'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 import { selectUserPicture } from 'src/features/authorize/model/authorizeSlice.ts'
 
-export const UserPicture = () => {
+type Props = {
+    onClick?: () => void
+    title?: string
+}
+
+export const UserPicture = ({ onClick, title }: Props) => {
     const lang = useAppSelector(selectLang)
     const userPicture = useAppSelector(selectUserPicture)
 
     if (!userPicture) return
 
-    return <S.UserPicture src={userPicture} alt={TEXTS[lang].USER_PICTURE} title={TEXTS[lang].USER_PICTURE} />
+    return (
+        <S.UserPicture
+            src={userPicture}
+            alt={TEXTS[lang].USER_PICTURE}
+            onClick={onClick}
+            title={title}
+            isClickable={!!onClick}
+        />
+    )
 }

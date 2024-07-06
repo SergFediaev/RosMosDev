@@ -1,3 +1,4 @@
+import { S } from './user.styles.ts'
 import { TEXTS } from 'src/shared/const'
 import { UserPicture } from 'src/widgets/userPicture/userPicture.tsx'
 import { Button } from 'src/shared/ui/button/button.tsx'
@@ -20,10 +21,10 @@ export const User = () => {
 
     return (
         <>
-            <h2>
-                {TEXTS[lang].USER}
-                <UserPicture />
-            </h2>
+            <S.TitleWithPicture>
+                <h2>{TEXTS[lang].USER}</h2>
+                <UserPicture title={TEXTS[lang].USER_PICTURE} />
+            </S.TitleWithPicture>
             <p>
                 {TEXTS[lang].IDENTIFIER} {user.sub}
             </p>

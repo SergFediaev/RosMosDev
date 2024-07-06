@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
 import { selectCardsSearch, setCardsSearch } from 'src/entities/card'
 import { EMOJIS, TEXTS, TITLES, TYPES, VALUES } from 'src/shared/const'
 import { ChangeEvent, useRef } from 'react'
-import { IconButton } from 'src/shared/ui/buttonIcon/iconButton.tsx'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
+import { IconButton } from 'src/shared/ui/iconButton/iconButton.tsx'
 
 export const Search = () => {
     const lang = useAppSelector(selectLang)
