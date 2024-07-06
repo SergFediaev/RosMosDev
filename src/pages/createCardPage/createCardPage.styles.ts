@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 
-const Card = styled.main`
+const CreateCard = styled.main`
     width: 100%;
     max-width: ${theme.sizes.viewCardWidth};
     background-color: ${theme.colors.backgroundSecondary};
@@ -13,9 +13,8 @@ const Card = styled.main`
     flex-direction: column;
     gap: ${theme.sizes.bigSpace};
     box-shadow: ${theme.shadows.bottomLeft};
-    perspective: ${theme.perspectives.card};
 `
 
 export const S = {
-    Card,
+    CreateCard,
 }

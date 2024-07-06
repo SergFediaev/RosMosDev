@@ -28,4 +28,5 @@ export const EMOJIS = {
     POSITIVE: '🟢',
     NEGATIVE: '🔴',
     PROFILE: '🔑',
+    CREATE: '📝',
 } as const

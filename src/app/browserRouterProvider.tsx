@@ -8,6 +8,7 @@ import { Settings } from 'src/pages/settings/settings.tsx'
 import { useAppDispatch } from 'src/app/store/store.ts'
 import { fetchCards } from 'src/entities/card'
 import { ProfilePage } from 'src/pages/profilePage/profilePage.tsx'
+import { CreateCardPage } from 'src/pages/createCardPage/createCardPage.tsx'
 
 export const BrowserRouterProvider = () => {
     const dispatch = useAppDispatch()
@@ -28,6 +29,10 @@ export const BrowserRouterProvider = () => {
                         {
                             path: `${PATHS.CARD}${PATHS.ID}`,
                             element: <CardPage />,
+                        },
+                        {
+                            path: `${PATHS.CARD}${PATHS.CREATE}`,
+                            element: <CreateCardPage />,
                         },
                         {
                             path: PATHS.SETTINGS,

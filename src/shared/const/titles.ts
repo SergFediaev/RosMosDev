@@ -29,6 +29,7 @@ export const TITLES = {
         CURRENT_CARD: 'Current card',
         FILTERED_CARDS: 'Filtered cards',
         OPEN_PROFILE: 'Open profile',
+        CREATE_CARD: 'Create card',
     },
     ru: {
         SEARCH: 'Поиск карточек по заголовкам, тегам и контенту',
@@ -60,5 +61,6 @@ export const TITLES = {
         CURRENT_CARD: 'Текущая карточка',
         FILTERED_CARDS: 'Отфильтрованные карточки',
         OPEN_PROFILE: 'Открыть профиль',
+        CREATE_CARD: 'Создать карточку',
     },
 } as const

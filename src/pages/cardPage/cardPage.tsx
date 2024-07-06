@@ -2,7 +2,7 @@ import { S } from 'src/pages/cardPage/cardPage.styles.ts'
 import { useParams } from 'react-router-dom'
 import { useAppSelector } from 'src/app/store/store.ts'
 import { Header } from 'src/widgets/header/header.tsx'
-import { Toolbar } from 'src/pages/dashboard/dashboardHeader/toolbar/toolbar.tsx'
+import { Toolbar } from 'src/widgets/header/toolbar/toolbar.tsx'
 import { LogoAcronym } from 'src/shared/ui/logoAcronym/logoAcronym.tsx'
 import { CardFiltersSelect } from 'src/widgets/cardFiltersSelect/cardFiltersSelect.tsx'
 import { CardsModeIconButton } from 'src/widgets/cardsModeIconButton/cardsModeIconButton.tsx'
@@ -18,6 +18,8 @@ import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { selectCardById } from 'src/entities/card'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 import { OpenProfileIconButton } from 'src/widgets/openProfileIconButton/openProfileIconButton.tsx'
+import { CreateCardIconButton } from 'src/widgets/createCardIconButton/createCardIconButton.tsx'
+import { Page } from 'src/shared/ui/page/page.tsx'
 
 export const CardPage = () => {
     const lang = useAppSelector(selectLang)
@@ -41,17 +43,18 @@ export const CardPage = () => {
                 <NavIcons>
                     <OpenProfileIconButton />
                     <OpenSettingsIconButton />
+                    <CreateCardIconButton />
                     <OpenCardsIconButton />
                 </NavIcons>
             </Header>
-            <S.CardPage>
+            <Page>
                 <S.Card>
                     <h2>{title}</h2>
                     <CardTags lang={lang} tags={tags} />
                     <Spoiler>{content}</Spoiler>
                     <CardInfo id={id} created={created} updated={updated} lang={lang} />
                 </S.Card>
-            </S.CardPage>
+            </Page>
         </>
     )
 }

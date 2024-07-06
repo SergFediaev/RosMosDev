@@ -1,4 +1,4 @@
-import { S } from './toolbar.styles.ts'
+import { S } from 'src/widgets/header/toolbar/toolbar.styles.ts'
 import { ReactNode } from 'react'
 import { Loading } from 'src/shared/ui/loading/loading.tsx'
 import { VALUES } from 'src/shared/const'

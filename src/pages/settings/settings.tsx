@@ -13,7 +13,7 @@ import {
     setLanguage,
     setShowConnectionAlways,
 } from 'src/entities/setting/model/settingSlice.ts'
-import { LINKS, SYMBOLS, TEXTS, VALUES } from 'src/shared/const'
+import { LINKS, TEXTS, VALUES } from 'src/shared/const'
 import { nanoid } from '@reduxjs/toolkit'
 import { Setting } from 'src/widgets/setting/setting.tsx'
 import { DescriptionOption } from 'src/widgets/setting/descriptionOption/descriptionOption.tsx'
@@ -40,6 +40,8 @@ import { BackgroundSettings } from 'src/pages/settings/backgroundSettings/backgr
 import { clearLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { clearSessionStorage } from 'src/shared/lib/sessionStorage.ts'
 import { OpenProfileIconButton } from 'src/widgets/openProfileIconButton/openProfileIconButton.tsx'
+import { CreateCardIconButton } from 'src/widgets/createCardIconButton/createCardIconButton.tsx'
+import { BreadcrumbLogo } from 'src/widgets/header/breadcrumbLogo/breadcrumbLogo.tsx'
 
 export const Settings = () => {
     const lang = useAppSelector(selectLang)
@@ -78,12 +80,10 @@ export const Settings = () => {
     return (
         <>
             <Header>
-                {/* ToDo: Shared component for header h1 */}
-                <h1>
-                    {TEXTS[lang].APP_NAME} {SYMBOLS.SLASH} {TEXTS[lang].SETTINGS}
-                </h1>
+                <BreadcrumbLogo path={TEXTS[lang].SETTINGS} lang={lang} />
                 <NavIcons>
                     <OpenProfileIconButton />
+                    <CreateCardIconButton />
                     <OpenCardsIconButton />
                 </NavIcons>
             </Header>

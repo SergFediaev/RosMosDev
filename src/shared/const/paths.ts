@@ -6,6 +6,7 @@ export const PATHS = {
     ERROR: '/error',
     ID: `:${KEYS.ID}`,
     CARD: '/card/',
+    CREATE: 'create',
     SETTINGS: '/settings',
     PROFILE: '/profile',
 } as const

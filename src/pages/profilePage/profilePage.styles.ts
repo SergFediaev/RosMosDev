@@ -1,12 +1,6 @@
 import styled from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 
-const ProfilePage = styled.div`
-    display: flex;
-    justify-content: center;
-    padding: ${theme.sizes.largeSpace};
-`
-
 const Profile = styled.main`
     width: 100%;
     max-width: ${theme.sizes.viewCardWidth};
@@ -22,6 +16,5 @@ const Profile = styled.main`
 `
 
 export const S = {
-    ProfilePage,
     Profile,
 }

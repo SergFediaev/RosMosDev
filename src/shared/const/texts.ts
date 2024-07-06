@@ -80,6 +80,7 @@ export const TEXTS = {
         NAME: 'Name:',
         MAIL: 'Mail:',
         USER_PICTURE: 'User picture',
+        CREATE_NEW_CARD: 'Create new card',
     },
     [VALUES.RU]: {
         APP_NAME: 'РосМосДев',
@@ -158,5 +159,6 @@ export const TEXTS = {
         NAME: 'Имя:',
         MAIL: 'Почта:',
         USER_PICTURE: 'Пользовательское фото',
+        CREATE_NEW_CARD: 'Создание новой карточки',
     },
 } as const

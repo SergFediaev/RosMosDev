@@ -1,5 +1,5 @@
 import { Header } from 'src/widgets/header/header.tsx'
-import { Toolbar } from 'src/pages/dashboard/dashboardHeader/toolbar/toolbar.tsx'
+import { Toolbar } from 'src/widgets/header/toolbar/toolbar.tsx'
 import { LogoAcronym } from 'src/shared/ui/logoAcronym/logoAcronym.tsx'
 import { Search } from 'src/widgets/search/search.tsx'
 import { CardFiltersSelect } from 'src/widgets/cardFiltersSelect/cardFiltersSelect.tsx'
@@ -9,6 +9,7 @@ import { CardsContainer } from 'src/pages/cardsPage/cardsContainer/cardsContaine
 import { OpenSettingsIconButton } from 'src/widgets/openSettingsIconButton/openSettingsIconButton.tsx'
 import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 import { OpenProfileIconButton } from 'src/widgets/openProfileIconButton/openProfileIconButton.tsx'
+import { CreateCardIconButton } from 'src/widgets/createCardIconButton/createCardIconButton.tsx'
 
 export const CardsPage = () => (
     <>
@@ -22,6 +23,7 @@ export const CardsPage = () => (
             </Toolbar>
             <NavIcons>
                 <OpenProfileIconButton />
+                <CreateCardIconButton />
                 <OpenSettingsIconButton />
             </NavIcons>
         </Header>
