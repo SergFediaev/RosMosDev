@@ -5,11 +5,13 @@ import { settingsName, settingsReducer } from 'src/entities/setting/model/settin
 import { backgroundsName, backgroundsReducer } from 'src/entities/background/model/backgroundSlice.ts'
 import { VALUES } from 'src/shared/const'
 import { listenerMiddleware } from 'src/app/store/listenerMiddleware.ts'
+import { authorizeName, authorizeReducer } from 'src/features/authorize/model/authorizeSlice.ts'
 
 const reducer = combineReducers({
     [cardsName]: cardsReducer,
     [settingsName]: settingsReducer,
     [backgroundsName]: backgroundsReducer,
+    [authorizeName]: authorizeReducer,
 })
 
 export type RootState = ReturnType<typeof reducer>

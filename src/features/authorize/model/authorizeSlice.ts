@@ -1,0 +1,83 @@
+import { asyncThunkCreator, buildCreateSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
+import { Nullable } from 'src/shared/types/nullable.ts'
+import { Lang } from 'src/shared/types/language.ts'
+import { authorizeApi } from 'src/features/authorize/api/authorizeApi.ts'
+import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
+import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
+import { User } from 'src/features/authorize/model/authorize.types.ts'
+
+type InitialState = {
+    isAuthorized: boolean
+    guestId: string
+    user: Nullable<User>
+    isLoading: boolean
+    error: Nullable<string>
+}
+
+const initialState: InitialState = {
+    isAuthorized: false,
+    user: null,
+    guestId: nanoid(),
+    isLoading: false,
+    error: null,
+}
+
+const createSlice = buildCreateSlice({
+    creators: { asyncThunk: asyncThunkCreator },
+})
+
+const authorizeSlice = createSlice({
+    name: 'authorize',
+    initialState,
+    selectors: {
+        selectIsAuthorized: state => state.isAuthorized,
+        selectGuestId: state => state.guestId,
+        selectUser: state => state.user,
+        selectUserPicture: state => state.user?.picture,
+    },
+    reducers: create => ({
+        setIsAuthorized: create.reducer((state, action: PayloadAction<{ isAuthorized: boolean }>) => {
+            state.isAuthorized = action.payload.isAuthorized
+        }),
+        setIsLoading: create.reducer((state, action: PayloadAction<{ isLoading: boolean }>) => {
+            state.isLoading = action.payload.isLoading
+        }),
+        fetchUserInfo: create.asyncThunk<User, string>(
+            async (accessToken, { getState, rejectWithValue }) => {
+                const state = getState() as { settings: { language: { value: Lang } } }
+                const lang = state.settings.language.value
+
+                try {
+                    const response = await authorizeApi.getUserInfo(accessToken)
+                    return response.data
+                } catch (error) {
+                    return rejectWithValue({ error: handleNetworkError(error, lang) })
+                }
+            },
+            {
+                pending: state => {
+                    state.isLoading = true
+                },
+                fulfilled: (state, action) => {
+                    state.user = action.payload
+                    state.isAuthorized = true
+                    if (state.error) state.error = null
+                },
+                rejected: (state, action) => {
+                    state.error = (action.payload as RejectedWithError).error ?? action.error.message
+                },
+                settled: state => {
+                    state.isLoading = false
+                },
+            },
+        ),
+    }),
+})
+
+export const authorizeName = authorizeSlice.name
+
+export const authorizeReducer = authorizeSlice.reducer
+
+export const { setIsAuthorized, fetchUserInfo } = authorizeSlice.actions
+
+export const { selectIsAuthorized, selectGuestId, selectUser, selectUserPicture } = authorizeSlice.selectors

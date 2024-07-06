@@ -17,6 +17,7 @@ import { KEYS, TEXTS } from 'src/shared/const'
 import { ErrorMessage } from 'src/shared/ui/errorMessage/errorMessage.tsx'
 import { selectCardById } from 'src/entities/card'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
+import { OpenProfileIconButton } from 'src/widgets/openProfileIconButton/openProfileIconButton.tsx'
 
 export const CardPage = () => {
     const lang = useAppSelector(selectLang)
@@ -38,8 +39,9 @@ export const CardPage = () => {
                     <CardsModeIconButton />
                 </Toolbar>
                 <NavIcons>
-                    <OpenCardsIconButton />
+                    <OpenProfileIconButton />
                     <OpenSettingsIconButton />
+                    <OpenCardsIconButton />
                 </NavIcons>
             </Header>
             <S.CardPage>

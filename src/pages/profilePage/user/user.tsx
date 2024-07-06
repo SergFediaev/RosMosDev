@@ -1,0 +1,39 @@
+import { TEXTS } from 'src/shared/const'
+import { UserPicture } from 'src/widgets/userPicture/userPicture.tsx'
+import { Button } from 'src/shared/ui/button/button.tsx'
+import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
+import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
+import { selectUser, setIsAuthorized } from 'src/features/authorize/model/authorizeSlice.ts'
+import { googleLogout } from '@react-oauth/google'
+
+export const User = () => {
+    const lang = useAppSelector(selectLang)
+    const dispatch = useAppDispatch()
+    const user = useAppSelector(selectUser)
+
+    if (!user) return
+
+    const logout = () => {
+        dispatch(setIsAuthorized({ isAuthorized: false }))
+        googleLogout()
+    }
+
+    return (
+        <>
+            <h2>
+                {TEXTS[lang].USER}
+                <UserPicture />
+            </h2>
+            <p>
+                {TEXTS[lang].IDENTIFIER} {user.sub}
+            </p>
+            <p>
+                {TEXTS[lang].NAME} {user.name}
+            </p>
+            <p>
+                {TEXTS[lang].MAIL} {user.email}
+            </p>
+            <Button name={TEXTS[lang].LOGOUT} onClick={logout} />
+        </>
+    )
+}
