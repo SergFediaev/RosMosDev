@@ -11,8 +11,12 @@ import { isObjectsShallowEqual } from 'src/shared/lib/isObjectsShallowEqual.ts'
 import { KEYS, VALUES } from 'src/shared/const'
 import { getFromSessionStorage } from 'src/shared/lib/sessionStorage.ts'
 import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
+import { getSources } from 'src/features/cardsSource/lib/getSources.ts'
+import { SheetId, Source } from 'src/features/cardsSource/model/cardsSource.types.ts'
 
 type InitialState = {
+    source: Source
+    sources: Source[]
     items: CardType[]
     isLearningMode: boolean
     search: string
@@ -27,7 +31,10 @@ type InitialState = {
     error: Nullable<string>
 }
 
+// ToDo: Filters and filter resets by refreshing mobile session.
 const initialState: InitialState = {
+    source: getFromLocalStorage(KEYS.SOURCE, getSources()[0]),
+    sources: getFromLocalStorage(KEYS.SOURCES, getSources()),
     items: getFromSessionStorage(KEYS.CARDS, []),
     isLearningMode: getFromSessionStorage(KEYS.IS_LEARNING_MODE, true),
     search: getFromSessionStorage(KEYS.SEARCH, VALUES.EMPTY_STRING),
@@ -50,6 +57,8 @@ const cardsSlice = createSlice({
     name: KEYS.CARDS,
     initialState,
     selectors: {
+        selectCardsSource: state => state.source,
+        selectCardSources: state => state.sources,
         selectCards: state => state.items,
         selectIsLearningMode: state => state.isLearningMode,
         selectCardsSearch: state => state.search,
@@ -65,6 +74,9 @@ const cardsSlice = createSlice({
         selectCardsError: state => state.error,
     },
     reducers: create => ({
+        setCardsSource: create.reducer((state, action: PayloadAction<{ source: Source }>) => {
+            state.source = action.payload.source
+        }),
         setIsLearningMode: create.reducer((state, action: PayloadAction<{ isLearningMode: boolean }>) => {
             state.isLearningMode = action.payload.isLearningMode
         }),
@@ -86,13 +98,17 @@ const cardsSlice = createSlice({
         setShowDate: create.reducer((state, action: PayloadAction<{ showDate: boolean }>) => {
             state.showDate = action.payload.showDate
         }),
-        fetchCards: create.asyncThunk<CardsWithFilters>(
-            async (_, { getState, rejectWithValue }) => {
-                const state = getState() as { settings: { language: { value: Lang } } }
+        fetchCards: create.asyncThunk<CardsWithFilters, SheetId | undefined>(
+            async (sheetId, { getState, rejectWithValue }) => {
+                const state = getState() as {
+                    [KEYS.CARDS]: { source: { value: SheetId } }
+                    settings: { language: { value: Lang } }
+                }
+                const cardsSheetId = sheetId ?? state.cards.source.value
                 const lang = state.settings.language.value
 
                 try {
-                    const response = await cardsApi.getCards()
+                    const response = await cardsApi.getCards(cardsSheetId)
                     return getCardsFromSpreadsheet(response.data, cardFilters(), lang)
                 } catch (error) {
                     return rejectWithValue({ error: handleNetworkError(error, lang) })
@@ -120,11 +136,22 @@ const cardsSlice = createSlice({
                 },
             },
         ),
+        setSourceAndFetchCards: create.asyncThunk<void, Source>(async (source, { dispatch }) => {
+            dispatch(setCardsSource({ source }))
+            await dispatch(fetchCards(source.value))
+        }),
+        // ToDo: Create card WIP.
+        createCard: create.asyncThunk<void>(async () => {}),
     }),
     extraReducers: builder =>
         builder
             .addCase(setLanguage, (state, action) => {
                 const lang = action.payload.language.value
+
+                const sources = getSources(lang)
+                const source = sources.find(({ value }) => value === state.source.value)
+                state.sources = sources
+                if (source) state.source = source
 
                 const sorts = getSorts(lang)
                 const sort = sorts.find(({ value }) => isObjectsShallowEqual(value, state.sort.value))
@@ -144,6 +171,7 @@ export const cardsName = cardsSlice.name
 export const cardsReducer = cardsSlice.reducer
 
 export const {
+    setCardsSource,
     setIsLearningMode,
     setCardsSearch,
     setCardsSort,
@@ -152,9 +180,13 @@ export const {
     setShowId,
     setShowDate,
     fetchCards,
+    setSourceAndFetchCards,
+    createCard,
 } = cardsSlice.actions
 
 export const {
+    selectCardsSource,
+    selectCardSources,
     selectCards,
     selectIsLearningMode,
     selectCardsSearch,

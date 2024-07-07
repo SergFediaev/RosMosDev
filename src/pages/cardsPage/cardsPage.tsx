@@ -10,6 +10,7 @@ import { OpenSettingsIconButton } from 'src/widgets/openSettingsIconButton/openS
 import { NavIcons } from 'src/widgets/header/navIcons/navIcons.tsx'
 import { OpenProfileIconButton } from 'src/widgets/openProfileIconButton/openProfileIconButton.tsx'
 import { CreateCardIconButton } from 'src/widgets/createCardIconButton/createCardIconButton.tsx'
+import { CardSourcesSelect } from 'src/widgets/cardSourcesSelect/cardSourcesSelect.tsx'
 
 export const CardsPage = () => (
     <>
@@ -19,6 +20,7 @@ export const CardsPage = () => (
                 <Search />
                 <CardSortsSelect />
                 <CardFiltersSelect />
+                <CardSourcesSelect />
                 <CardsModeIconButton />
             </Toolbar>
             <NavIcons>

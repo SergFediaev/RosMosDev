@@ -5,6 +5,7 @@ import {
     setCardsFilter,
     setCardsSearch,
     setCardsSort,
+    setCardsSource,
     setIsLearningMode,
     setShowDate,
     setShowId,
@@ -46,6 +47,11 @@ startAppListening({
 })
 
 startAppListening({
+    actionCreator: setCardsSource,
+    effect: ({ payload: { source } }) => setToLocalStorage(KEYS.SOURCE, source),
+})
+
+startAppListening({
     actionCreator: setIsLearningMode,
     effect: ({ payload: { isLearningMode } }) => setToSessionStorage(KEYS.IS_LEARNING_MODE, isLearningMode),
 })
@@ -84,9 +90,12 @@ startAppListening({
     actionCreator: setLanguage,
     effect: (_, { getState }) => {
         const state = getState()
-
+        debugger
         setToLocalStorage(KEYS.LANGUAGE, state.settings.language)
         setToLocalStorage(KEYS.LANGUAGES, state.settings.languages)
+
+        setToLocalStorage(KEYS.SOURCE, state.cards.source)
+        setToLocalStorage(KEYS.SOURCES, state.cards.sources)
 
         setToLocalStorage(KEYS.SORT, state.cards.sort)
         setToLocalStorage(KEYS.SORTS, state.cards.sorts)

@@ -4,6 +4,7 @@ export const TITLES = {
         CLEAR_SEARCH: 'Clear search',
         CARD_SORTING: 'Card sorting',
         CARD_CATEGORIES: 'Card categories',
+        CARD_SOURCES: 'Card sources',
         OPEN_CARDS: 'Open cards',
         OPEN_SETTINGS: 'Open settings',
         OPEN_MENU: 'Open menu',
@@ -62,5 +63,6 @@ export const TITLES = {
         FILTERED_CARDS: 'Отфильтрованные карточки',
         OPEN_PROFILE: 'Открыть профиль',
         CREATE_CARD: 'Создать карточку',
+        CARD_SOURCES: 'Источники карточек',
     },
 } as const

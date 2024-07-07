@@ -88,6 +88,8 @@ export const TEXTS = {
         CREATE: 'Create',
         CLEAR: 'Clear',
         INVALID_MAIL: 'Invalid mail',
+        OFFICIAL_CARDS: 'Official cards',
+        CUSTOM_CARDS: 'Custom cards',
     },
     [VALUES.RU]: {
         APP_NAME: 'РосМосДев',
@@ -174,5 +176,7 @@ export const TEXTS = {
         CREATE: 'Создать',
         CLEAR: 'Очистить',
         INVALID_MAIL: 'Невалидная почта',
+        OFFICIAL_CARDS: 'Официальные карточки',
+        CUSTOM_CARDS: 'Пользовательские карточки',
     },
 } as const
