@@ -87,6 +87,7 @@ export const TEXTS = {
         CONTENT: 'Content',
         CREATE: 'Create',
         CLEAR: 'Clear',
+        INVALID_MAIL: 'Invalid mail',
     },
     [VALUES.RU]: {
         APP_NAME: 'РосМосДев',
@@ -172,5 +173,6 @@ export const TEXTS = {
         CONTENT: 'Контент',
         CREATE: 'Создать',
         CLEAR: 'Очистить',
+        INVALID_MAIL: 'Невалидная почта',
     },
 } as const
