@@ -1,5 +1,5 @@
 import { S } from './user.styles.ts'
-import { TEXTS } from 'src/shared/const'
+import { SYMBOLS, TEXTS } from 'src/shared/const'
 import { UserPicture } from 'src/widgets/userPicture/userPicture.tsx'
 import { Button } from 'src/shared/ui/button/button.tsx'
 import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
@@ -26,13 +26,19 @@ export const User = () => {
                 <UserPicture title={TEXTS[lang].USER_PICTURE} />
             </S.TitleWithPicture>
             <p>
-                {TEXTS[lang].IDENTIFIER} {user.sub}
+                {TEXTS[lang].IDENTIFIER}
+                {SYMBOLS.COLON_SPACE}
+                {user.sub}
             </p>
             <p>
-                {TEXTS[lang].NAME} {user.name}
+                {TEXTS[lang].NAME}
+                {SYMBOLS.COLON_SPACE}
+                {user.name}
             </p>
             <p>
-                {TEXTS[lang].MAIL} {user.email}
+                {TEXTS[lang].MAIL}
+                {SYMBOLS.COLON_SPACE}
+                {user.email}
             </p>
             <Button name={TEXTS[lang].LOGOUT} onClick={logout} />
         </>

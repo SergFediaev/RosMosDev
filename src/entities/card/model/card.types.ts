@@ -4,8 +4,8 @@ import { Filter } from 'src/features/filterCards'
 export type CardType = {
     [KEYS.ID]: string
     [KEYS.TITLE]: string
-    content: string
-    tags?: string
+    [KEYS.CONTENT]: string
+    [KEYS.TAGS]?: string
     created?: string
     updated?: string
 }

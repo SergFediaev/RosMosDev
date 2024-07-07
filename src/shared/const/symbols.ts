@@ -10,4 +10,7 @@ export const SYMBOLS = {
     DOUBLE_NOTE: '♪♪',
     LOADING: '↻',
     WARNING: '⚠',
+    COLON: ':',
+    COLON_SPACE: ': ',
+    ASTERISK: '*',
 } as const

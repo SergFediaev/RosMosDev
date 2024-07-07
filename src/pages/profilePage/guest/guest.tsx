@@ -1,4 +1,4 @@
-import { TEXTS } from 'src/shared/const'
+import { SYMBOLS, TEXTS } from 'src/shared/const'
 import { Button } from 'src/shared/ui/button/button.tsx'
 import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
@@ -20,7 +20,9 @@ export const Guest = () => {
         <>
             <h2>{TEXTS[lang].GUEST}</h2>
             <p>
-                {TEXTS[lang].IDENTIFIER} {guestId}
+                {TEXTS[lang].IDENTIFIER}
+                {SYMBOLS.COLON_SPACE}
+                {guestId}
             </p>
             <Button onClick={login} name={TEXTS[lang].LOGIN} />
         </>

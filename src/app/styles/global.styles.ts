@@ -50,7 +50,7 @@ export const GlobalStyles = createGlobalStyle`
         font-display: swap;
     }
 
-    *, *:before, *:after, *::placeholder, *:focus-visible, ::-webkit-color-swatch, ::-webkit-color-swatch-wrapper {
+    *, *:before, *:after, *::placeholder, ::-webkit-color-swatch, ::-webkit-color-swatch-wrapper {
         margin: 0;
         padding: 0;
         font-family: Inter, Arial, Helvetica, sans-serif, 'Segoe UI Emoji', Noto;

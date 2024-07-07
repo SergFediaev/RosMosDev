@@ -5,6 +5,7 @@ export const theme = {
         backgroundSecondary: '#f5f5f5', // Whitesmoke
         backgroundTertiary: 'rgba(0, 48, 98)',
         backgroundAccent: '#2268d0',
+        backgroundAlternative: '#f8f8ff', // Ghostwhite
         backgroundOverlay: 'rgba(0, 0, 0, .5)',
         backgroundHeader: 'rgba(44, 44, 44,.7)',
         backgroundSetting: 'rgba(44, 44, 44, .96)',

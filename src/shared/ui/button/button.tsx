@@ -4,8 +4,9 @@ import { ButtonAlign } from 'src/shared/ui/button/button.types.ts'
 
 type Props = {
     name: string
-    onClick: () => void
+    onClick?: () => void
     align?: ButtonAlign
+    isSecondary?: boolean
     isDisabled?: boolean
     isLoading?: boolean
     isWarning?: boolean

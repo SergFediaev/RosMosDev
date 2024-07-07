@@ -26,4 +26,8 @@ export const KEYS = {
     BACKGROUND_VIDEO: 'backgroundVideo',
     BACKGROUND_VIDEOS: 'backgroundVideos',
     HAS_BACKGROUND_OVERLAY: 'hasBackgroundOverlay',
+    TAGS: 'tags',
+    CONTENT: 'content',
+    NAME: 'name',
+    EMAIL: 'email',
 } as const
