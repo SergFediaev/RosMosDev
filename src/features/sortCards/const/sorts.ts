@@ -5,3 +5,5 @@ export const SORTS = {
     ASCENDING: 1,
     DESCENDING: -1,
 } as const
+
+export const DEFAULT_SORT = 0

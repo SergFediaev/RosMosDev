@@ -90,7 +90,7 @@ startAppListening({
     actionCreator: setLanguage,
     effect: (_, { getState }) => {
         const state = getState()
-        debugger
+
         setToLocalStorage(KEYS.LANGUAGE, state.settings.language)
         setToLocalStorage(KEYS.LANGUAGES, state.settings.languages)
 

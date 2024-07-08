@@ -13,8 +13,11 @@ import { getFromSessionStorage } from 'src/shared/lib/sessionStorage.ts'
 import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { getSources } from 'src/features/cardsSource/lib/getSources.ts'
 import { SheetId, Source } from 'src/features/cardsSource/model/cardsSource.types.ts'
-import { createCardApi } from 'src/features/createCard/api/createCardApi.ts'
-import { CreateCard } from 'src/features/createCard/model/createCard.types.ts'
+import { customCardApi } from 'src/features/customCard/api/customCardApi.ts'
+import { CustomCard, DraftCard } from 'src/features/customCard/model/customCard.types.ts'
+import { CUSTOM_SOURCE, DEFAULT_SOURCE } from 'src/features/cardsSource/const/sources.ts'
+import { DEFAULT_SORT } from 'src/features/sortCards/const/sorts.ts'
+import { DEFAULT_FILTER } from 'src/features/filterCards/const/filters.ts'
 
 type InitialState = {
     source: Source
@@ -35,14 +38,14 @@ type InitialState = {
 
 // ToDo: Filters and filter resets by refreshing mobile session.
 const initialState: InitialState = {
-    source: getFromLocalStorage(KEYS.SOURCE, getSources()[0]),
+    source: getFromLocalStorage(KEYS.SOURCE, getSources()[DEFAULT_SOURCE]),
     sources: getFromLocalStorage(KEYS.SOURCES, getSources()),
     items: getFromSessionStorage(KEYS.CARDS, []),
     isLearningMode: getFromSessionStorage(KEYS.IS_LEARNING_MODE, true),
     search: getFromSessionStorage(KEYS.SEARCH, VALUES.EMPTY_STRING),
-    sort: getFromLocalStorage(KEYS.SORT, getSorts()[0]),
+    sort: getFromLocalStorage(KEYS.SORT, getSorts()[DEFAULT_SORT]),
     sorts: getFromLocalStorage(KEYS.SORTS, getSorts()),
-    filter: getFromSessionStorage(KEYS.FILTER, getFilters()[0]),
+    filter: getFromSessionStorage(KEYS.FILTER, getFilters()[DEFAULT_FILTER]),
     filters: getFromSessionStorage(KEYS.FILTERS, getFilters()),
     showTags: getFromLocalStorage(KEYS.SHOW_TAGS, true),
     showId: getFromLocalStorage(KEYS.SHOW_ID, false),
@@ -126,7 +129,7 @@ const cardsSlice = createSlice({
                     state.filters = filters
 
                     const filter = filters.find(({ value }) => value === state.filter.value)
-                    if (filter) state.filter = filter
+                    state.filter = filter ?? filters[DEFAULT_FILTER]
 
                     if (state.error) state.error = null
                 },
@@ -142,15 +145,40 @@ const cardsSlice = createSlice({
             dispatch(setCardsSource({ source }))
             await dispatch(fetchCards(source.value))
         }),
-        // ToDo: Create card WIP.
-        createCard: create.asyncThunk<void, CreateCard>(async createCard => {
-            try {
-                const response = await createCardApi.createCard(createCard)
-                console.log(response.data)
-            } catch (error) {
-                console.warn(error)
-            }
-        }),
+        // ToDo: Return only custom card ID.
+        createCard: create.asyncThunk<CustomCard, DraftCard>(
+            async (draftCard, { getState, dispatch, rejectWithValue }) => {
+                const state = getState() as {
+                    settings: { language: { value: Lang } }
+                }
+                const lang = state.settings.language.value
+
+                try {
+                    const response = await customCardApi.createCard(draftCard)
+
+                    await dispatch(setSourceAndFetchCards(getSources(lang)[CUSTOM_SOURCE]))
+
+                    return response.data
+                } catch (error) {
+                    return rejectWithValue({ error: handleNetworkError(error, lang) })
+                }
+            },
+            // ToDo: Duplicated async cases in fetch cards.
+            {
+                pending: state => {
+                    state.isLoading = true
+                },
+                fulfilled: state => {
+                    if (state.error) state.error = null
+                },
+                rejected: (state, action) => {
+                    state.error = (action.payload as RejectedWithError).error ?? action.error.message
+                },
+                settled: state => {
+                    state.isLoading = false
+                },
+            },
+        ),
     }),
     extraReducers: builder =>
         builder
@@ -160,17 +188,17 @@ const cardsSlice = createSlice({
                 const sources = getSources(lang)
                 const source = sources.find(({ value }) => value === state.source.value)
                 state.sources = sources
-                if (source) state.source = source
+                state.source = source ?? sources[DEFAULT_SOURCE]
 
                 const sorts = getSorts(lang)
                 const sort = sorts.find(({ value }) => isObjectsShallowEqual(value, state.sort.value))
                 state.sorts = sorts
-                if (sort) state.sort = sort
+                state.sort = sort ?? sorts[DEFAULT_SORT]
 
                 const filters = cardFilters().getFilters(lang, state.items)
                 const filter = filters.find(({ value }) => value === state.filter.value)
                 state.filters = filters
-                if (filter) state.filter = filter
+                state.filter = filter ?? filters[DEFAULT_FILTER]
             })
             .addCase(restoreDefaultSettings, () => initialState),
 })

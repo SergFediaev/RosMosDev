@@ -5,3 +5,5 @@ export const BACKGROUND_TYPES = {
     RANDOM_WALLPAPER: 'random_wallpaper',
     VIDEO: 'video',
 } as const
+
+export const DEFAULT_BACKGROUND_TYPE = 4

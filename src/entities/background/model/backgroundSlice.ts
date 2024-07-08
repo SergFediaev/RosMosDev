@@ -17,6 +17,9 @@ import { getRandomGradient } from 'src/widgets/backgroundRandomGradient/lib/getR
 import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { blobToBase64 } from 'src/shared/lib/blobToBase64.ts'
 import { KEYS } from 'src/shared/const'
+import { DEFAULT_BACKGROUND_VIDEO } from 'src/widgets/backgroundVideo/const/defaultBackgroundVideo.ts'
+import { DEFAULT_BACKGROUND_WALLPAPER } from 'src/widgets/backgroundWallpaper/const/defaultBackgroundWallpaper.ts'
+import { DEFAULT_BACKGROUND_TYPE } from 'src/widgets/background/const/backgroundTypes.ts'
 
 type InitialState = {
     backgroundType: BackgroundType
@@ -34,14 +37,17 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-    backgroundType: getFromLocalStorage(KEYS.BACKGROUND_TYPE, getBackgroundTypes()[4]),
+    backgroundType: getFromLocalStorage(KEYS.BACKGROUND_TYPE, getBackgroundTypes()[DEFAULT_BACKGROUND_TYPE]),
     backgroundTypes: getFromLocalStorage(KEYS.BACKGROUND_TYPES, getBackgroundTypes()),
     backgroundColor: getFromLocalStorage(KEYS.BACKGROUND_COLOR, theme.colors.backgroundDefault),
     backgroundRandomGradient: getFromLocalStorage(KEYS.BACKGROUND_RANDOM_GRADIENT, getRandomGradient()),
-    backgroundWallpaper: getFromLocalStorage(KEYS.BACKGROUND_WALLPAPER, getBackgroundWallpapers()[0]),
+    backgroundWallpaper: getFromLocalStorage(
+        KEYS.BACKGROUND_WALLPAPER,
+        getBackgroundWallpapers()[DEFAULT_BACKGROUND_WALLPAPER],
+    ),
     backgroundWallpapers: getFromLocalStorage(KEYS.BACKGROUND_WALLPAPERS, getBackgroundWallpapers()),
     backgroundRandomWallpaper: getFromLocalStorage(KEYS.BACKGROUND_RANDOM_WALLPAPER, null),
-    backgroundVideo: getFromLocalStorage(KEYS.BACKGROUND_VIDEO, getBackgroundVideos()[0]),
+    backgroundVideo: getFromLocalStorage(KEYS.BACKGROUND_VIDEO, getBackgroundVideos()[DEFAULT_BACKGROUND_VIDEO]),
     backgroundVideos: getFromLocalStorage(KEYS.BACKGROUND_VIDEOS, getBackgroundVideos()),
     hasBackgroundOverlay: getFromLocalStorage(KEYS.HAS_BACKGROUND_OVERLAY, false),
     isLoading: false,
@@ -146,21 +152,21 @@ const backgroundsSlice = createSlice({
                 const backgroundTypes = getBackgroundTypes(lang)
                 const backgroundType = backgroundTypes.find(({ value }) => value === state.backgroundType.value)
                 state.backgroundTypes = backgroundTypes
-                if (backgroundType) state.backgroundType = backgroundType
+                state.backgroundType = backgroundType ?? backgroundTypes[DEFAULT_BACKGROUND_TYPE]
 
                 const backgroundWallpapers = getBackgroundWallpapers(lang)
                 const backgroundWallpaper = backgroundWallpapers.find(
                     ({ value }) => value === state.backgroundWallpaper.value,
                 )
                 state.backgroundWallpapers = backgroundWallpapers
-                if (backgroundWallpaper) state.backgroundWallpaper = backgroundWallpaper
+                state.backgroundWallpaper = backgroundWallpaper ?? backgroundWallpapers[DEFAULT_BACKGROUND_WALLPAPER]
 
                 const backgroundVideos = getBackgroundVideos(lang)
                 const backgroundVideo = backgroundVideos.find(({ value }) =>
                     isObjectsShallowEqual(value, state.backgroundVideo.value),
                 )
                 state.backgroundVideos = backgroundVideos
-                if (backgroundVideo) state.backgroundVideo = backgroundVideo
+                state.backgroundVideo = backgroundVideo ?? backgroundVideos[DEFAULT_BACKGROUND_VIDEO]
             })
             .addCase(restoreDefaultSettings, () => initialState),
 })

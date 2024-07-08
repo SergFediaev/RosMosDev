@@ -32,4 +32,7 @@ export const KEYS = {
     EMAIL: 'email',
     SOURCE: 'source',
     SOURCES: 'sources',
+    CONTENT_TYPE: 'Content-Type',
+    CREATED: 'created',
+    UPDATED: 'updated',
 } as const

@@ -3,6 +3,7 @@ import { getLanguages } from 'src/entities/setting/lib/getLanguages.ts'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { KEYS } from 'src/shared/const'
+import { DEFAULT_LANGUAGE } from 'src/entities/setting/const/defaultLanguage.ts'
 
 type InitialState = {
     language: Language
@@ -13,7 +14,7 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-    language: getFromLocalStorage(KEYS.LANGUAGE, getLanguages()[0]),
+    language: getFromLocalStorage(KEYS.LANGUAGE, getLanguages()[DEFAULT_LANGUAGE]),
     languages: getFromLocalStorage(KEYS.LANGUAGES, getLanguages()),
     showConnectionAlways: getFromLocalStorage(KEYS.SHOW_CONNECTION_ALWAYS, false),
     isDebugEnabled: getFromLocalStorage(KEYS.IS_DEBUG_ENABLED, false),
@@ -37,7 +38,7 @@ const settingsSlice = createSlice({
             const languages = getLanguages(lang)
             const language = languages.find(({ value }) => value === lang)
             state.languages = languages
-            if (language) state.language = language
+            state.language = language ?? languages[DEFAULT_LANGUAGE]
         }),
         setShowConnectionAlways: create.reducer((state, action: PayloadAction<{ showConnectionAlways: boolean }>) => {
             state.showConnectionAlways = action.payload.showConnectionAlways
