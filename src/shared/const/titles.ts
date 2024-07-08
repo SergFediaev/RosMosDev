@@ -4,7 +4,7 @@ export const TITLES = {
         CLEAR_SEARCH: 'Clear search',
         CARD_SORTING: 'Card sorting',
         CARD_CATEGORIES: 'Card categories',
-        CARD_SOURCES: 'Card sources',
+        CARDS_SOURCE: 'Cards source',
         OPEN_CARDS: 'Open cards',
         OPEN_SETTINGS: 'Open settings',
         OPEN_MENU: 'Open menu',
@@ -37,6 +37,7 @@ export const TITLES = {
         CLEAR_SEARCH: 'Очистить поиск',
         CARD_SORTING: 'Сортировка карточек',
         CARD_CATEGORIES: 'Категории карточек',
+        CARDS_SOURCE: 'Источник карточек',
         OPEN_CARDS: 'Открыть карточки',
         OPEN_SETTINGS: 'Открыть настройки',
         OPEN_MENU: 'Открыть меню',
@@ -63,6 +64,5 @@ export const TITLES = {
         FILTERED_CARDS: 'Отфильтрованные карточки',
         OPEN_PROFILE: 'Открыть профиль',
         CREATE_CARD: 'Создать карточку',
-        CARD_SOURCES: 'Источники карточек',
     },
 } as const

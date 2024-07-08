@@ -14,6 +14,7 @@ export const OpenProfileIconButton = () => {
     const title = TITLES[lang].OPEN_PROFILE
     const openProfile = () => navigate(PATHS.PROFILE)
 
+    // ToDo: Check user picture.
     return isAuthorized ? (
         <UserPicture onClick={openProfile} title={title} />
     ) : (

@@ -18,7 +18,7 @@ export const CardSourcesSelect = () => {
             options={cardSources}
             selectedOption={cardsSource.label}
             onSelect={onSelectSource}
-            title={TITLES[lang].CARD_SOURCES}
+            title={TITLES[lang].CARDS_SOURCE}
         />
     )
 }

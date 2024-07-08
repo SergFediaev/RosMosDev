@@ -26,6 +26,7 @@ const createSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })
 
+// ToDo: Save user and guest ID to local storage.
 const authorizeSlice = createSlice({
     name: 'authorize',
     initialState,

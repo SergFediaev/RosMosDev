@@ -10,15 +10,17 @@ import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 import { KEYS, SYMBOLS, TEXTS, TYPES, VALUES } from 'src/shared/const'
 import { Field } from 'src/shared/ui/field/field.tsx'
 import { Button } from 'src/shared/ui/button/button.tsx'
-import { useAppSelector } from 'src/app/store/store.ts'
+import { useAppDispatch, useAppSelector } from 'src/app/store/store.ts'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { selectIsAuthorized, selectUser } from 'src/features/authorize/model/authorizeSlice.ts'
 import { Form } from 'src/shared/ui/form/form.tsx'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { createCard } from 'src/entities/card'
 
 export const CreateCardPage = () => {
     const lang = useAppSelector(selectLang)
+    const dispatch = useAppDispatch()
     const isAuthorized = useAppSelector(selectIsAuthorized)
     const user = useAppSelector(selectUser)
 
@@ -54,7 +56,7 @@ export const CreateCardPage = () => {
         resolver: zodResolver(createCardSchema),
     })
 
-    const createCard: SubmitHandler<CreateCardSchema> = data => console.log(data)
+    const submit: SubmitHandler<CreateCardSchema> = card => dispatch(createCard(card))
 
     const onReset = () => reset(defaultValues)
 
@@ -70,7 +72,7 @@ export const CreateCardPage = () => {
             </Header>
             <Page>
                 <S.CreateCard>
-                    <Form onSubmit={handleSubmit(createCard)}>
+                    <Form onSubmit={handleSubmit(submit)}>
                         <Field
                             {...register(KEYS.TITLE)}
                             placeholder={`${TEXTS[lang].TITLE}${SYMBOLS.ASTERISK}`}

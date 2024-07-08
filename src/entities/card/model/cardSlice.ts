@@ -13,6 +13,8 @@ import { getFromSessionStorage } from 'src/shared/lib/sessionStorage.ts'
 import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { getSources } from 'src/features/cardsSource/lib/getSources.ts'
 import { SheetId, Source } from 'src/features/cardsSource/model/cardsSource.types.ts'
+import { createCardApi } from 'src/features/createCard/api/createCardApi.ts'
+import { CreateCard } from 'src/features/createCard/model/createCard.types.ts'
 
 type InitialState = {
     source: Source
@@ -141,7 +143,14 @@ const cardsSlice = createSlice({
             await dispatch(fetchCards(source.value))
         }),
         // ToDo: Create card WIP.
-        createCard: create.asyncThunk<void>(async () => {}),
+        createCard: create.asyncThunk<void, CreateCard>(async createCard => {
+            try {
+                const response = await createCardApi.createCard(createCard)
+                console.log(response.data)
+            } catch (error) {
+                console.warn(error)
+            }
+        }),
     }),
     extraReducers: builder =>
         builder
