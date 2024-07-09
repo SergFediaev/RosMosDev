@@ -1,9 +1,8 @@
 import { S } from './icon.styles.ts'
-import { IconSizes } from 'src/shared/ui/iconButton/iconButton.types.ts'
 
 type Props = {
     icon: string
-    iconSize?: IconSizes
+    iconSize?: string
     title?: string
     isIconSpinning?: boolean
     isIconGlowing?: boolean

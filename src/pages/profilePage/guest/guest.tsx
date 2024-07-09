@@ -24,6 +24,8 @@ export const Guest = () => {
                 {SYMBOLS.COLON_SPACE}
                 {guestId}
             </p>
+            <p>{TEXTS[lang].GUEST_CREATE_CARDS}</p>
+            <p>{TEXTS[lang].USER_CREATE_CARDS}</p>
             <Button onClick={login} name={TEXTS[lang].LOGIN} />
         </>
     )

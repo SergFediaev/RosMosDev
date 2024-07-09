@@ -1,11 +1,12 @@
 import { S } from './filteredCardsNav.styles.ts'
-import { BUTTONS, EMOJIS, EVENTS, PATHS, SYMBOLS, TITLES, VALUES } from 'src/shared/const'
+import { BUTTONS, EMOJIS, EVENTS, PATHS, SYMBOLS, TITLES } from 'src/shared/const'
 import { useNavigate } from 'react-router-dom'
 import { useCallback, useEffect } from 'react'
 import { useAppSelector } from 'src/app/store/store.ts'
 import { selectFilteredCardIndexById, selectFilteredCards } from 'src/entities/card'
 import { Lang } from 'src/shared/types/language.ts'
 import { IconButton } from 'src/shared/ui/iconButton/iconButton.tsx'
+import { theme } from 'src/app/styles/theme.ts'
 
 type Props = {
     id: string
@@ -77,7 +78,7 @@ export const FilteredCardsNav = ({ id, lang }: Props) => {
                 <IconButton
                     icon={EMOJIS.PREV}
                     onClick={prevCard}
-                    iconSize={VALUES.BIG_SIZE}
+                    iconSize={theme.sizes.largeFont}
                     title={TITLES[lang].PREV_CARD}
                 />
             )}
@@ -90,7 +91,7 @@ export const FilteredCardsNav = ({ id, lang }: Props) => {
                 <IconButton
                     icon={EMOJIS.NEXT}
                     onClick={nextCard}
-                    iconSize={VALUES.BIG_SIZE}
+                    iconSize={theme.sizes.largeFont}
                     title={TITLES[lang].NEXT_CARD}
                 />
             )}
@@ -98,7 +99,7 @@ export const FilteredCardsNav = ({ id, lang }: Props) => {
                 <IconButton
                     icon={EMOJIS.RANDOM}
                     onClick={randomCard}
-                    iconSize={VALUES.BIG_SIZE}
+                    iconSize={theme.sizes.largeFont}
                     title={TITLES[lang].RANDOM_CARD}
                 />
             )}

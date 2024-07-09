@@ -40,6 +40,7 @@ export const User = () => {
                 {SYMBOLS.COLON_SPACE}
                 {user.email}
             </p>
+            <p>{TEXTS[lang].USER_CREATE_CARDS}</p>
             <Button name={TEXTS[lang].LOGOUT} onClick={logout} />
         </>
     )

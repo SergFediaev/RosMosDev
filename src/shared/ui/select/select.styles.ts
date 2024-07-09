@@ -21,11 +21,13 @@ const Selected = styled.span`
 `
 
 const Options = styled.ul`
+    max-width: ${theme.sizes.selectWidth};
+    max-height: ${theme.sizes.selectHeight};
     margin-top: ${theme.sizes.regularSpace};
     position: absolute;
     background-color: ${theme.colors.backgroundTertiary};
     border-radius: ${theme.roundings.card};
-    overflow: hidden;
+    overflow-y: auto;
     box-shadow: ${theme.shadows.bottomLeft};
     z-index: ${theme.indexes.select};
 `

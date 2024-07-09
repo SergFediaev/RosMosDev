@@ -1,13 +1,10 @@
 import styled, { css } from 'styled-components'
-import { theme } from 'src/app/styles/theme.ts'
-import { VALUES } from 'src/shared/const'
-import { LoadingSizes } from 'src/shared/ui/loading/loading.types.ts'
 
-const Loading = styled.span<{ size?: LoadingSizes }>`
+const Loading = styled.span<{ size?: string }>`
     ${({ size }) =>
-        size === VALUES.LARGE_SIZE &&
+        size &&
         css`
-            font-size: ${theme.sizes.largeFont};
+            font-size: ${size};
             font-weight: bold;
         `};
 `

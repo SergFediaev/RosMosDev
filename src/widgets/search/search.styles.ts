@@ -19,7 +19,7 @@ const Search = styled.div`
 
     & input {
         text-overflow: ellipsis;
-        font-size: 1rem;
+        font-size: ${theme.sizes.defaultFont};
         width: 100%;
 
         &::placeholder {

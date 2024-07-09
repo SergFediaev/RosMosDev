@@ -3,10 +3,9 @@ import { spin } from 'src/shared/ui/animations/spin.ts'
 import { TIMINGS } from 'src/shared/const'
 import { theme } from 'src/app/styles/theme.ts'
 import { getGlow } from 'src/shared/ui/animations/glow.ts'
-import { IconSizes } from 'src/shared/ui/iconButton/iconButton.types.ts'
 
 type Props = {
-    iconSize?: IconSizes
+    iconSize?: string
     isIconSpinning?: boolean
     isIconGlowing?: boolean
     isIconGlowingColorPositive?: boolean

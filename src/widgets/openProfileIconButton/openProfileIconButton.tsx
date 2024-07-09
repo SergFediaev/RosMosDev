@@ -1,10 +1,11 @@
-import { EMOJIS, PATHS, TITLES, VALUES } from 'src/shared/const'
+import { EMOJIS, PATHS, TITLES } from 'src/shared/const'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from 'src/app/store/store.ts'
 import { selectLang } from 'src/entities/setting/model/settingSlice.ts'
 import { selectIsAuthorized } from 'src/features/authorize/model/authorizeSlice.ts'
 import { UserPicture } from 'src/widgets/userPicture/userPicture.tsx'
 import { IconButton } from 'src/shared/ui/iconButton/iconButton.tsx'
+import { theme } from 'src/app/styles/theme.ts'
 
 // ToDo: Universal component.
 export const OpenProfileIconButton = () => {
@@ -18,6 +19,6 @@ export const OpenProfileIconButton = () => {
     return isAuthorized ? (
         <UserPicture onClick={openProfile} title={title} />
     ) : (
-        <IconButton icon={EMOJIS.PROFILE} onClick={openProfile} title={title} iconSize={VALUES.BIG_SIZE} />
+        <IconButton icon={EMOJIS.PROFILE} onClick={openProfile} title={title} iconSize={theme.sizes.largeFont} />
     )
 }

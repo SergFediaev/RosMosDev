@@ -7,7 +7,7 @@ const Profile = styled.main`
     background-color: ${theme.colors.backgroundPrimary};
     color: ${theme.colors.fontPrimary};
     font-size: ${theme.sizes.mediumFont};
-    border-radius: ${theme.roundings.search};
+    border-radius: ${theme.roundings.card};
     padding: ${theme.sizes.largeSpace};
     display: flex;
     flex-direction: column;

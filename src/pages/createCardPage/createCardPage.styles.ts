@@ -7,7 +7,7 @@ const CreateCard = styled.main`
     background-color: ${theme.colors.backgroundSecondary};
     color: ${theme.colors.fontSecondary};
     font-size: ${theme.sizes.mediumFont};
-    border-radius: ${theme.roundings.search};
+    border-radius: ${theme.roundings.card};
     padding: ${theme.sizes.largeSpace};
     display: flex;
     flex-direction: column;

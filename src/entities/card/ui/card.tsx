@@ -71,25 +71,25 @@ export const Card = ({ card }: Props) => {
                     icon={EMOJIS.PALETTE}
                     onClick={toggleShowPalette}
                     title={TITLES[lang].HIGHLIGHT_CARD}
-                    iconSize={VALUES.MEDIUM_SIZE}
+                    iconSize={theme.sizes.bigFont}
                 />
                 <IconButton
                     icon={EMOJIS.VIEW}
                     onClick={viewCard}
                     title={TITLES[lang].VIEW_CARD}
-                    iconSize={VALUES.MEDIUM_SIZE}
+                    iconSize={theme.sizes.bigFont}
                 />
                 <IconButton
                     icon={EMOJIS.CLIPBOARD}
                     onClick={copyToClipboard}
                     title={TITLES[lang].COPY_TO_CLIPBOARD}
-                    iconSize={VALUES.MEDIUM_SIZE}
+                    iconSize={theme.sizes.bigFont}
                 />
                 <IconButton
                     icon={isOpenIcon}
                     onClick={toggleIsOpen}
                     title={isOpenTitle}
-                    iconSize={VALUES.MEDIUM_SIZE}
+                    iconSize={theme.sizes.bigFont}
                 />
                 {showPalette && <Palette colors={cardHighlights} onClick={onSetHighlightColor} />}
             </CardIcons>

@@ -5,6 +5,7 @@ import interBlack from 'src/shared/assets/fonts/inter/Inter-Black.ttf'
 import { theme } from 'src/app/styles/theme.ts'
 import noto from 'src/shared/assets/fonts/noto/NotoColorEmoji-Regular.ttf'
 
+// ToDo: Minify fonts.
 export const GlobalStyles = createGlobalStyle`
     @font-face {
         font-family: Inter;
@@ -62,20 +63,20 @@ export const GlobalStyles = createGlobalStyle`
         list-style: none;
         text-decoration: unset;
         outline: unset;
-        scrollbar-width: none;
     }
 
     :root {
-        background-color: ${theme.colors.backgroundDefault};
+        font-size: ${theme.sizes.rootFont};
     }
 
     html {
-        font-size: clamp(.9rem, 1.5vw, 1.2rem);
+        background-color: ${theme.colors.backgroundDefault};
     }
 
     body {
         min-width: ${theme.breakpoints.mobile}px;
         color: ${theme.colors.fontPrimary};
+        font-size: ${theme.sizes.defaultFont};
     }
 
     q:before, q:after {

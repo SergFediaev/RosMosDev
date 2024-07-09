@@ -1,9 +1,10 @@
 import { S } from './navIcons.styles.ts'
 import { ReactNode, useEffect, useState } from 'react'
 import { Icon } from 'src/shared/ui/icon/icon.tsx'
-import { EMOJIS, EVENTS, TITLES, VALUES } from 'src/shared/const'
+import { EMOJIS, EVENTS, TITLES } from 'src/shared/const'
 import { useAppSelector } from 'src/app/store/store.ts'
 import { selectLang, selectShowConnectionAlways } from 'src/entities/setting/model/settingSlice.ts'
+import { theme } from 'src/app/styles/theme.ts'
 
 type Props = {
     children: ReactNode
@@ -18,7 +19,7 @@ export const NavIcons = ({ children }: Props) => {
     const connectionStatus = (
         <Icon
             icon={connectionIcon}
-            iconSize={VALUES.BIG_SIZE}
+            iconSize={theme.sizes.largeFont}
             title={connectionTitle}
             isIconGlowing
             isIconGlowingColorPositive={isOnline}
