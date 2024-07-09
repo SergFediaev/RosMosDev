@@ -1,3 +1,4 @@
+// ToDo: Refactor recursive deep equality.
 export const isObjectsShallowEqual = <T>(objectA: Record<string, T>, objectB: Record<string, T>) => {
     if (objectA === objectB) return true
 

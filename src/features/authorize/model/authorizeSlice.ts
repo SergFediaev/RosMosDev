@@ -35,13 +35,19 @@ const authorizeSlice = createSlice({
         selectGuestId: state => state.guestId,
         selectUser: state => state.user,
         selectUserPicture: state => state.user?.picture,
+        selectIsAuthorizeLoading: state => state.isLoading,
+        selectAuthorizeError: state => state.error,
     },
     reducers: create => ({
         setIsAuthorized: create.reducer((state, action: PayloadAction<{ isAuthorized: boolean }>) => {
             state.isAuthorized = action.payload.isAuthorized
         }),
-        setIsLoading: create.reducer((state, action: PayloadAction<{ isLoading: boolean }>) => {
+        setIsAuthorizeLoading: create.reducer((state, action: PayloadAction<{ isLoading: boolean }>) => {
             state.isLoading = action.payload.isLoading
+        }),
+        setAuthorizeError: create.reducer((state, action: PayloadAction<{ error: string }>) => {
+            state.error = action.payload.error
+            state.isLoading = false
         }),
         fetchUserInfo: create.asyncThunk<User, string>(
             async (accessToken, { getState, rejectWithValue }) => {
@@ -79,6 +85,13 @@ export const authorizeName = authorizeSlice.name
 
 export const authorizeReducer = authorizeSlice.reducer
 
-export const { setIsAuthorized, fetchUserInfo } = authorizeSlice.actions
+export const { setIsAuthorized, fetchUserInfo, setIsAuthorizeLoading, setAuthorizeError } = authorizeSlice.actions
 
-export const { selectIsAuthorized, selectGuestId, selectUser, selectUserPicture } = authorizeSlice.selectors
+export const {
+    selectIsAuthorized,
+    selectGuestId,
+    selectUser,
+    selectUserPicture,
+    selectIsAuthorizeLoading,
+    selectAuthorizeError,
+} = authorizeSlice.selectors

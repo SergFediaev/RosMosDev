@@ -50,6 +50,7 @@ export const theme = {
         checkbox: clampSize({ min: 30, max: 40 }),
         headerHeight: '100rem',
         selectWidth: '300rem',
+        // ToDo: Refactor mobile album select max height.
         selectHeight: clampSize({ min: 300, preferred: '40vh', max: 600 }),
     },
     roundings: {
