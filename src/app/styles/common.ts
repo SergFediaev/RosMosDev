@@ -9,7 +9,7 @@ type ClampSize = {
 
 export const clampSize = ({
     min = 10,
-    preferred = `1${DEFAULT_UNIT} + 2vw`,
+    preferred = `calc(1${DEFAULT_UNIT} + 2vw)`,
     max = 20,
     unit = DEFAULT_UNIT,
-}: ClampSize) => `clamp(${min}${unit}, calc(${preferred}), ${max}${unit})`
+}: ClampSize) => `clamp(${min}${unit}, ${preferred}, ${max}${unit})`
