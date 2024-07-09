@@ -50,7 +50,7 @@ export const theme = {
         checkbox: clampSize({ min: 30, max: 40 }),
         headerHeight: '100rem',
         selectWidth: '300rem',
-        selectHeight: '600rem',
+        selectHeight: 'clamp(300rem, 50vh, 600rem)',
     },
     roundings: {
         card: '10rem',

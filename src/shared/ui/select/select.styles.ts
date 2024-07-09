@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import { theme } from 'src/app/styles/theme.ts'
 
-// ToDo: Empty styled.
-const Select = styled.div``
+const Select = styled.div`
+    max-width: ${theme.sizes.selectWidth};
+`
 
 const Selected = styled.span`
     display: flex;
@@ -18,6 +19,12 @@ const Selected = styled.span`
     &:hover {
         cursor: pointer;
     }
+`
+
+const SelectedOption = styled.span`
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 `
 
 const Options = styled.ul`
@@ -45,6 +52,7 @@ const Option = styled.li<{ isHovered: boolean }>`
 export const S = {
     Select,
     Selected,
+    SelectedOption,
     Options,
     Option,
 }

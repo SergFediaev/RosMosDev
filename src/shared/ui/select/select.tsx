@@ -91,7 +91,7 @@ export const Select = <T,>({ options, isSelectionEndless = true, title, ...props
     return (
         <S.Select onMouseEnter={onMouseEnterSelect} onKeyDown={onKeyDownSelect} tabIndex={0} onBlur={closeSelect}>
             <S.Selected onClick={toggleIsSelectOpen} title={title}>
-                <span>{props.selectedOption}</span>
+                <S.SelectedOption>{props.selectedOption}</S.SelectedOption>
                 <Icon icon={iconSelect} />
             </S.Selected>
             {isSelectOpened && (

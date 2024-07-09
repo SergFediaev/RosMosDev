@@ -3,7 +3,7 @@ import { theme } from 'src/app/styles/theme.ts'
 import { TIMINGS } from 'src/shared/const'
 
 const Search = styled.div`
-    max-width: 300px;
+    max-width: ${theme.sizes.selectWidth};
     border: ${theme.sizes.mediumBorder} ${theme.colors.fontPrimary} solid;
     border-radius: ${theme.roundings.search};
     padding: ${theme.sizes.smallSpace} ${theme.sizes.regularSpace};
