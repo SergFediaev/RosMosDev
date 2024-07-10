@@ -14,7 +14,7 @@ import { getBackgroundVideos } from 'src/widgets/backgroundVideo/lib/getBackgrou
 import { isObjectsShallowEqual } from 'src/shared/lib/isObjectsShallowEqual.ts'
 import { theme } from 'src/app/styles/theme.ts'
 import { getRandomGradient } from 'src/widgets/backgroundRandomGradient/lib/getRandomGradient.ts'
-import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
+import { getFromLocalStorage, setToLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { blobToBase64 } from 'src/shared/lib/blobToBase64.ts'
 import { KEYS } from 'src/shared/const'
 import { DEFAULT_BACKGROUND_VIDEO } from 'src/widgets/backgroundVideo/const/defaultBackgroundVideo.ts'
@@ -132,7 +132,9 @@ const backgroundsSlice = createSlice({
                     state.isLoading = true
                 },
                 fulfilled: (state, action) => {
-                    state.backgroundRandomWallpaper = action.payload
+                    const { payload } = action
+                    state.backgroundRandomWallpaper = payload
+                    setToLocalStorage(KEYS.BACKGROUND_RANDOM_WALLPAPER, payload)
                     if (state.error) state.error = null
                 },
                 rejected: (state, action) => {

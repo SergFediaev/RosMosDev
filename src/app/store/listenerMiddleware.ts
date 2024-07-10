@@ -1,7 +1,6 @@
 import { addListener, createListenerMiddleware } from '@reduxjs/toolkit'
 import { AppDispatch, RootState } from 'src/app/store/store.ts'
 import {
-    fetchCards,
     setCardsFilter,
     setCardsSearch,
     setCardsSort,
@@ -20,7 +19,6 @@ import {
     setShowConnectionAlways,
 } from 'src/entities/setting/model/settingSlice.ts'
 import {
-    fetchRandomWallpaper,
     setBackgroundColor,
     setBackgroundRandomGradient,
     setBackgroundType,
@@ -28,23 +26,15 @@ import {
     setBackgroundWallpaper,
     setHasBackgroundOverlay,
 } from 'src/entities/background/model/backgroundSlice.ts'
-import { clearLocalStorage, setToLocalStorage } from 'src/shared/lib/localStorage.ts'
+import { clearLocalStorage, removeFromLocalStorage, setToLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { KEYS } from 'src/shared/const'
+import { setIsAuthorized } from 'src/features/authorize/model/authorizeSlice.ts'
 
 export const listenerMiddleware = createListenerMiddleware()
 
 const startAppListening = listenerMiddleware.startListening.withTypes<RootState, AppDispatch>()
 
 export const addAppListener = addListener.withTypes<RootState, AppDispatch>()
-
-startAppListening({
-    actionCreator: fetchCards.fulfilled,
-    effect: (_, { getState }) => {
-        const cards = getState().cards
-        setToSessionStorage(KEYS.CARDS, cards.items)
-        setToSessionStorage(KEYS.FILTERS, cards.filters)
-    },
-})
 
 startAppListening({
     actionCreator: setCardsSource,
@@ -163,11 +153,6 @@ startAppListening({
 })
 
 startAppListening({
-    actionCreator: fetchRandomWallpaper.fulfilled,
-    effect: ({ payload }) => setToLocalStorage(KEYS.BACKGROUND_RANDOM_WALLPAPER, payload),
-})
-
-startAppListening({
     actionCreator: setBackgroundVideo,
     effect: ({ payload: { backgroundVideo } }) => setToLocalStorage(KEYS.BACKGROUND_VIDEO, backgroundVideo),
 })
@@ -176,4 +161,11 @@ startAppListening({
     actionCreator: setHasBackgroundOverlay,
     effect: ({ payload: { hasBackgroundOverlay } }) =>
         setToLocalStorage(KEYS.HAS_BACKGROUND_OVERLAY, hasBackgroundOverlay),
+})
+
+startAppListening({
+    actionCreator: setIsAuthorized,
+    effect: ({ payload: { isAuthorized } }) => {
+        if (!isAuthorized) removeFromLocalStorage(KEYS.USER)
+    },
 })

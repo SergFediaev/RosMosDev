@@ -9,7 +9,7 @@ import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
 import { restoreDefaultSettings, setLanguage } from 'src/entities/setting/model/settingSlice.ts'
 import { isObjectsShallowEqual } from 'src/shared/lib/isObjectsShallowEqual.ts'
 import { KEYS, VALUES } from 'src/shared/const'
-import { getFromSessionStorage } from 'src/shared/lib/sessionStorage.ts'
+import { getFromSessionStorage, setToSessionStorage } from 'src/shared/lib/sessionStorage.ts'
 import { getFromLocalStorage } from 'src/shared/lib/localStorage.ts'
 import { getSources } from 'src/features/cardsSource/lib/getSources.ts'
 import { SheetId, Source } from 'src/features/cardsSource/model/cardsSource.types.ts'
@@ -131,6 +131,9 @@ const cardsSlice = createSlice({
                     const filter = filters.find(({ value }) => value === state.filter.value)
                     state.filter = filter ?? filters[DEFAULT_FILTER]
 
+                    // ToDo: save filter.
+                    setToSessionStorage(KEYS.CARDS, cards)
+                    setToSessionStorage(KEYS.FILTERS, filters)
                     if (state.error) state.error = null
                 },
                 rejected: (state, action) => {

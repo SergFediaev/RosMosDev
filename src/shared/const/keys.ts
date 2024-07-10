@@ -35,4 +35,5 @@ export const KEYS = {
     CONTENT_TYPE: 'Content-Type',
     CREATED: 'created',
     UPDATED: 'updated',
+    USER: 'user',
 } as const

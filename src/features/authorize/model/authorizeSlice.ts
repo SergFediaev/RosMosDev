@@ -5,6 +5,8 @@ import { authorizeApi } from 'src/features/authorize/api/authorizeApi.ts'
 import { handleNetworkError } from 'src/shared/lib/handleNetworkError.ts'
 import { RejectedWithError } from 'src/shared/types/rejectedWithError.ts'
 import { User } from 'src/features/authorize/model/authorize.types.ts'
+import { getFromLocalStorage, setToLocalStorage } from 'src/shared/lib/localStorage.ts'
+import { KEYS } from 'src/shared/const'
 
 type InitialState = {
     isAuthorized: boolean
@@ -15,8 +17,8 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-    isAuthorized: false,
-    user: null,
+    isAuthorized: !!getFromLocalStorage(KEYS.USER, null),
+    user: getFromLocalStorage(KEYS.USER, null),
     guestId: nanoid(),
     isLoading: false,
     error: null,
@@ -40,7 +42,9 @@ const authorizeSlice = createSlice({
     },
     reducers: create => ({
         setIsAuthorized: create.reducer((state, action: PayloadAction<{ isAuthorized: boolean }>) => {
-            state.isAuthorized = action.payload.isAuthorized
+            const { isAuthorized } = action.payload
+            state.isAuthorized = isAuthorized
+            if (!isAuthorized) state.user = null
         }),
         setIsAuthorizeLoading: create.reducer((state, action: PayloadAction<{ isLoading: boolean }>) => {
             state.isLoading = action.payload.isLoading
@@ -66,8 +70,10 @@ const authorizeSlice = createSlice({
                     state.isLoading = true
                 },
                 fulfilled: (state, action) => {
-                    state.user = action.payload
+                    const { payload } = action
+                    state.user = payload
                     state.isAuthorized = true
+                    setToLocalStorage(KEYS.USER, payload)
                     if (state.error) state.error = null
                 },
                 rejected: (state, action) => {
