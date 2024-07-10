@@ -1,5 +1,5 @@
 import { S } from './cardInfo.styles.ts'
-import { TEXTS, TYPES } from 'src/shared/const'
+import { SYMBOLS, TEXTS, TYPES } from 'src/shared/const'
 import { Lang } from 'src/shared/types/language.ts'
 
 type Props = {
@@ -35,20 +35,34 @@ export const CardInfo = ({
                 <>
                     {created && (
                         <p>
-                            {TEXTS[lang].CREATED} {created}
+                            {TEXTS[lang].CREATED}
+                            {SYMBOLS.COLON_SPACE}
+                            {created}
                         </p>
                     )}
                     {updated && (
                         <p>
-                            {TEXTS[lang].UPDATED} {updated}
+                            {TEXTS[lang].UPDATED}
+                            {SYMBOLS.COLON_SPACE}
+                            {updated}
                         </p>
                     )}
                     {name && email ? (
-                        <a href={`${TYPES.MAIL_TO}${email}`} title={email}>
-                            {name}
-                        </a>
+                        <p>
+                            {TEXTS[lang].AUTHOR}
+                            {SYMBOLS.COLON_SPACE}
+                            <a href={`${TYPES.MAIL_TO}${email}`} title={email}>
+                                {name}
+                            </a>
+                        </p>
                     ) : (
-                        name && <p>{name}</p>
+                        name && (
+                            <p>
+                                {TEXTS[lang].AUTHOR}
+                                {SYMBOLS.COLON_SPACE}
+                                {name}
+                            </p>
+                        )
                     )}
                 </>
             )}
