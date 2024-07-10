@@ -1,11 +1,13 @@
 import { S } from './cardInfo.styles.ts'
-import { TEXTS } from 'src/shared/const'
+import { TEXTS, TYPES } from 'src/shared/const'
 import { Lang } from 'src/shared/types/language.ts'
 
 type Props = {
     id: string
     created?: string
     updated?: string
+    name?: string
+    email?: string
     showCardId?: boolean
     showCardDate?: boolean
     lang: Lang
@@ -16,6 +18,8 @@ export const CardInfo = ({
     id,
     created,
     updated,
+    name,
+    email,
     showCardId = true,
     showCardDate = true,
     lang,
@@ -38,6 +42,13 @@ export const CardInfo = ({
                         <p>
                             {TEXTS[lang].UPDATED} {updated}
                         </p>
+                    )}
+                    {name && email ? (
+                        <a href={`${TYPES.MAIL_TO}${email}`} title={email}>
+                            {name}
+                        </a>
+                    ) : (
+                        name && <p>{name}</p>
                     )}
                 </>
             )}

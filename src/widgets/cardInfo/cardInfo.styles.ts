@@ -5,8 +5,13 @@ const CardInfo = styled.section<{ fontSize?: string }>`
     text-align: right;
     font-size: ${({ fontSize }) => fontSize || theme.sizes.defaultFont};
 
-    & p {
+    & p,
+    & a {
         font-family: ${theme.fonts.monospace};
+    }
+
+    & a {
+        text-decoration-color: ${theme.colors.backgroundAccent};
     }
 `
 

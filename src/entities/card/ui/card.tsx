@@ -26,7 +26,7 @@ type Props = {
 export const Card = ({ card }: Props) => {
     const lang = useAppSelector(selectLang)
     const navigate = useNavigate()
-    const { id, title, content, tags, created, updated } = card
+    const { id, title, content, tags, created, updated, name, email } = card
     const isLearningMode = useAppSelector(selectIsLearningMode)
     const showCardTags = useAppSelector(selectShowCardTags)
     const showCardId = useAppSelector(selectShowCardId)
@@ -61,6 +61,8 @@ export const Card = ({ card }: Props) => {
                 id={id}
                 created={created}
                 updated={updated}
+                name={name}
+                email={email}
                 showCardId={showCardId}
                 showCardDate={showCardDate}
                 lang={lang}

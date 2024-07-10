@@ -18,7 +18,9 @@ export const getCardsFromSpreadsheet = (
     for (const { values } of rows) {
         if (!values) continue
 
-        const [id, title, content, tags, created, updated] = values.map(({ formattedValue }) => formattedValue)
+        const [id, title, content, tags, created, updated, name, email] = values.map(
+            ({ formattedValue }) => formattedValue,
+        )
 
         if (!(id && title && content)) continue
         if ([id, title, content].some(string => isStringEmpty(string))) continue
@@ -32,6 +34,8 @@ export const getCardsFromSpreadsheet = (
             tags: tags && tags.split(VALUES.COMMA).join(VALUES.COMMA_SPACE),
             created,
             updated,
+            name,
+            email,
         })
     }
 

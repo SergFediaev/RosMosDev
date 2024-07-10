@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { KEYS, TYPES } from 'src/shared/const'
-import { CustomCard, DraftCard } from 'src/features/customCard/model/customCard.types.ts'
+import { CustomCard, DraftCard } from 'src/entities/card'
 
 const baseURL = 'https://script.google.com/macros/s/'
 

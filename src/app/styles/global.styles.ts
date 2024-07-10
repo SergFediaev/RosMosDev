@@ -87,5 +87,6 @@ export const GlobalStyles = createGlobalStyle`
         text-decoration: ${theme.colors.fontAccent} ${theme.sizes.regularBorder} underline;
         text-underline-offset: ${theme.sizes.regularBorder};
         overflow-wrap: break-word;
+        cursor: pointer;
     }
 `
