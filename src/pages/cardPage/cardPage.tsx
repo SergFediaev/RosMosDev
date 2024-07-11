@@ -29,7 +29,7 @@ export const CardPage = () => {
     // ToDo: Custom card not found page.
     if (!card) return <ErrorMessage error={TEXTS[lang].CARDS_NOT_FOUND} />
 
-    const { id, title, content, tags, created, updated } = card
+    const { id, title, content, tags, created, updated, name, email } = card
 
     return (
         <>
@@ -52,7 +52,7 @@ export const CardPage = () => {
                     <h2>{title}</h2>
                     <CardTags lang={lang} tags={tags} />
                     <Spoiler>{content}</Spoiler>
-                    <CardInfo id={id} created={created} updated={updated} lang={lang} />
+                    <CardInfo id={id} created={created} updated={updated} name={name} email={email} lang={lang} />
                 </S.Card>
             </Page>
         </>
