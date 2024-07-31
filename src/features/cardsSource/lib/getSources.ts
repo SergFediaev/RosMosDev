@@ -12,4 +12,8 @@ export const getSources = (lang: Lang = VALUES.EN): Source[] => [
         label: TEXTS[lang].CUSTOM_CARDS,
         value: SOURCES.CUSTOM,
     },
+    {
+        label: TEXTS[lang].TEAM_CARDS,
+        value: SOURCES.TEAM,
+    },
 ]

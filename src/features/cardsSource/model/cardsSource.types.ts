@@ -5,4 +5,4 @@ export type Source = {
     value: SheetId
 }
 
-export type SheetId = typeof SOURCES.OFFICIAL | typeof SOURCES.CUSTOM
+export type SheetId = typeof SOURCES.OFFICIAL | typeof SOURCES.CUSTOM | typeof SOURCES.TEAM
